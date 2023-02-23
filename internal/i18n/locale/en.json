@@ -1,0 +1,26 @@
+{
+	"common": {
+		"success": "successfully",
+		"failed": "failed",
+		"updateSuccess": "Update successfully",
+		"updateFailed": "Update failed",
+		"createSuccess": "Create successfully",
+		"createFailed": "Create failed",
+		"deleteSuccess": "Delete successfully",
+		"deleteFailed": "Delete failed",
+		"changeStatusSuccess": "Change status successfully",
+		"changeStatusFailed": "Change status failed",
+		"targetNotExist": "Target does not exist",
+		"databaseError": "Database error",
+		"redisError": "Redis error"
+	},
+	"init": {
+		"alreadyInit": "The database had been initialized.",
+		"initializeIsRunning": "The initialization is running..."
+	},
+	"memberRank": {
+		"normal": "Normal Member",
+		"vip": "VIP",
+		"memberExistError": "There are members under this rank, it is forbidden to delete."
+	}
+}

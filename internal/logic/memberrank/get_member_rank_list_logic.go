@@ -2,14 +2,13 @@ package memberrank
 
 import (
 	"context"
-	"net/http"
 
 	"github.com/suyuan32/simple-admin-member-rpc/mms"
 
 	"github.com/suyuan32/simple-admin-member-api/internal/svc"
 	"github.com/suyuan32/simple-admin-member-api/internal/types"
 
-	"github.com/suyuan32/simple-admin-core/pkg/i18n"
+	"github.com/suyuan32/simple-admin-common/i18n"
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -17,15 +16,13 @@ type GetMemberRankListLogic struct {
 	logx.Logger
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
-	lang   string
 }
 
-func NewGetMemberRankListLogic(r *http.Request, svcCtx *svc.ServiceContext) *GetMemberRankListLogic {
+func NewGetMemberRankListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetMemberRankListLogic {
 	return &GetMemberRankListLogic{
-		Logger: logx.WithContext(r.Context()),
-		ctx:    r.Context(),
+		Logger: logx.WithContext(ctx),
+		ctx:    ctx,
 		svcCtx: svcCtx,
-		lang:   r.Header.Get("Accept-Language"),
 	}
 }
 
@@ -42,7 +39,7 @@ func (l *GetMemberRankListLogic) GetMemberRankList(req *types.MemberRankListReq)
 		return nil, err
 	}
 	resp = &types.MemberRankListResp{}
-	resp.Msg = l.svcCtx.Trans.Trans(l.lang, i18n.Success)
+	resp.Msg = l.svcCtx.Trans.Trans(l.ctx, i18n.Success)
 	resp.Data.Total = data.GetTotal()
 
 	for _, v := range data.Data {
@@ -53,7 +50,7 @@ func (l *GetMemberRankListLogic) GetMemberRankList(req *types.MemberRankListReq)
 					CreatedAt: v.CreatedAt,
 					UpdatedAt: v.UpdatedAt,
 				},
-				Trans:       l.svcCtx.Trans.Trans(l.lang, v.Name),
+				Trans:       l.svcCtx.Trans.Trans(l.ctx, v.Name),
 				Name:        v.Name,
 				Description: v.Description,
 				Remark:      v.Remark,

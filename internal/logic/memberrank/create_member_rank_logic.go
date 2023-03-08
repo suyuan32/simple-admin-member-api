@@ -2,7 +2,6 @@ package memberrank
 
 import (
 	"context"
-	"net/http"
 
 	"github.com/suyuan32/simple-admin-member-rpc/mms"
 
@@ -16,15 +15,13 @@ type CreateMemberRankLogic struct {
 	logx.Logger
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
-	lang   string
 }
 
-func NewCreateMemberRankLogic(r *http.Request, svcCtx *svc.ServiceContext) *CreateMemberRankLogic {
+func NewCreateMemberRankLogic(ctx context.Context, svcCtx *svc.ServiceContext) *CreateMemberRankLogic {
 	return &CreateMemberRankLogic{
-		Logger: logx.WithContext(r.Context()),
-		ctx:    r.Context(),
+		Logger: logx.WithContext(ctx),
+		ctx:    ctx,
 		svcCtx: svcCtx,
-		lang:   r.Header.Get("Accept-Language"),
 	}
 }
 
@@ -40,5 +37,5 @@ func (l *CreateMemberRankLogic) CreateMemberRank(req *types.MemberRankInfo) (res
 	if err != nil {
 		return nil, err
 	}
-	return &types.BaseMsgResp{Msg: l.svcCtx.Trans.Trans(l.lang, data.Msg)}, nil
+	return &types.BaseMsgResp{Msg: l.svcCtx.Trans.Trans(l.ctx, data.Msg)}, nil
 }

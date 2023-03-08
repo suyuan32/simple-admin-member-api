@@ -33,10 +33,10 @@ func DeleteMemberRankHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 			return
 		}
 
-		l := memberrank.NewDeleteMemberRankLogic(r, svcCtx)
+		l := memberrank.NewDeleteMemberRankLogic(r.Context(), svcCtx)
 		resp, err := l.DeleteMemberRank(&req)
 		if err != nil {
-			err = svcCtx.Trans.TransError(r.Header.Get("Accept-Language"), err)
+			err = svcCtx.Trans.TransError(r.Context(), err)
 			httpx.ErrorCtx(r.Context(), w, err)
 		} else {
 			httpx.OkJsonCtx(r.Context(), w, resp)

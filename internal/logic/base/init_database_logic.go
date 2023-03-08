@@ -2,7 +2,6 @@ package base
 
 import (
 	"context"
-	"net/http"
 
 	"github.com/suyuan32/simple-admin-member-rpc/mms"
 
@@ -16,15 +15,13 @@ type InitDatabaseLogic struct {
 	logx.Logger
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
-	lang   string
 }
 
-func NewInitDatabaseLogic(r *http.Request, svcCtx *svc.ServiceContext) *InitDatabaseLogic {
+func NewInitDatabaseLogic(ctx context.Context, svcCtx *svc.ServiceContext) *InitDatabaseLogic {
 	return &InitDatabaseLogic{
-		Logger: logx.WithContext(r.Context()),
-		ctx:    r.Context(),
+		Logger: logx.WithContext(ctx),
+		ctx:    ctx,
 		svcCtx: svcCtx,
-		lang:   r.Header.Get("Accept-Language"),
 	}
 }
 
@@ -36,6 +33,6 @@ func (l *InitDatabaseLogic) InitDatabase() (resp *types.BaseMsgResp, err error) 
 
 	return &types.BaseMsgResp{
 		Code: 0,
-		Msg:  l.svcCtx.Trans.Trans(l.lang, data.Msg),
+		Msg:  l.svcCtx.Trans.Trans(l.ctx, data.Msg),
 	}, nil
 }

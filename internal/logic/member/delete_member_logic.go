@@ -2,7 +2,6 @@ package member
 
 import (
 	"context"
-	"net/http"
 
 	"github.com/suyuan32/simple-admin-member-rpc/mms"
 
@@ -16,15 +15,13 @@ type DeleteMemberLogic struct {
 	logx.Logger
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
-	lang   string
 }
 
-func NewDeleteMemberLogic(r *http.Request, svcCtx *svc.ServiceContext) *DeleteMemberLogic {
+func NewDeleteMemberLogic(ctx context.Context, svcCtx *svc.ServiceContext) *DeleteMemberLogic {
 	return &DeleteMemberLogic{
-		Logger: logx.WithContext(r.Context()),
-		ctx:    r.Context(),
+		Logger: logx.WithContext(ctx),
+		ctx:    ctx,
 		svcCtx: svcCtx,
-		lang:   r.Header.Get("Accept-Language"),
 	}
 }
 
@@ -36,5 +33,5 @@ func (l *DeleteMemberLogic) DeleteMember(req *types.UUIDsReq) (resp *types.BaseM
 		return nil, err
 	}
 
-	return &types.BaseMsgResp{Msg: l.svcCtx.Trans.Trans(l.lang, result.Msg)}, nil
+	return &types.BaseMsgResp{Msg: l.svcCtx.Trans.Trans(l.ctx, result.Msg)}, nil
 }

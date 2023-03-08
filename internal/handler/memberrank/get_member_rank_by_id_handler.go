@@ -33,10 +33,10 @@ func GetMemberRankByIdHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 			return
 		}
 
-		l := memberrank.NewGetMemberRankByIdLogic(r, svcCtx)
+		l := memberrank.NewGetMemberRankByIdLogic(r.Context(), svcCtx)
 		resp, err := l.GetMemberRankById(&req)
 		if err != nil {
-			err = svcCtx.Trans.TransError(r.Header.Get("Accept-Language"), err)
+			err = svcCtx.Trans.TransError(r.Context(), err)
 			httpx.ErrorCtx(r.Context(), w, err)
 		} else {
 			httpx.OkJsonCtx(r.Context(), w, resp)

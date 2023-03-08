@@ -8,7 +8,7 @@ import (
 	i18n2 "github.com/suyuan32/simple-admin-member-api/internal/i18n"
 	"github.com/suyuan32/simple-admin-member-api/internal/middleware"
 
-	"github.com/suyuan32/simple-admin-core/pkg/i18n"
+	"github.com/suyuan32/simple-admin-common/i18n"
 
 	"github.com/casbin/casbin/v2"
 	"github.com/zeromicro/go-zero/core/stores/redis"

@@ -2,14 +2,13 @@ package member
 
 import (
 	"context"
-	"net/http"
 
 	"github.com/suyuan32/simple-admin-member-rpc/mms"
 
 	"github.com/suyuan32/simple-admin-member-api/internal/svc"
 	"github.com/suyuan32/simple-admin-member-api/internal/types"
 
-	"github.com/suyuan32/simple-admin-core/pkg/i18n"
+	"github.com/suyuan32/simple-admin-common/i18n"
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -17,15 +16,13 @@ type GetMemberListLogic struct {
 	logx.Logger
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
-	lang   string
 }
 
-func NewGetMemberListLogic(r *http.Request, svcCtx *svc.ServiceContext) *GetMemberListLogic {
+func NewGetMemberListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetMemberListLogic {
 	return &GetMemberListLogic{
-		Logger: logx.WithContext(r.Context()),
-		ctx:    r.Context(),
+		Logger: logx.WithContext(ctx),
+		ctx:    ctx,
 		svcCtx: svcCtx,
-		lang:   r.Header.Get("Accept-Language"),
 	}
 }
 
@@ -44,7 +41,7 @@ func (l *GetMemberListLogic) GetMemberList(req *types.MemberListReq) (resp *type
 		return nil, err
 	}
 	resp = &types.MemberListResp{}
-	resp.Msg = l.svcCtx.Trans.Trans(l.lang, i18n.Success)
+	resp.Msg = l.svcCtx.Trans.Trans(l.ctx, i18n.Success)
 	resp.Data.Total = data.GetTotal()
 
 	for _, v := range data.Data {

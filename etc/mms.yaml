@@ -21,7 +21,6 @@ Prometheus:
   Port: 4000
   Path: /metrics
 
-
 RedisConf:
   Host: 127.0.0.1:6379
   Type: node
@@ -50,11 +49,10 @@ CasbinConf:
     [matchers]
     m = r.sub == p.sub && keyMatch2(r.obj,p.obj) && r.act == p.act
 
-
 MmsRpc:
   Target: k8s://default/mms-rpc-svc:9103
+  Enabled: true
 
-#MmsRpc:
-#  Endpoints:
-#    - 127.0.0.1:9103
-#  Enabled: true
+CoreRpc:
+  Target: k8s://default/core-rpc-svc:9101
+  Enabled: true

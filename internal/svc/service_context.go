@@ -1,14 +1,19 @@
 package svc
 
 import (
-	"github.com/suyuan32/simple-admin-member-rpc/mmsclient"
+	"github.com/mojocn/base64Captcha"
+	"github.com/suyuan32/simple-admin-common/utils/captcha"
 	"github.com/zeromicro/go-zero/zrpc"
+
+	"github.com/suyuan32/simple-admin-member-rpc/mmsclient"
 
 	"github.com/suyuan32/simple-admin-member-api/internal/config"
 	i18n2 "github.com/suyuan32/simple-admin-member-api/internal/i18n"
 	"github.com/suyuan32/simple-admin-member-api/internal/middleware"
 
 	"github.com/suyuan32/simple-admin-common/i18n"
+
+	"github.com/suyuan32/simple-admin-core/rpc/coreclient"
 
 	"github.com/casbin/casbin/v2"
 	"github.com/zeromicro/go-zero/core/stores/redis"
@@ -21,6 +26,8 @@ type ServiceContext struct {
 	Authority rest.Middleware
 	Trans     *i18n.Translator
 	MmsRpc    mmsclient.Mms
+	Captcha   *base64Captcha.Captcha
+	CoreRpc   coreclient.Core
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
@@ -36,5 +43,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		Authority: middleware.NewAuthorityMiddleware(cbn, rds, trans).Handle,
 		Trans:     trans,
 		MmsRpc:    mmsclient.NewMms(zrpc.NewClientIfEnable(c.MmsRpc)),
+		Captcha:   captcha.MustNewRedisCaptcha(c.Captcha, rds),
+		CoreRpc:   coreclient.NewCore(zrpc.NewClientIfEnable(c.CoreRpc)),
 	}
 }

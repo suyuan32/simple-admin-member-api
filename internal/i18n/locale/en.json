@@ -1,7 +1,7 @@
 {
 	"common": {
-		"success": "successfully",
-		"failed": "failed",
+		"success": "Successfully",
+		"failed": "Failed",
 		"updateSuccess": "Update successfully",
 		"updateFailed": "Update failed",
 		"createSuccess": "Create successfully",
@@ -13,7 +13,10 @@
 		"targetNotExist": "Target does not exist",
 		"databaseError": "Database error",
 		"redisError": "Redis error",
-		"permissionDeny": "User does not have permission to access this interface"
+		"permissionDeny": "User does not have permission to access this interface",
+		"constraintError": "Operation failed: Data conflict",
+		"validationError": "Operation failed: Validation failed",
+		"notSingularError": "Operation failed: Data not unique"
 	},
 	"init": {
 		"alreadyInit": "The database had been initialized.",
@@ -23,5 +26,15 @@
 		"normal": "Normal Member",
 		"vip": "VIP",
 		"memberExistError": "There are members under this rank, it is forbidden to delete."
+	},
+	"login": {
+		"loginSuccessTitle": "Login successful",
+		"signupSuccessTitle": "Sign up successful",
+		"signupUserExist": "Username or email address had been registered",
+		"userNotExist": "User does not register",
+		"wrongCaptcha": "Wrong captcha",
+		"wrongPassword": "Wrong Password",
+		"wrongUsernameOrPassword": "Wrong username or password",
+		"requireLogin": "Please log in again"
 	}
 }

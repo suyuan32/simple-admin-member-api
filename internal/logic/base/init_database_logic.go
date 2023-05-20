@@ -2,8 +2,12 @@ package base
 
 import (
 	"context"
+	"strings"
 
-	"github.com/suyuan32/simple-admin-member-rpc/mms"
+	"github.com/suyuan32/simple-admin-common/i18n"
+	"github.com/zeromicro/go-zero/core/errorx"
+
+	"github.com/suyuan32/simple-admin-member-rpc/types/mms"
 
 	"github.com/suyuan32/simple-admin-member-api/internal/svc"
 	"github.com/suyuan32/simple-admin-member-api/internal/types"
@@ -26,6 +30,19 @@ func NewInitDatabaseLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Init
 }
 
 func (l *InitDatabaseLogic) InitDatabase() (resp *types.BaseMsgResp, err error) {
+	err = l.insertApiData()
+	if err != nil {
+		if strings.Contains(err.Error(), "common.createFailed") {
+			return nil, errorx.NewInvalidArgumentError(i18n.AlreadyInit)
+		}
+		return nil, errorx.NewCodeInternalError(err.Error())
+	}
+
+	err = l.insertMenuData()
+	if err != nil {
+		return nil, errorx.NewCodeInternalError(err.Error())
+	}
+
 	data, err := l.svcCtx.MmsRpc.InitDatabase(l.ctx, &mms.Empty{})
 	if err != nil {
 		return nil, err

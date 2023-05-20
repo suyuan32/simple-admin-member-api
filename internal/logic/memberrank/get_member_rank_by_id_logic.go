@@ -3,7 +3,7 @@ package memberrank
 import (
 	"context"
 
-	"github.com/suyuan32/simple-admin-member-rpc/mms"
+	"github.com/suyuan32/simple-admin-member-rpc/types/mms"
 
 	"github.com/suyuan32/simple-admin-member-api/internal/svc"
 	"github.com/suyuan32/simple-admin-member-api/internal/types"

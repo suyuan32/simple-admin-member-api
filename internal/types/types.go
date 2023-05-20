@@ -174,6 +174,77 @@ type MemberInfoResp struct {
 	Data MemberInfo `json:"data"`
 }
 
+// register request | 注册参数
+// swagger:model RegisterReq
+type RegisterReq struct {
+	// User Name | 用户名
+	// required : true
+	// max length : 20
+	Username string `json:"username" validate:"required,alphanum,max=20"`
+	// Password | 密码
+	// required : true
+	// max length : 30
+	// min length : 6
+	Password string `json:"password" validate:"required,max=30,min=6"`
+	// Captcha ID which store in redis | 验证码编号, 存在redis中
+	// required : true
+	// max length : 20
+	// min length : 20
+	CaptchaId string `json:"captchaId" validate:"required,len=20"`
+	// The Captcha which users input | 用户输入的验证码
+	// required : true
+	// max length : 5
+	// min length : 5
+	Captcha string `json:"captcha" validate:"required,len=5"`
+	// The user's email address | 用户的邮箱
+	// required : true
+	// max length : 100
+	Email string `json:"email" validate:"required,email,max=100"`
+}
+
+// Login request | 登录参数
+// swagger:model LoginReq
+type LoginReq struct {
+	// User Name | 用户名
+	// required : true
+	// max length : 20
+	Username string `json:"username" validate:"required,alphanum,max=20"`
+	// Password | 密码
+	// Required: true
+	// Min length: 6
+	// Max length: 30
+	Password string `json:"password" validate:"required,max=30,min=6"`
+	// Captcha ID which store in redis | 验证码编号, 存在redis中
+	// Required: true
+	// Max length: 20
+	CaptchaId string `json:"captchaId"  validate:"required,len=20"`
+	// The Captcha which users input | 用户输入的验证码
+	// Required: true
+	// Max length: 5
+	Captcha string `json:"captcha" validate:"required,len=5"`
+}
+
+// The log in response data | 登录返回数据
+// swagger:model LoginResp
+type LoginResp struct {
+	BaseDataInfo
+	// The log in information | 登陆返回的数据信息
+	Data LoginInfo `json:"data"`
+}
+
+// The log in information | 登陆返回的数据信息
+// swagger:model LoginInfo
+type LoginInfo struct {
+	// User's UUID | 用户的UUID
+	UserId string `json:"userId"`
+	// Rank ID | 等级 ID
+	RankId uint64 `json:"rankId"`
+	// Token for authorization | 验证身份的token
+	Token string `json:"token"`
+	// Expire timestamp | 过期时间戳
+	Expire uint64 `json:"expire"`
+}
+
 // The response data of member rank information | MemberRank信息
 // swagger:model MemberRankInfo
 type MemberRankInfo struct {

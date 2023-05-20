@@ -73,6 +73,69 @@ type (
         // Member information | 会员数据
         Data MemberInfo `json:"data"`
     }
+
+    // register request | 注册参数
+    RegisterReq {
+        // User Name | 用户名
+        Username  string `json:"username" validate:"required,alphanum,max=20"`
+
+        // Password | 密码
+        Password  string `json:"password" validate:"required,max=30,min=6"`
+
+        // Captcha ID which store in redis | 验证码编号, 存在redis中
+        CaptchaId string `json:"captchaId" validate:"required,len=20"`
+
+        // The Captcha which users input | 用户输入的验证码
+        Captcha   string `json:"captcha" validate:"required,len=5"`
+
+        // The user's email address | 用户的邮箱
+        Email     string `json:"email" validate:"required,email,max=100"`
+    }
+
+    // Login request | 登录参数
+    LoginReq {
+        // User Name | 用户名
+        Username   string `json:"username" validate:"required,alphanum,max=20"`
+
+        // Password | 密码
+        // Required: true
+        // Min length: 6
+        // Max length: 30
+        Password   string `json:"password" validate:"required,max=30,min=6"`
+
+        // Captcha ID which store in redis | 验证码编号, 存在redis中
+        // Required: true
+        // Max length: 20
+        CaptchaId  string `json:"captchaId"  validate:"required,len=20"`
+
+        // The Captcha which users input | 用户输入的验证码
+        // Required: true
+        // Max length: 5
+        Captcha    string `json:"captcha" validate:"required,len=5"`
+    }
+
+    // The log in response data | 登录返回数据
+    LoginResp {
+        BaseDataInfo
+
+        // The log in information | 登陆返回的数据信息
+        Data LoginInfo `json:"data"`
+    }
+
+    // The log in information | 登陆返回的数据信息
+    LoginInfo {
+        // User's UUID | 用户的UUID
+        UserId       string          `json:"userId"`
+
+        // Rank ID | 等级 ID
+        RankId       uint64          `json:"rankId"`
+
+        // Token for authorization | 验证身份的token
+        Token        string          `json:"token"`
+
+        // Expire timestamp | 过期时间戳
+        Expire       uint64          `json:"expire"`
+    }
 )
 
 @server(
@@ -101,4 +164,18 @@ service Mms {
     // Get member by ID | 通过ID获取会员
     @handler getMemberById
     post /member (UUIDReq) returns (MemberInfoResp)
+}
+
+@server(
+    group: member
+)
+
+service Mms {
+    // Log in | 登录
+    @handler login
+    post /member/login (LoginReq) returns (LoginResp)
+
+    // Register | 注册
+    @handler register
+    post /member/register (RegisterReq) returns (BaseMsgResp)
 }

@@ -13,7 +13,10 @@
 		"targetNotExist": "目标不存在",
 		"databaseError": "数据库错误",
 		"redisError": "Redis 错误",
-		"permissionDeny": "用户无权限访问此接口"
+		"permissionDeny": "用户无权限访问此接口",
+		"constraintError": "操作失败: 数据冲突",
+		"validationError": "操作失败: 校验失败",
+		"notSingularError": "操作失败: 数据不唯一"
 	},
 	"init": {
 		"initializeIsRunning": "正在初始化...",
@@ -23,5 +26,15 @@
 		"normal": "普通会员",
 		"vip": "VIP",
 		"memberExistError": "该等级下存在会员，禁止删除"
+	},
+	"login": {
+		"loginSuccessTitle": "登录成功",
+		"signupSuccessTitle": "注册成功",
+		"signupUserExist": "用户名或者邮箱已被注册",
+		"userNotExist": "用户不存在",
+		"wrongCaptcha": "验证码错误",
+		"wrongUsernameOrPassword": "用户名或密码错误",
+		"wrongPassword": "密码错误",
+		"requireLogin": "请重新登录"
 	}
 }

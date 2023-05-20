@@ -124,6 +124,79 @@ definitions:
             - ids
         type: object
         x-go-package: github.com/suyuan32/simple-admin-member-api/internal/types
+    LoginInfo:
+        description: The log in information | 登陆返回的数据信息
+        properties:
+            expire:
+                description: Expire timestamp | 过期时间戳
+                format: uint64
+                type: integer
+                x-go-name: Expire
+            rankId:
+                description: Rank ID | 等级 ID
+                format: uint64
+                type: integer
+                x-go-name: RankId
+            token:
+                description: Token for authorization | 验证身份的token
+                type: string
+                x-go-name: Token
+            userId:
+                description: User's UUID | 用户的UUID
+                type: string
+                x-go-name: UserId
+        type: object
+        x-go-package: github.com/suyuan32/simple-admin-member-api/internal/types
+    LoginReq:
+        description: Login request | 登录参数
+        properties:
+            captcha:
+                description: The Captcha which users input | 用户输入的验证码
+                maxLength: 5
+                type: string
+                x-go-name: Captcha
+            captchaId:
+                description: Captcha ID which store in redis | 验证码编号, 存在redis中
+                maxLength: 20
+                type: string
+                x-go-name: CaptchaId
+            password:
+                description: Password | 密码
+                maxLength: 30
+                minLength: 6
+                type: string
+                x-go-name: Password
+            username:
+                description: User Name | 用户名
+                maxLength: 20
+                type: string
+                x-go-name: Username
+        required:
+            - username
+            - password
+            - captchaId
+            - captcha
+        type: object
+        x-go-package: github.com/suyuan32/simple-admin-member-api/internal/types
+    LoginResp:
+        description: The log in response data | 登录返回数据
+        properties:
+            code:
+                description: Error code | 错误代码
+                format: int64
+                type: integer
+                x-go-name: Code
+            data:
+                $ref: '#/definitions/LoginInfo'
+                description: Data | 数据
+                type: string
+                x-go-name: Data
+            msg:
+                description: Message | 提示信息
+                type: string
+                x-go-name: Msg
+        type: object
+        x-go-package: github.com/suyuan32/simple-admin-member-api/internal/types
     MemberInfo:
         description: The response data of member information | 会员信息
         properties:
@@ -415,6 +488,45 @@ definitions:
             - pageSize
         type: object
         x-go-package: github.com/suyuan32/simple-admin-member-api/internal/types
+    RegisterReq:
+        description: register request | 注册参数
+        properties:
+            captcha:
+                description: The Captcha which users input | 用户输入的验证码
+                maxLength: 5
+                minLength: 5
+                type: string
+                x-go-name: Captcha
+            captchaId:
+                description: Captcha ID which store in redis | 验证码编号, 存在redis中
+                maxLength: 20
+                minLength: 20
+                type: string
+                x-go-name: CaptchaId
+            email:
+                description: The user's email address | 用户的邮箱
+                maxLength: 100
+                type: string
+                x-go-name: Email
+            password:
+                description: Password | 密码
+                maxLength: 30
+                minLength: 6
+                type: string
+                x-go-name: Password
+            username:
+                description: User Name | 用户名
+                maxLength: 20
+                type: string
+                x-go-name: Username
+        required:
+            - username
+            - password
+            - captchaId
+            - captcha
+            - email
+        type: object
+        x-go-package: github.com/suyuan32/simple-admin-member-api/internal/types
     UUIDReq:
         description: Basic UUID request | 基础UUID参数请求
         properties:
@@ -442,8 +554,8 @@ definitions:
         x-go-package: github.com/suyuan32/simple-admin-member-api/internal/types
 host: localhost:9104
 info:
-    description: 'Description: mms service'
-    title: mms
+    description: 'MMS: Member management service'
+    title: Simple Admin Member management service
     version: 0.0.1
 paths:
     /init/database:
@@ -528,6 +640,42 @@ paths:
                     schema:
                         $ref: '#/definitions/MemberListResp'
             summary: Get member list | 获取会员列表
+            tags:
+                - member
+    /member/login:
+        post:
+            description: Log in | 登录
+            operationId: Login
+            parameters:
+                - in: body
+                  name: body
+                  schema:
+                    $ref: '#/definitions/LoginReq'
+                    type: object
+            responses:
+                "200":
+                    description: LoginResp
+                    schema:
+                        $ref: '#/definitions/LoginResp'
+            summary: Log in | 登录
+            tags:
+                - member
+    /member/register:
+        post:
+            description: Register | 注册
+            operationId: Register
+            parameters:
+                - in: body
+                  name: body
+                  schema:
+                    $ref: '#/definitions/RegisterReq'
+                    type: object
+            responses:
+                "200":
+                    description: BaseMsgResp
+                    schema:
+                        $ref: '#/definitions/BaseMsgResp'
+            summary: Register | 注册
             tags:
                 - member
     /member/update:

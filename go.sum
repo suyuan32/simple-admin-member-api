@@ -526,8 +526,8 @@ github.com/suyuan32/simple-admin-common v1.0.5 h1:nCjP0m3TDW3MYWGyhbh7GWFoaKVaqG
 github.com/suyuan32/simple-admin-common v1.0.5/go.mod h1:/Qjy7dcf2xpOTZizmmLxCWNf+1B//E74LNWcmMwqmU0=
 github.com/suyuan32/simple-admin-core v1.0.5 h1:vdP/iWSGV+6Y39FmA4U8Lc+GhdLYvQ+sc9ZqShwqfAk=
 github.com/suyuan32/simple-admin-core v1.0.5/go.mod h1:450itiPRi2JI26QubeNWb+EBTjCcaFml6Vp78R8i1W4=
-github.com/suyuan32/simple-admin-member-rpc v0.0.1 h1:GogMSp0EaxhuyZfGM/JFtzo+ACXF5eBe081QuijyeYI=
-github.com/suyuan32/simple-admin-member-rpc v0.0.1/go.mod h1:0rSDgTgK6dtPBDxObUw8M9scP7o8UKs3jsGk0MYqkrA=
+github.com/suyuan32/simple-admin-member-rpc v1.0.0 h1:9vHTxZxm0uLVtGyZvc01zH5fsWrT8OBoiIlxoQDYlrg=
+github.com/suyuan32/simple-admin-member-rpc v1.0.0/go.mod h1:0rSDgTgK6dtPBDxObUw8M9scP7o8UKs3jsGk0MYqkrA=
 github.com/suyuan32/simple-admin-tools v1.5.6 h1:H1eBD34zjG1g5AhtmR9mXl8q0qhqf4XCwhzwsPbm6p0=
 github.com/suyuan32/simple-admin-tools v1.5.6/go.mod h1:BMpwj0rFqZostDKGRDoUec1cT/eXAldNBL2R26fO++c=
 github.com/tmc/grpc-websocket-proxy v0.0.0-20190109142713-0ad062ec5ee5/go.mod h1:ncp9v5uamzpCO7NfCPTXjqaC+bZgJeR0sMTm6dMHP7U=

@@ -48,7 +48,7 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err erro
 
 		token, err := jwt.NewJwtToken(l.svcCtx.Config.Auth.AccessSecret, time.Now().Unix(),
 			l.svcCtx.Config.Auth.AccessExpire, jwt.WithOption("userId", user.Id), jwt.WithOption("rankId",
-				user.RankId))
+				user.RankId), jwt.WithOption("roleId", "99999"))
 		if err != nil {
 			return nil, err
 		}

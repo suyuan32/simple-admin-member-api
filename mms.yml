@@ -556,7 +556,7 @@ host: localhost:9104
 info:
     description: 'MMS: Member management service'
     title: Simple Admin Member management service
-    version: 0.0.1
+    version: 1.0.0
 paths:
     /init/database:
         get:

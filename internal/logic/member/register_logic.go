@@ -2,11 +2,11 @@ package member
 
 import (
 	"context"
+	"github.com/suyuan32/simple-admin-common/utils/pointy"
 
 	"github.com/suyuan32/simple-admin-common/enum/errorcode"
 	"github.com/zeromicro/go-zero/core/errorx"
 
-	"github.com/suyuan32/simple-admin-member-api/internal/enum/memberrank"
 	"github.com/suyuan32/simple-admin-member-api/internal/svc"
 	"github.com/suyuan32/simple-admin-member-api/internal/types"
 	"github.com/suyuan32/simple-admin-member-rpc/types/mms"
@@ -32,13 +32,12 @@ func (l *RegisterLogic) Register(req *types.RegisterReq) (resp *types.BaseMsgRes
 	if ok := l.svcCtx.Captcha.Verify("CAPTCHA_"+req.CaptchaId, req.Captcha, true); ok {
 		user, err := l.svcCtx.MmsRpc.CreateMember(l.ctx,
 			&mms.MemberInfo{
-				Id:       "",
-				Username: req.Username,
-				Password: req.Password,
-				Email:    req.Email,
-				Nickname: req.Username,
-				Status:   1,
-				RankId:   memberrank.Normal,
+				Username: &req.Username,
+				Password: &req.Password,
+				Email:    &req.Email,
+				Nickname: &req.Username,
+				Status:   pointy.GetPointer(uint32(1)),
+				RankId:   pointy.GetPointer(l.svcCtx.Config.ProjectConf.DefaultRankId),
 			})
 		if err != nil {
 			return nil, err

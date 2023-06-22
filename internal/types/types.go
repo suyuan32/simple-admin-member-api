@@ -94,22 +94,22 @@ type UUIDsReq struct {
 // swagger:model BaseInfo
 type BaseInfo struct {
 	// ID
-	Id uint64 `json:"id"`
+	Id *uint64 `json:"id"`
 	// Create date | 创建日期
-	CreatedAt int64 `json:"createdAt,optional"`
+	CreatedAt *int64 `json:"createdAt,optional"`
 	// Update date | 更新日期
-	UpdatedAt int64 `json:"updatedAt,optional"`
+	UpdatedAt *int64 `json:"updatedAt,optional"`
 }
 
 // The base UUID response data | 基础信息
 // swagger:model BaseUUIDInfo
 type BaseUUIDInfo struct {
 	// ID
-	Id string `json:"id"`
+	Id *string `json:"id"`
 	// Create date | 创建日期
-	CreatedAt int64 `json:"createdAt,optional"`
+	CreatedAt *int64 `json:"createdAt,optional"`
 	// Update date | 更新日期
-	UpdatedAt int64 `json:"updatedAt,optional"`
+	UpdatedAt *int64 `json:"updatedAt,optional"`
 }
 
 // The response data of member information | 会员信息
@@ -117,21 +117,21 @@ type BaseUUIDInfo struct {
 type MemberInfo struct {
 	BaseUUIDInfo
 	// Status | 状态
-	Status uint32 `json:"status,optional"`
+	Status *uint32 `json:"status,optional"`
 	// Username | 用户名
-	Username string `json:"username,optional"`
+	Username *string `json:"username,optional"`
 	// Password | 密码
-	Password string `json:"password,optional"`
+	Password *string `json:"password,optional"`
 	// Nickname | 昵称
-	Nickname string `json:"nickname,optional"`
+	Nickname *string `json:"nickname,optional"`
 	// RankId | 等级ID
-	RankId uint64 `json:"rankId,optional"`
+	RankId *uint64 `json:"rankId,optional"`
 	// Mobile | 手机
-	Mobile string `json:"mobile,optional"`
+	Mobile *string `json:"mobile,optional"`
 	// Email | 邮箱
-	Email string `json:"email,optional"`
+	Email *string `json:"email,optional"`
 	// Avatar | 头像地址
-	Avatar string `json:"avatar,optional"`
+	Avatar *string `json:"avatar,optional"`
 }
 
 // The response data of member list | 会员列表数据
@@ -155,15 +155,15 @@ type MemberListInfo struct {
 type MemberListReq struct {
 	PageInfo
 	// Username | 用户名
-	Username string `json:"username,optional"`
+	Username *string `json:"username,optional"`
 	// Nickname | 昵称
-	Nickname string `json:"nickname,optional"`
+	Nickname *string `json:"nickname,optional"`
 	// Mobile | 手机
-	Mobile string `json:"mobile,optional"`
+	Mobile *string `json:"mobile,optional"`
 	// Email | 邮箱
-	Email string `json:"email,optional"`
+	Email *string `json:"email,optional"`
 	// Rank ID | 等级ID
-	RankId uint64 `json:"rankId,optional"`
+	RankId *uint64 `json:"rankId,optional"`
 }
 
 // Member information response | 会员信息返回体
@@ -210,18 +210,18 @@ type LoginReq struct {
 	// max length : 20
 	Username string `json:"username" validate:"required,alphanum,max=20"`
 	// Password | 密码
-	// Required: true
-	// Min length: 6
-	// Max length: 30
+	// required : true
+	// max length : 30
+	// min length : 6
 	Password string `json:"password" validate:"required,max=30,min=6"`
 	// Captcha ID which store in redis | 验证码编号, 存在redis中
-	// Required: true
-	// Max length: 20
-	CaptchaId string `json:"captchaId"  validate:"required,len=20"`
+	// max length : 20
+	// min length : 20
+	CaptchaId string `json:"captchaId,optional"  validate:"omitempty,len=20"`
 	// The Captcha which users input | 用户输入的验证码
-	// Required: true
-	// Max length: 5
-	Captcha string `json:"captcha" validate:"required,len=5"`
+	// max length : 5
+	// min length : 5
+	Captcha string `json:"captcha,optional" validate:"omitempty,len=5"`
 }
 
 // The log in response data | 登录返回数据
@@ -243,6 +243,12 @@ type LoginInfo struct {
 	Token string `json:"token"`
 	// Expire timestamp | 过期时间戳
 	Expire uint64 `json:"expire"`
+	// Avatar | 用户头像
+	Avatar string `json:"avatar"`
+	// Nickname | 用户昵称
+	Nickname string `json:"nickname"`
+	// RankName | 等级名称
+	RankName string `json:"rankName"`
 }
 
 // The response data of member rank information | MemberRank信息
@@ -252,13 +258,13 @@ type MemberRankInfo struct {
 	// Translated Name | 国际化翻译
 	Trans string `json:"trans,optional"`
 	// Rank name | 等级名称
-	Name string `json:"name,optional"`
+	Name *string `json:"name,optional"`
 	// Description | 等级描述
-	Description string `json:"description,optional"`
+	Description *string `json:"description,optional"`
 	// Remark | 备注
-	Remark string `json:"remark,optional"`
+	Remark *string `json:"remark,optional"`
 	// Rank Code | 等级代码
-	Code string `json:"code,optional"`
+	Code *string `json:"code,optional"`
 }
 
 // The response data of member rank list | MemberRank列表数据
@@ -282,11 +288,11 @@ type MemberRankListInfo struct {
 type MemberRankListReq struct {
 	PageInfo
 	// Name | 等级名称
-	Name string `json:"name,optional"`
+	Name *string `json:"name,optional"`
 	// Description | 描述
-	Description string `json:"description,optional"`
+	Description *string `json:"description,optional"`
 	// Remark | 备注
-	Remark string `json:"remark,optional"`
+	Remark *string `json:"remark,optional"`
 }
 
 // MemberRank information response | MemberRank信息返回体

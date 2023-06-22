@@ -2,15 +2,16 @@ package base
 
 import (
 	"github.com/suyuan32/simple-admin-common/enum/common"
+	"github.com/suyuan32/simple-admin-common/utils/pointy"
 	"github.com/suyuan32/simple-admin-core/rpc/types/core"
 )
 
 func (l *InitDatabaseLogic) insertApiData() (err error) {
 	_, err = l.svcCtx.CoreRpc.CreateApi(l.ctx, &core.ApiInfo{
-		Path:        "/member/create",
-		Description: "apiDesc.createMember",
-		ApiGroup:    "member",
-		Method:      "POST",
+		Path:        pointy.GetPointer("/member/create"),
+		Description: pointy.GetPointer("apiDesc.createMember"),
+		ApiGroup:    pointy.GetPointer("member"),
+		Method:      pointy.GetPointer("POST"),
 	})
 
 	if err != nil {
@@ -18,10 +19,10 @@ func (l *InitDatabaseLogic) insertApiData() (err error) {
 	}
 
 	_, err = l.svcCtx.CoreRpc.CreateApi(l.ctx, &core.ApiInfo{
-		Path:        "/member/update",
-		Description: "apiDesc.updateMember",
-		ApiGroup:    "member",
-		Method:      "POST",
+		Path:        pointy.GetPointer("/member/update"),
+		Description: pointy.GetPointer("apiDesc.updateMember"),
+		ApiGroup:    pointy.GetPointer("member"),
+		Method:      pointy.GetPointer("POST"),
 	})
 
 	if err != nil {
@@ -29,10 +30,10 @@ func (l *InitDatabaseLogic) insertApiData() (err error) {
 	}
 
 	_, err = l.svcCtx.CoreRpc.CreateApi(l.ctx, &core.ApiInfo{
-		Path:        "/member/delete",
-		Description: "apiDesc.deleteMember",
-		ApiGroup:    "member",
-		Method:      "POST",
+		Path:        pointy.GetPointer("/member/delete"),
+		Description: pointy.GetPointer("apiDesc.deleteMember"),
+		ApiGroup:    pointy.GetPointer("member"),
+		Method:      pointy.GetPointer("POST"),
 	})
 
 	if err != nil {
@@ -40,10 +41,10 @@ func (l *InitDatabaseLogic) insertApiData() (err error) {
 	}
 
 	_, err = l.svcCtx.CoreRpc.CreateApi(l.ctx, &core.ApiInfo{
-		Path:        "/member/list",
-		Description: "apiDesc.getMemberList",
-		ApiGroup:    "member",
-		Method:      "POST",
+		Path:        pointy.GetPointer("/member/list"),
+		Description: pointy.GetPointer("apiDesc.getMemberList"),
+		ApiGroup:    pointy.GetPointer("member"),
+		Method:      pointy.GetPointer("POST"),
 	})
 
 	if err != nil {
@@ -51,10 +52,10 @@ func (l *InitDatabaseLogic) insertApiData() (err error) {
 	}
 
 	_, err = l.svcCtx.CoreRpc.CreateApi(l.ctx, &core.ApiInfo{
-		Path:        "/member",
-		Description: "apiDesc.getMemberById",
-		ApiGroup:    "member",
-		Method:      "POST",
+		Path:        pointy.GetPointer("/member"),
+		Description: pointy.GetPointer("apiDesc.getMemberById"),
+		ApiGroup:    pointy.GetPointer("member"),
+		Method:      pointy.GetPointer("POST"),
 	})
 
 	if err != nil {
@@ -64,10 +65,10 @@ func (l *InitDatabaseLogic) insertApiData() (err error) {
 	// MEMBER RANK
 
 	_, err = l.svcCtx.CoreRpc.CreateApi(l.ctx, &core.ApiInfo{
-		Path:        "/member_rank/create",
-		Description: "apiDesc.createMemberRank",
-		ApiGroup:    "member_rank",
-		Method:      "POST",
+		Path:        pointy.GetPointer("/member_rank/create"),
+		Description: pointy.GetPointer("apiDesc.createMemberRank"),
+		ApiGroup:    pointy.GetPointer("member_rank"),
+		Method:      pointy.GetPointer("POST"),
 	})
 
 	if err != nil {
@@ -75,10 +76,10 @@ func (l *InitDatabaseLogic) insertApiData() (err error) {
 	}
 
 	_, err = l.svcCtx.CoreRpc.CreateApi(l.ctx, &core.ApiInfo{
-		Path:        "/member_rank/update",
-		Description: "apiDesc.updateMemberRank",
-		ApiGroup:    "member_rank",
-		Method:      "POST",
+		Path:        pointy.GetPointer("/member_rank/update"),
+		Description: pointy.GetPointer("apiDesc.updateMemberRank"),
+		ApiGroup:    pointy.GetPointer("member_rank"),
+		Method:      pointy.GetPointer("POST"),
 	})
 
 	if err != nil {
@@ -86,10 +87,10 @@ func (l *InitDatabaseLogic) insertApiData() (err error) {
 	}
 
 	_, err = l.svcCtx.CoreRpc.CreateApi(l.ctx, &core.ApiInfo{
-		Path:        "/member_rank/delete",
-		Description: "apiDesc.deleteMemberRank",
-		ApiGroup:    "member_rank",
-		Method:      "POST",
+		Path:        pointy.GetPointer("/member_rank/delete"),
+		Description: pointy.GetPointer("apiDesc.deleteMemberRank"),
+		ApiGroup:    pointy.GetPointer("member_rank"),
+		Method:      pointy.GetPointer("POST"),
 	})
 
 	if err != nil {
@@ -97,10 +98,10 @@ func (l *InitDatabaseLogic) insertApiData() (err error) {
 	}
 
 	_, err = l.svcCtx.CoreRpc.CreateApi(l.ctx, &core.ApiInfo{
-		Path:        "/member_rank/list",
-		Description: "apiDesc.getMemberRankList",
-		ApiGroup:    "member_rank",
-		Method:      "POST",
+		Path:        pointy.GetPointer("/member_rank/list"),
+		Description: pointy.GetPointer("apiDesc.getMemberRankList"),
+		ApiGroup:    pointy.GetPointer("member_rank"),
+		Method:      pointy.GetPointer("POST"),
 	})
 
 	if err != nil {
@@ -108,10 +109,10 @@ func (l *InitDatabaseLogic) insertApiData() (err error) {
 	}
 
 	_, err = l.svcCtx.CoreRpc.CreateApi(l.ctx, &core.ApiInfo{
-		Path:        "/member_rank",
-		Description: "apiDesc.getMemberRankById",
-		ApiGroup:    "member_rank",
-		Method:      "Post",
+		Path:        pointy.GetPointer("/member_rank"),
+		Description: pointy.GetPointer("apiDesc.getMemberRankById"),
+		ApiGroup:    pointy.GetPointer("member_rank"),
+		Method:      pointy.GetPointer("Post"),
 	})
 
 	if err != nil {
@@ -123,32 +124,24 @@ func (l *InitDatabaseLogic) insertApiData() (err error) {
 
 func (l *InitDatabaseLogic) insertMenuData() error {
 	menuData, err := l.svcCtx.CoreRpc.CreateMenu(l.ctx, &core.MenuInfo{
-		Id:        0,
-		CreatedAt: 0,
-		UpdatedAt: 0,
-		Level:     2,
-		ParentId:  common.DefaultParentId,
-		Path:      "",
-		Name:      "MemberManagementDirectory",
-		Redirect:  "",
-		Component: "LAYOUT",
-		Sort:      1,
-		Disabled:  false,
+		Level:     pointy.GetPointer(uint32(2)),
+		ParentId:  pointy.GetPointer(common.DefaultParentId),
+		Name:      pointy.GetPointer("MemberManagementDirectory"),
+		Component: pointy.GetPointer("LAYOUT"),
+		Sort:      pointy.GetPointer(uint32(1)),
+		Disabled:  pointy.GetPointer(false),
 		Meta: &core.Meta{
-			Title:              "route.memberManagement",
-			Icon:               "ic:round-person-outline",
-			HideMenu:           false,
-			HideBreadcrumb:     false,
-			IgnoreKeepAlive:    false,
-			HideTab:            false,
-			FrameSrc:           "",
-			CarryParam:         false,
-			HideChildrenInMenu: false,
-			Affix:              false,
-			DynamicLevel:       0,
-			RealPath:           "",
+			Title:              pointy.GetPointer("route.memberManagement"),
+			Icon:               pointy.GetPointer("ic:round-person-outline"),
+			HideMenu:           pointy.GetPointer(false),
+			HideBreadcrumb:     pointy.GetPointer(false),
+			IgnoreKeepAlive:    pointy.GetPointer(false),
+			HideTab:            pointy.GetPointer(false),
+			CarryParam:         pointy.GetPointer(false),
+			HideChildrenInMenu: pointy.GetPointer(false),
+			Affix:              pointy.GetPointer(false),
 		},
-		MenuType: 0,
+		MenuType: pointy.GetPointer(uint32(0)),
 	})
 
 	if err != nil {
@@ -156,32 +149,25 @@ func (l *InitDatabaseLogic) insertMenuData() error {
 	}
 
 	_, err = l.svcCtx.CoreRpc.CreateMenu(l.ctx, &core.MenuInfo{
-		Id:        0,
-		CreatedAt: 0,
-		UpdatedAt: 0,
-		Level:     2,
-		ParentId:  menuData.Id,
-		Path:      "/member",
-		Name:      "MemberManagement",
-		Redirect:  "",
-		Component: "/mms/member/index",
-		Sort:      1,
-		Disabled:  false,
+		Level:     pointy.GetPointer(uint32(2)),
+		ParentId:  pointy.GetPointer(menuData.Id),
+		Path:      pointy.GetPointer("/member"),
+		Name:      pointy.GetPointer("MemberManagement"),
+		Component: pointy.GetPointer("/mms/member/index"),
+		Sort:      pointy.GetPointer(uint32(1)),
+		Disabled:  pointy.GetPointer(false),
 		Meta: &core.Meta{
-			Title:              "route.memberManagement",
-			Icon:               "ic:round-person-outline",
-			HideMenu:           false,
-			HideBreadcrumb:     false,
-			IgnoreKeepAlive:    false,
-			HideTab:            false,
-			FrameSrc:           "",
-			CarryParam:         false,
-			HideChildrenInMenu: false,
-			Affix:              false,
-			DynamicLevel:       0,
-			RealPath:           "",
+			Title:              pointy.GetPointer("route.memberManagement"),
+			Icon:               pointy.GetPointer("ic:round-person-outline"),
+			HideMenu:           pointy.GetPointer(false),
+			HideBreadcrumb:     pointy.GetPointer(false),
+			IgnoreKeepAlive:    pointy.GetPointer(false),
+			HideTab:            pointy.GetPointer(false),
+			CarryParam:         pointy.GetPointer(false),
+			HideChildrenInMenu: pointy.GetPointer(false),
+			Affix:              pointy.GetPointer(false),
 		},
-		MenuType: 1,
+		MenuType: pointy.GetPointer(uint32(1)),
 	})
 
 	if err != nil {
@@ -189,32 +175,25 @@ func (l *InitDatabaseLogic) insertMenuData() error {
 	}
 
 	_, err = l.svcCtx.CoreRpc.CreateMenu(l.ctx, &core.MenuInfo{
-		Id:        0,
-		CreatedAt: 0,
-		UpdatedAt: 0,
-		Level:     2,
-		ParentId:  menuData.Id,
-		Path:      "/member_rank",
-		Name:      "MemberRankManagement",
-		Redirect:  "",
-		Component: "/mms/memberRank/index",
-		Sort:      2,
-		Disabled:  false,
+		Level:     pointy.GetPointer(uint32(2)),
+		ParentId:  pointy.GetPointer(menuData.Id),
+		Path:      pointy.GetPointer("/member_rank"),
+		Name:      pointy.GetPointer("MemberRankManagement"),
+		Component: pointy.GetPointer("/mms/memberRank/index"),
+		Sort:      pointy.GetPointer(uint32(2)),
+		Disabled:  pointy.GetPointer(false),
 		Meta: &core.Meta{
-			Title:              "route.memberRankManagement",
-			Icon:               "ic:round-person-outline",
-			HideMenu:           false,
-			HideBreadcrumb:     false,
-			IgnoreKeepAlive:    false,
-			HideTab:            false,
-			FrameSrc:           "",
-			CarryParam:         false,
-			HideChildrenInMenu: false,
-			Affix:              false,
-			DynamicLevel:       0,
-			RealPath:           "",
+			Title:              pointy.GetPointer("route.memberRankManagement"),
+			Icon:               pointy.GetPointer("ic:round-person-outline"),
+			HideMenu:           pointy.GetPointer(false),
+			HideBreadcrumb:     pointy.GetPointer(false),
+			IgnoreKeepAlive:    pointy.GetPointer(false),
+			HideTab:            pointy.GetPointer(false),
+			CarryParam:         pointy.GetPointer(false),
+			HideChildrenInMenu: pointy.GetPointer(false),
+			Affix:              pointy.GetPointer(false),
 		},
-		MenuType: 1,
+		MenuType: pointy.GetPointer(uint32(1)),
 	})
 
 	if err != nil {

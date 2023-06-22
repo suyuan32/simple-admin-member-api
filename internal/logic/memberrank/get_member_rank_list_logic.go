@@ -50,7 +50,7 @@ func (l *GetMemberRankListLogic) GetMemberRankList(req *types.MemberRankListReq)
 					CreatedAt: v.CreatedAt,
 					UpdatedAt: v.UpdatedAt,
 				},
-				Trans:       l.svcCtx.Trans.Trans(l.ctx, v.Name),
+				Trans:       l.svcCtx.Trans.Trans(l.ctx, *v.Name),
 				Name:        v.Name,
 				Description: v.Description,
 				Remark:      v.Remark,

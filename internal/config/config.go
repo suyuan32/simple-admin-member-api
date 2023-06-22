@@ -18,4 +18,11 @@ type Config struct {
 	MmsRpc       zrpc.RpcClientConf
 	Captcha      captcha.Conf
 	CoreRpc      zrpc.RpcClientConf
+	ProjectConf  ProjectConf
+	CROSConf     config.CROSConf
+}
+
+type ProjectConf struct {
+	UseCaptcha    bool
+	DefaultRankId uint64
 }

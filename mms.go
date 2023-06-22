@@ -5,7 +5,7 @@
 //	Schemes: http, https
 //	Host: localhost:9104
 //	BasePath: /
-//	Version: 1.0.0
+//	Version: 1.0.11
 //	SecurityDefinitions:
 //	  Token:
 //	    type: apiKey
@@ -42,7 +42,7 @@ func main() {
 	var c config.Config
 	conf.MustLoad(*configFile, &c)
 
-	server := rest.MustNewServer(c.RestConf, rest.WithCors("*"))
+	server := rest.MustNewServer(c.RestConf, rest.WithCors(c.CROSConf.Address))
 	defer server.Stop()
 
 	ctx := svc.NewServiceContext(c)

@@ -1,0 +1,1115 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "MMS: Member management service",
+    "title": "Simple Admin Member management service",
+    "version": "1.0.11"
+  },
+  "host": "localhost:9104",
+  "basePath": "/",
+  "paths": {
+    "/init/database": {
+      "get": {
+        "description": "Initialize database | 初始化数据库",
+        "tags": [
+          "base"
+        ],
+        "summary": "Initialize database | 初始化数据库",
+        "operationId": "InitDatabase",
+        "responses": {
+          "200": {
+            "description": "BaseMsgResp",
+            "schema": {
+              "$ref": "#/definitions/BaseMsgResp"
+            }
+          }
+        }
+      }
+    },
+    "/member": {
+      "post": {
+        "description": "Get member by ID | 通过ID获取会员",
+        "tags": [
+          "member"
+        ],
+        "summary": "Get member by ID | 通过ID获取会员",
+        "operationId": "GetMemberById",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/UUIDReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "MemberInfoResp",
+            "schema": {
+              "$ref": "#/definitions/MemberInfoResp"
+            }
+          }
+        }
+      }
+    },
+    "/member/create": {
+      "post": {
+        "description": "Create member information | 创建会员",
+        "tags": [
+          "member"
+        ],
+        "summary": "Create member information | 创建会员",
+        "operationId": "CreateMember",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/MemberInfo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "BaseMsgResp",
+            "schema": {
+              "$ref": "#/definitions/BaseMsgResp"
+            }
+          }
+        }
+      }
+    },
+    "/member/delete": {
+      "post": {
+        "description": "Delete member information | 删除会员信息",
+        "tags": [
+          "member"
+        ],
+        "summary": "Delete member information | 删除会员信息",
+        "operationId": "DeleteMember",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/UUIDsReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "BaseMsgResp",
+            "schema": {
+              "$ref": "#/definitions/BaseMsgResp"
+            }
+          }
+        }
+      }
+    },
+    "/member/list": {
+      "post": {
+        "description": "Get member list | 获取会员列表",
+        "tags": [
+          "member"
+        ],
+        "summary": "Get member list | 获取会员列表",
+        "operationId": "GetMemberList",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/MemberListReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "MemberListResp",
+            "schema": {
+              "$ref": "#/definitions/MemberListResp"
+            }
+          }
+        }
+      }
+    },
+    "/member/login": {
+      "post": {
+        "description": "Log in | 登录",
+        "tags": [
+          "member"
+        ],
+        "summary": "Log in | 登录",
+        "operationId": "Login",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/LoginReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "LoginResp",
+            "schema": {
+              "$ref": "#/definitions/LoginResp"
+            }
+          }
+        }
+      }
+    },
+    "/member/register": {
+      "post": {
+        "description": "Register | 注册",
+        "tags": [
+          "member"
+        ],
+        "summary": "Register | 注册",
+        "operationId": "Register",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/RegisterReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "BaseMsgResp",
+            "schema": {
+              "$ref": "#/definitions/BaseMsgResp"
+            }
+          }
+        }
+      }
+    },
+    "/member/update": {
+      "post": {
+        "description": "Update member information | 更新会员",
+        "tags": [
+          "member"
+        ],
+        "summary": "Update member information | 更新会员",
+        "operationId": "UpdateMember",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/MemberInfo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "BaseMsgResp",
+            "schema": {
+              "$ref": "#/definitions/BaseMsgResp"
+            }
+          }
+        }
+      }
+    },
+    "/member_rank": {
+      "post": {
+        "description": "Get member rank by ID | 通过ID获取会员等级",
+        "tags": [
+          "memberrank"
+        ],
+        "summary": "Get member rank by ID | 通过ID获取会员等级",
+        "operationId": "GetMemberRankById",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/IDReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "MemberRankInfoResp",
+            "schema": {
+              "$ref": "#/definitions/MemberRankInfoResp"
+            }
+          }
+        }
+      }
+    },
+    "/member_rank/create": {
+      "post": {
+        "description": "Create member rank information | 创建会员等级",
+        "tags": [
+          "memberrank"
+        ],
+        "summary": "Create member rank information | 创建会员等级",
+        "operationId": "CreateMemberRank",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/MemberRankInfo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "BaseMsgResp",
+            "schema": {
+              "$ref": "#/definitions/BaseMsgResp"
+            }
+          }
+        }
+      }
+    },
+    "/member_rank/delete": {
+      "post": {
+        "description": "Delete member rank information | 删除会员等级信息",
+        "tags": [
+          "memberrank"
+        ],
+        "summary": "Delete member rank information | 删除会员等级信息",
+        "operationId": "DeleteMemberRank",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/IDsReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "BaseMsgResp",
+            "schema": {
+              "$ref": "#/definitions/BaseMsgResp"
+            }
+          }
+        }
+      }
+    },
+    "/member_rank/list": {
+      "post": {
+        "description": "Get member rank list | 获取会员等级列表",
+        "tags": [
+          "memberrank"
+        ],
+        "summary": "Get member rank list | 获取会员等级列表",
+        "operationId": "GetMemberRankList",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/MemberRankListReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "MemberRankListResp",
+            "schema": {
+              "$ref": "#/definitions/MemberRankListResp"
+            }
+          }
+        }
+      }
+    },
+    "/member_rank/update": {
+      "post": {
+        "description": "Update member rank information | 更新会员等级",
+        "tags": [
+          "memberrank"
+        ],
+        "summary": "Update member rank information | 更新会员等级",
+        "operationId": "UpdateMemberRank",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/MemberRankInfo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "BaseMsgResp",
+            "schema": {
+              "$ref": "#/definitions/BaseMsgResp"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "BaseDataInfo": {
+      "description": "The basic response with data | 基础带数据信息",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Error code | 错误代码",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "data": {
+          "description": "Data | 数据",
+          "type": "string",
+          "x-go-name": "Data"
+        },
+        "msg": {
+          "description": "Message | 提示信息",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "BaseInfo": {
+      "description": "The base response data | 基础信息",
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "description": "Create date | 创建日期",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "CreatedAt"
+        },
+        "id": {
+          "description": "ID",
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "Id"
+        },
+        "updatedAt": {
+          "description": "Update date | 更新日期",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "UpdatedAt"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "BaseListInfo": {
+      "description": "The basic response with data | 基础带数据信息",
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "Data | 数据",
+          "type": "string",
+          "x-go-name": "Data"
+        },
+        "total": {
+          "description": "The total number of data | 数据总数",
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "Total"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "BaseMsgResp": {
+      "description": "The basic response without data | 基础不带数据信息",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Error code | 错误代码",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "msg": {
+          "description": "Message | 提示信息",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "BaseUUIDInfo": {
+      "description": "The base UUID response data | 基础信息",
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "description": "Create date | 创建日期",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "CreatedAt"
+        },
+        "id": {
+          "description": "ID",
+          "type": "string",
+          "x-go-name": "Id"
+        },
+        "updatedAt": {
+          "description": "Update date | 更新日期",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "UpdatedAt"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "IDPathReq": {
+      "description": "Basic ID request | 基础ID地址参数请求",
+      "type": "object",
+      "required": [
+        "Id"
+      ],
+      "properties": {
+        "Id": {
+          "description": "ID",
+          "type": "integer",
+          "format": "uint64"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "IDReq": {
+      "description": "Basic ID request | 基础ID参数请求",
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "description": "ID",
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "Id"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "IDsReq": {
+      "description": "Basic IDs request | 基础ID数组参数请求",
+      "type": "object",
+      "required": [
+        "ids"
+      ],
+      "properties": {
+        "ids": {
+          "description": "IDs",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "uint64"
+          },
+          "x-go-name": "Ids"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "LoginInfo": {
+      "description": "The log in information | 登陆返回的数据信息",
+      "type": "object",
+      "properties": {
+        "avatar": {
+          "description": "Avatar | 用户头像",
+          "type": "string",
+          "x-go-name": "Avatar"
+        },
+        "expire": {
+          "description": "Expire timestamp | 过期时间戳",
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "Expire"
+        },
+        "nickname": {
+          "description": "Nickname | 用户昵称",
+          "type": "string",
+          "x-go-name": "Nickname"
+        },
+        "rankId": {
+          "description": "Rank ID | 等级 ID",
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "RankId"
+        },
+        "rankName": {
+          "description": "RankName | 等级名称",
+          "type": "string",
+          "x-go-name": "RankName"
+        },
+        "token": {
+          "description": "Token for authorization | 验证身份的token",
+          "type": "string",
+          "x-go-name": "Token"
+        },
+        "userId": {
+          "description": "User's UUID | 用户的UUID",
+          "type": "string",
+          "x-go-name": "UserId"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "LoginReq": {
+      "description": "Login request | 登录参数",
+      "type": "object",
+      "required": [
+        "username",
+        "password"
+      ],
+      "properties": {
+        "captcha": {
+          "description": "The Captcha which users input | 用户输入的验证码",
+          "type": "string",
+          "maxLength": 5,
+          "minLength": 5,
+          "x-go-name": "Captcha"
+        },
+        "captchaId": {
+          "description": "Captcha ID which store in redis | 验证码编号, 存在redis中",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 20,
+          "x-go-name": "CaptchaId"
+        },
+        "password": {
+          "description": "Password | 密码",
+          "type": "string",
+          "maxLength": 30,
+          "minLength": 6,
+          "x-go-name": "Password"
+        },
+        "username": {
+          "description": "User Name | 用户名",
+          "type": "string",
+          "maxLength": 20,
+          "x-go-name": "Username"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "LoginResp": {
+      "description": "The log in response data | 登录返回数据",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Error code | 错误代码",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "data": {
+          "description": "Data | 数据",
+          "type": "string",
+          "x-go-name": "Data",
+          "$ref": "#/definitions/LoginInfo"
+        },
+        "msg": {
+          "description": "Message | 提示信息",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "MemberInfo": {
+      "description": "The response data of member information | 会员信息",
+      "type": "object",
+      "properties": {
+        "avatar": {
+          "description": "Avatar | 头像地址",
+          "type": "string",
+          "x-go-name": "Avatar"
+        },
+        "createdAt": {
+          "description": "Create date | 创建日期",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "CreatedAt"
+        },
+        "email": {
+          "description": "Email | 邮箱",
+          "type": "string",
+          "x-go-name": "Email"
+        },
+        "id": {
+          "description": "ID",
+          "type": "string",
+          "x-go-name": "Id"
+        },
+        "mobile": {
+          "description": "Mobile | 手机",
+          "type": "string",
+          "x-go-name": "Mobile"
+        },
+        "nickname": {
+          "description": "Nickname | 昵称",
+          "type": "string",
+          "x-go-name": "Nickname"
+        },
+        "password": {
+          "description": "Password | 密码",
+          "type": "string",
+          "x-go-name": "Password"
+        },
+        "rankId": {
+          "description": "RankId | 等级ID",
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "RankId"
+        },
+        "status": {
+          "description": "Status | 状态",
+          "type": "integer",
+          "format": "uint32",
+          "x-go-name": "Status"
+        },
+        "updatedAt": {
+          "description": "Update date | 更新日期",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "UpdatedAt"
+        },
+        "username": {
+          "description": "Username | 用户名",
+          "type": "string",
+          "x-go-name": "Username"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "MemberInfoResp": {
+      "description": "Member information response | 会员信息返回体",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Error code | 错误代码",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "data": {
+          "description": "Data | 数据",
+          "type": "string",
+          "x-go-name": "Data",
+          "$ref": "#/definitions/MemberInfo"
+        },
+        "msg": {
+          "description": "Message | 提示信息",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "MemberListInfo": {
+      "description": "Member list data | 会员列表数据",
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "The API list data | 会员列表数据",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MemberInfo"
+          },
+          "x-go-name": "Data"
+        },
+        "total": {
+          "description": "The total number of data | 数据总数",
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "Total"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "MemberListReq": {
+      "description": "Get member list request params | 会员列表请求参数",
+      "type": "object",
+      "required": [
+        "page",
+        "pageSize"
+      ],
+      "properties": {
+        "email": {
+          "description": "Email | 邮箱",
+          "type": "string",
+          "x-go-name": "Email"
+        },
+        "mobile": {
+          "description": "Mobile | 手机",
+          "type": "string",
+          "x-go-name": "Mobile"
+        },
+        "nickname": {
+          "description": "Nickname | 昵称",
+          "type": "string",
+          "x-go-name": "Nickname"
+        },
+        "page": {
+          "description": "Page number | 第几页",
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "Page"
+        },
+        "pageSize": {
+          "description": "Page size | 单页数据行数",
+          "type": "integer",
+          "format": "uint64",
+          "maximum": 100000,
+          "x-go-name": "PageSize"
+        },
+        "rankId": {
+          "description": "Rank ID | 等级ID",
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "RankId"
+        },
+        "username": {
+          "description": "Username | 用户名",
+          "type": "string",
+          "x-go-name": "Username"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "MemberListResp": {
+      "description": "The response data of member list | 会员列表数据",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Error code | 错误代码",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "data": {
+          "description": "Data | 数据",
+          "type": "string",
+          "x-go-name": "Data",
+          "$ref": "#/definitions/MemberListInfo"
+        },
+        "msg": {
+          "description": "Message | 提示信息",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "MemberRankInfo": {
+      "description": "The response data of member rank information | MemberRank信息",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Rank Code | 等级代码",
+          "type": "string",
+          "x-go-name": "Code"
+        },
+        "createdAt": {
+          "description": "Create date | 创建日期",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "CreatedAt"
+        },
+        "description": {
+          "description": "Description | 等级描述",
+          "type": "string",
+          "x-go-name": "Description"
+        },
+        "id": {
+          "description": "ID",
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "Id"
+        },
+        "name": {
+          "description": "Rank name | 等级名称",
+          "type": "string",
+          "x-go-name": "Name"
+        },
+        "remark": {
+          "description": "Remark | 备注",
+          "type": "string",
+          "x-go-name": "Remark"
+        },
+        "trans": {
+          "description": "Translated Name | 国际化翻译",
+          "type": "string",
+          "x-go-name": "Trans"
+        },
+        "updatedAt": {
+          "description": "Update date | 更新日期",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "UpdatedAt"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "MemberRankInfoResp": {
+      "description": "MemberRank information response | MemberRank信息返回体",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Error code | 错误代码",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "data": {
+          "description": "Data | 数据",
+          "type": "string",
+          "x-go-name": "Data",
+          "$ref": "#/definitions/MemberRankInfo"
+        },
+        "msg": {
+          "description": "Message | 提示信息",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "MemberRankListInfo": {
+      "description": "MemberRank list data | MemberRank列表数据",
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "The API list data | MemberRank列表数据",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MemberRankInfo"
+          },
+          "x-go-name": "Data"
+        },
+        "total": {
+          "description": "The total number of data | 数据总数",
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "Total"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "MemberRankListReq": {
+      "description": "Get member rank list request params | MemberRank列表请求参数",
+      "type": "object",
+      "required": [
+        "page",
+        "pageSize"
+      ],
+      "properties": {
+        "description": {
+          "description": "Description | 描述",
+          "type": "string",
+          "x-go-name": "Description"
+        },
+        "name": {
+          "description": "Name | 等级名称",
+          "type": "string",
+          "x-go-name": "Name"
+        },
+        "page": {
+          "description": "Page number | 第几页",
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "Page"
+        },
+        "pageSize": {
+          "description": "Page size | 单页数据行数",
+          "type": "integer",
+          "format": "uint64",
+          "maximum": 100000,
+          "x-go-name": "PageSize"
+        },
+        "remark": {
+          "description": "Remark | 备注",
+          "type": "string",
+          "x-go-name": "Remark"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "MemberRankListResp": {
+      "description": "The response data of member rank list | MemberRank列表数据",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Error code | 错误代码",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "data": {
+          "description": "Data | 数据",
+          "type": "string",
+          "x-go-name": "Data",
+          "$ref": "#/definitions/MemberRankListInfo"
+        },
+        "msg": {
+          "description": "Message | 提示信息",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "PageInfo": {
+      "description": "The page request parameters | 列表请求参数",
+      "type": "object",
+      "required": [
+        "page",
+        "pageSize"
+      ],
+      "properties": {
+        "page": {
+          "description": "Page number | 第几页",
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "Page"
+        },
+        "pageSize": {
+          "description": "Page size | 单页数据行数",
+          "type": "integer",
+          "format": "uint64",
+          "maximum": 100000,
+          "x-go-name": "PageSize"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "RegisterReq": {
+      "description": "register request | 注册参数",
+      "type": "object",
+      "required": [
+        "username",
+        "password",
+        "captchaId",
+        "captcha",
+        "email"
+      ],
+      "properties": {
+        "captcha": {
+          "description": "The Captcha which users input | 用户输入的验证码",
+          "type": "string",
+          "maxLength": 5,
+          "minLength": 5,
+          "x-go-name": "Captcha"
+        },
+        "captchaId": {
+          "description": "Captcha ID which store in redis | 验证码编号, 存在redis中",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 20,
+          "x-go-name": "CaptchaId"
+        },
+        "email": {
+          "description": "The user's email address | 用户的邮箱",
+          "type": "string",
+          "maxLength": 100,
+          "x-go-name": "Email"
+        },
+        "password": {
+          "description": "Password | 密码",
+          "type": "string",
+          "maxLength": 30,
+          "minLength": 6,
+          "x-go-name": "Password"
+        },
+        "username": {
+          "description": "User Name | 用户名",
+          "type": "string",
+          "maxLength": 20,
+          "x-go-name": "Username"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "UUIDReq": {
+      "description": "Basic UUID request | 基础UUID参数请求",
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "description": "ID",
+          "type": "string",
+          "maxLength": 36,
+          "x-go-name": "Id"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "UUIDsReq": {
+      "description": "Basic UUID array request | 基础UUID数组参数请求",
+      "type": "object",
+      "required": [
+        "ids"
+      ],
+      "properties": {
+        "ids": {
+          "description": "Ids",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-go-name": "Ids"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    }
+  },
+  "responses": {
+    "SimpleMsg": {
+      "description": "The simplest message | 最简单的信息",
+      "headers": {
+        "msg": {
+          "type": "string",
+          "description": "Message | 信息"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Token": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "Token": [
+        "[]"
+      ]
+    }
+  ]
+}

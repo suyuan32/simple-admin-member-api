@@ -7,6 +7,9 @@ Auth:
   AccessSecret: # the same as core
   AccessExpire: 259200
 
+CROSConf:
+  Address: '*'
+
 Log:
   ServiceName: mmsApiLogger
   Mode: file
@@ -48,6 +51,10 @@ CasbinConf:
     e = some(where (p.eft == allow))
     [matchers]
     m = r.sub == p.sub && keyMatch2(r.obj,p.obj) && r.act == p.act
+
+ProjectConf:
+  UseCaptcha: false
+  DefaultRankID: 1
 
 MmsRpc:
   Target: k8s://default/mms-rpc-svc:9103

@@ -9,16 +9,16 @@ type (
         Trans string `json:"trans,optional"`
 
         // Rank name | 等级名称
-        Name  string `json:"name,optional"`
+        Name  *string `json:"name,optional"`
 
         // Description | 等级描述
-        Description  string `json:"description,optional"`
+        Description  *string `json:"description,optional"`
 
         // Remark | 备注
-        Remark  string `json:"remark,optional"`
+        Remark  *string `json:"remark,optional"`
 
         // Rank Code | 等级代码
-        Code string `json:"code,optional"`
+        Code *string `json:"code,optional"`
     }
 
     // The response data of member rank list | MemberRank列表数据
@@ -42,13 +42,13 @@ type (
         PageInfo
 
         // Name | 等级名称
-        Name  string `json:"name,optional"`
+        Name  *string `json:"name,optional"`
 
         // Description | 描述
-        Description  string `json:"description,optional"`
+        Description  *string `json:"description,optional"`
 
         // Remark | 备注
-        Remark  string `json:"remark,optional"`
+        Remark  *string `json:"remark,optional"`
     }
 
     // MemberRank information response | MemberRank信息返回体

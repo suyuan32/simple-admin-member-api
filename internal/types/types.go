@@ -251,6 +251,19 @@ type LoginInfo struct {
 	RankName string `json:"rankName"`
 }
 
+// The modify info | 个人信息修改请求
+// swagger:model ModifyProfileReq
+type ModifyProfileReq struct {
+	// Nickname | 昵称
+	Nickname *string `json:"nickname,optional"`
+	// Mobile | 手机
+	Mobile *string `json:"mobile,optional"`
+	// Email | 邮箱
+	Email *string `json:"email,optional"`
+	// Avatar | 头像地址
+	Avatar *string `json:"avatar,optional"`
+}
+
 // The response data of member rank information | MemberRank信息
 // swagger:model MemberRankInfo
 type MemberRankInfo struct {

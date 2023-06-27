@@ -138,6 +138,21 @@ type (
         // RankName | 等级名称
         RankName    string          `json:"rankName"`
     }
+
+    // The modify info | 个人信息修改请求
+    ModifyProfileReq {
+        // Nickname | 昵称
+        Nickname  *string `json:"nickname,optional"`
+
+        // Mobile | 手机
+        Mobile  *string `json:"mobile,optional"`
+
+        // Email | 邮箱
+        Email  *string `json:"email,optional"`
+
+        // Avatar | 头像地址
+        Avatar  *string `json:"avatar,optional"`
+    }
 )
 
 @server(
@@ -166,6 +181,17 @@ service Mms {
     // Get member by ID | 通过ID获取会员
     @handler getMemberById
     post /member (UUIDReq) returns (MemberInfoResp)
+}
+
+@server(
+    jwt: Auth
+    group: member
+)
+
+service Mms {
+    // Modify users' own profile | 用户修改信息接口
+    @handler modifyProfile
+    post /member/profile (ModifyProfileReq) returns (BaseMsgResp)
 }
 
 @server(

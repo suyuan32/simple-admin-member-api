@@ -528,8 +528,8 @@ github.com/suyuan32/simple-admin-common v1.0.11 h1:TnYaTtyNLiLu+T6CbkHo0iGITLEGa
 github.com/suyuan32/simple-admin-common v1.0.11/go.mod h1:2UD2ZUEGqbb6XBpjaCIRPdWa+YlewxN02PEc3qFA7Rk=
 github.com/suyuan32/simple-admin-core v1.0.11 h1:wzgN9XxzI1cZLk0x3fXCV4w0EyXpErIFqPfpsY9T/wk=
 github.com/suyuan32/simple-admin-core v1.0.11/go.mod h1:6WsGaaUsnoquo+jIUOm/c7pKRbdgnIlNnklite8g8xM=
-github.com/suyuan32/simple-admin-member-rpc v1.0.0 h1:9vHTxZxm0uLVtGyZvc01zH5fsWrT8OBoiIlxoQDYlrg=
-github.com/suyuan32/simple-admin-member-rpc v1.0.0/go.mod h1:0rSDgTgK6dtPBDxObUw8M9scP7o8UKs3jsGk0MYqkrA=
+github.com/suyuan32/simple-admin-member-rpc v1.0.11 h1:Yt2WSxy4Lbj5h58qOqZMDf2Xuv8P3W/xwa1yIRr1ntM=
+github.com/suyuan32/simple-admin-member-rpc v1.0.11/go.mod h1:6d/H+Vo4m2DXXgSKYANXg9WW3cNuhKBX40zdESLKMvw=
 github.com/suyuan32/simple-admin-tools v1.5.10 h1:5VFY+0JXlDAYLUCk3dE/c5U76eCK5rlUcaweuzr0Oso=
 github.com/suyuan32/simple-admin-tools v1.5.10/go.mod h1:IcQ2mQn9+Bg/q1g+xeCiXVtfMZ/1IZCslrDZLd0P12w=
 github.com/tmc/grpc-websocket-proxy v0.0.0-20190109142713-0ad062ec5ee5/go.mod h1:ncp9v5uamzpCO7NfCPTXjqaC+bZgJeR0sMTm6dMHP7U=
@@ -932,8 +932,8 @@ google.golang.org/grpc v1.33.2/go.mod h1:JMHMWHQWaTccqQQlmk3MJZS+GWXOdAesneDmEnv
 google.golang.org/grpc v1.36.0/go.mod h1:qjiiYl8FncCW8feJPdyg3v6XW24KsRHe+dy9BAGRRjU=
 google.golang.org/grpc v1.40.0/go.mod h1:ogyxbiOoUXAkP+4+xa6PZSE9DZgIHtSpzjDTB9KAK34=
 google.golang.org/grpc v1.42.0/go.mod h1:k+4IHHFw41K8+bbowsex27ge2rCb65oeWqe4jJ590SU=
-google.golang.org/grpc v1.56.0 h1:+y7Bs8rtMd07LeXmL3NxcTLn7mUkbKZqEpPhMNkwJEE=
-google.golang.org/grpc v1.56.0/go.mod h1:I9bI3vqKfayGqPUAwGdOSu7kt6oIJLixfffKrpXqQ9s=
+google.golang.org/grpc v1.56.1 h1:z0dNfjIl0VpaZ9iSVjA6daGatAYwPGstTjt5vkRMFkQ=
+google.golang.org/grpc v1.56.1/go.mod h1:I9bI3vqKfayGqPUAwGdOSu7kt6oIJLixfffKrpXqQ9s=
 google.golang.org/protobuf v0.0.0-20200109180630-ec00e32a8dfd/go.mod h1:DFci5gLYBciE7Vtevhsrf46CRTquxDuWsQurQQe4oz8=
 google.golang.org/protobuf v0.0.0-20200221191635-4d8936d0db64/go.mod h1:kwYJMbMJ01Woi6D6+Kah6886xMZcty6N08ah7+eCXa0=
 google.golang.org/protobuf v0.0.0-20200228230310-ab0ca4ff8a60/go.mod h1:cfTl7dwQJ+fmap5saPgwCLgHXTUD7jkjRqWcaiX5VyM=
@@ -947,8 +947,8 @@ google.golang.org/protobuf v1.25.0/go.mod h1:9JNX74DMeImyA3h4bdi1ymwjUzf21/xIlba
 google.golang.org/protobuf v1.26.0-rc.1/go.mod h1:jlhhOSvTdKEhbULTjvd4ARK9grFBp09yW+WbY/TyQbw=
 google.golang.org/protobuf v1.26.0/go.mod h1:9q0QmTI4eRPtz6boOQmLYwt+qCgq0jsYwAQnmE0givc=
 google.golang.org/protobuf v1.27.1/go.mod h1:9q0QmTI4eRPtz6boOQmLYwt+qCgq0jsYwAQnmE0givc=
-google.golang.org/protobuf v1.30.0 h1:kPPoIgf3TsEvrm0PFe15JQ+570QVxYzEvvHqChK+cng=
-google.golang.org/protobuf v1.30.0/go.mod h1:HV8QOd/L58Z+nl8r43ehVNZIU/HEI6OcFqwMG9pJV4I=
+google.golang.org/protobuf v1.31.0 h1:g0LDEJHgrBl9N9r17Ru3sqWhkIx2NB67okBHPwC7hs8=
+google.golang.org/protobuf v1.31.0/go.mod h1:HV8QOd/L58Z+nl8r43ehVNZIU/HEI6OcFqwMG9pJV4I=
 gopkg.in/alecthomas/kingpin.v2 v2.2.6/go.mod h1:FMv+mEhP44yOT+4EoQTLFTRgOQ1FBLkstjWtayDeSgw=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=

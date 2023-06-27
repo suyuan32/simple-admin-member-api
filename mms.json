@@ -176,6 +176,34 @@
         }
       }
     },
+    "/member/profile": {
+      "post": {
+        "description": "Modify users' own profile | 用户修改信息接口",
+        "tags": [
+          "member"
+        ],
+        "summary": "Modify users' own profile | 用户修改信息接口",
+        "operationId": "ModifyProfile",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/ModifyProfileReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "BaseMsgResp",
+            "schema": {
+              "$ref": "#/definitions/BaseMsgResp"
+            }
+          }
+        }
+      }
+    },
     "/member/register": {
       "post": {
         "description": "Register | 注册",
@@ -977,6 +1005,33 @@
           "description": "Message | 提示信息",
           "type": "string",
           "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "ModifyProfileReq": {
+      "description": "The modify info | 个人信息修改请求",
+      "type": "object",
+      "properties": {
+        "avatar": {
+          "description": "Avatar | 头像地址",
+          "type": "string",
+          "x-go-name": "Avatar"
+        },
+        "email": {
+          "description": "Email | 邮箱",
+          "type": "string",
+          "x-go-name": "Email"
+        },
+        "mobile": {
+          "description": "Mobile | 手机",
+          "type": "string",
+          "x-go-name": "Mobile"
+        },
+        "nickname": {
+          "description": "Nickname | 昵称",
+          "type": "string",
+          "x-go-name": "Nickname"
         }
       },
       "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"

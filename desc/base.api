@@ -87,7 +87,7 @@ type UUIDsReq {
 }
 
 // The base response data | 基础信息
-type BaseInfo {
+type BaseIDInfo {
     // ID
     Id        *uint64    `json:"id"`
 

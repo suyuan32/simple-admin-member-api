@@ -3,6 +3,7 @@ package svc
 import (
 	"github.com/mojocn/base64Captcha"
 	"github.com/suyuan32/simple-admin-common/utils/captcha"
+	"github.com/suyuan32/simple-admin-core/rpc/coreclient"
 	"github.com/zeromicro/go-zero/zrpc"
 
 	"github.com/suyuan32/simple-admin-member-rpc/mmsclient"
@@ -12,8 +13,6 @@ import (
 	"github.com/suyuan32/simple-admin-member-api/internal/middleware"
 
 	"github.com/suyuan32/simple-admin-common/i18n"
-
-	"github.com/suyuan32/simple-admin-core/rpc/coreclient"
 
 	"github.com/casbin/casbin/v2"
 	"github.com/zeromicro/go-zero/core/stores/redis"

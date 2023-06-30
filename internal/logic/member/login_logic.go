@@ -10,7 +10,6 @@ import (
 	"github.com/suyuan32/simple-admin-common/i18n"
 	"github.com/suyuan32/simple-admin-common/utils/encrypt"
 	"github.com/suyuan32/simple-admin-common/utils/jwt"
-	"github.com/suyuan32/simple-admin-core/rpc/types/core"
 	"github.com/zeromicro/go-zero/core/errorx"
 
 	"github.com/suyuan32/simple-admin-member-api/internal/svc"
@@ -20,7 +19,7 @@ import (
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
-var memberRankData = make(map[uint64]string)
+var MemberRankData = make(map[uint64]string)
 
 type LoginLogic struct {
 	logx.Logger
@@ -66,7 +65,7 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err erro
 		}
 
 		// get rank data
-		if len(memberRankData) == 0 {
+		if len(MemberRankData) == 0 {
 			err = l.genRankCache()
 			if err != nil {
 				return nil, err
@@ -75,7 +74,7 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err erro
 
 		// add token into database
 		expiredAt := time.Now().Add(time.Second * time.Duration(l.svcCtx.Config.Auth.AccessExpire)).Unix()
-		_, err = l.svcCtx.CoreRpc.CreateToken(l.ctx, &core.TokenInfo{
+		_, err = l.svcCtx.MmsRpc.CreateToken(l.ctx, &mms.TokenInfo{
 			Uuid:      user.Id,
 			Token:     pointy.GetPointer(token),
 			Source:    pointy.GetPointer("mms_member"),
@@ -94,7 +93,7 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err erro
 				Token:    token,
 				RankId:   *user.RankId,
 				Nickname: *user.Nickname,
-				RankName: l.svcCtx.Trans.Trans(l.ctx, memberRankData[*user.RankId]),
+				RankName: l.svcCtx.Trans.Trans(l.ctx, MemberRankData[*user.RankId]),
 				Avatar:   *user.Avatar,
 				Expire:   uint64(expiredAt),
 			},
@@ -116,7 +115,7 @@ func (l *LoginLogic) genRankCache() error {
 	}
 
 	for _, v := range list.Data {
-		memberRankData[*v.Id] = *v.Name
+		MemberRankData[*v.Id] = *v.Name
 	}
 
 	return err

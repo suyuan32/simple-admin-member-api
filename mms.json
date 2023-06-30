@@ -399,6 +399,360 @@
           }
         }
       }
+    },
+    "/oauth/login": {
+      "post": {
+        "description": "Oauth log in | Oauth 登录",
+        "tags": [
+          "oauthprovider"
+        ],
+        "summary": "Oauth log in | Oauth 登录",
+        "operationId": "OauthLogin",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/OauthLoginReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RedirectResp",
+            "schema": {
+              "$ref": "#/definitions/RedirectResp"
+            }
+          }
+        }
+      }
+    },
+    "/oauth/login/callback": {
+      "get": {
+        "description": "Oauth log in callback route | Oauth 登录返回调接口",
+        "tags": [
+          "oauthprovider"
+        ],
+        "summary": "Oauth log in callback route | Oauth 登录返回调接口",
+        "operationId": "OauthCallback",
+        "responses": {
+          "200": {
+            "description": "CallbackResp",
+            "schema": {
+              "$ref": "#/definitions/CallbackResp"
+            }
+          }
+        }
+      }
+    },
+    "/oauth_provider": {
+      "post": {
+        "description": "Get oauth provider by ID | 通过ID获取第三方",
+        "tags": [
+          "oauthprovider"
+        ],
+        "summary": "Get oauth provider by ID | 通过ID获取第三方",
+        "operationId": "GetOauthProviderById",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/IDReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OauthProviderInfoResp",
+            "schema": {
+              "$ref": "#/definitions/OauthProviderInfoResp"
+            }
+          }
+        }
+      }
+    },
+    "/oauth_provider/create": {
+      "post": {
+        "description": "Create oauth provider information | 创建第三方",
+        "tags": [
+          "oauthprovider"
+        ],
+        "summary": "Create oauth provider information | 创建第三方",
+        "operationId": "CreateOauthProvider",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/OauthProviderInfo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "BaseMsgResp",
+            "schema": {
+              "$ref": "#/definitions/BaseMsgResp"
+            }
+          }
+        }
+      }
+    },
+    "/oauth_provider/delete": {
+      "post": {
+        "description": "Delete oauth provider information | 删除第三方信息",
+        "tags": [
+          "oauthprovider"
+        ],
+        "summary": "Delete oauth provider information | 删除第三方信息",
+        "operationId": "DeleteOauthProvider",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/IDsReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "BaseMsgResp",
+            "schema": {
+              "$ref": "#/definitions/BaseMsgResp"
+            }
+          }
+        }
+      }
+    },
+    "/oauth_provider/list": {
+      "post": {
+        "description": "Get oauth provider list | 获取第三方列表",
+        "tags": [
+          "oauthprovider"
+        ],
+        "summary": "Get oauth provider list | 获取第三方列表",
+        "operationId": "GetOauthProviderList",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/OauthProviderListReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OauthProviderListResp",
+            "schema": {
+              "$ref": "#/definitions/OauthProviderListResp"
+            }
+          }
+        }
+      }
+    },
+    "/oauth_provider/update": {
+      "post": {
+        "description": "Update oauth provider information | 更新第三方",
+        "tags": [
+          "oauthprovider"
+        ],
+        "summary": "Update oauth provider information | 更新第三方",
+        "operationId": "UpdateOauthProvider",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/OauthProviderInfo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "BaseMsgResp",
+            "schema": {
+              "$ref": "#/definitions/BaseMsgResp"
+            }
+          }
+        }
+      }
+    },
+    "/token": {
+      "post": {
+        "description": "Get Token by ID | 通过ID获取Token",
+        "tags": [
+          "token"
+        ],
+        "summary": "Get Token by ID | 通过ID获取Token",
+        "operationId": "GetTokenById",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/UUIDReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "TokenInfoResp",
+            "schema": {
+              "$ref": "#/definitions/TokenInfoResp"
+            }
+          }
+        }
+      }
+    },
+    "/token/create": {
+      "post": {
+        "description": "Create token information | 创建Token",
+        "tags": [
+          "token"
+        ],
+        "summary": "Create token information | 创建Token",
+        "operationId": "CreateToken",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/TokenInfo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "BaseMsgResp",
+            "schema": {
+              "$ref": "#/definitions/BaseMsgResp"
+            }
+          }
+        }
+      }
+    },
+    "/token/delete": {
+      "post": {
+        "description": "Delete token information | 删除Token信息",
+        "tags": [
+          "token"
+        ],
+        "summary": "Delete token information | 删除Token信息",
+        "operationId": "DeleteToken",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/UUIDsReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "BaseMsgResp",
+            "schema": {
+              "$ref": "#/definitions/BaseMsgResp"
+            }
+          }
+        }
+      }
+    },
+    "/token/list": {
+      "post": {
+        "description": "Get token list | 获取Token列表",
+        "tags": [
+          "token"
+        ],
+        "summary": "Get token list | 获取Token列表",
+        "operationId": "GetTokenList",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/TokenListReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "TokenListResp",
+            "schema": {
+              "$ref": "#/definitions/TokenListResp"
+            }
+          }
+        }
+      }
+    },
+    "/token/logout": {
+      "post": {
+        "description": "Force logging out by user UUID | 根据UUID强制用户退出",
+        "tags": [
+          "token"
+        ],
+        "summary": "Force logging out by user UUID | 根据UUID强制用户退出",
+        "operationId": "Logout",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/UUIDReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "BaseMsgResp",
+            "schema": {
+              "$ref": "#/definitions/BaseMsgResp"
+            }
+          }
+        }
+      }
+    },
+    "/token/update": {
+      "post": {
+        "description": "Update token information | 更新 Token",
+        "tags": [
+          "token"
+        ],
+        "summary": "Update token information | 更新 Token",
+        "operationId": "UpdateToken",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/TokenInfo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "BaseMsgResp",
+            "schema": {
+              "$ref": "#/definitions/BaseMsgResp"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -425,7 +779,7 @@
       },
       "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
     },
-    "BaseInfo": {
+    "BaseIDInfo": {
       "description": "The base response data | 基础信息",
       "type": "object",
       "properties": {
@@ -506,6 +860,50 @@
           "type": "integer",
           "format": "int64",
           "x-go-name": "UpdatedAt"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "CallbackResp": {
+      "description": "The oauth callback response data | Oauth回调数据",
+      "type": "object",
+      "properties": {
+        "avatar": {
+          "description": "Avatar | 用户头像",
+          "type": "string",
+          "x-go-name": "Avatar"
+        },
+        "expire": {
+          "description": "Expire timestamp | 过期时间戳",
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "Expire"
+        },
+        "nickname": {
+          "description": "Nickname | 用户昵称",
+          "type": "string",
+          "x-go-name": "Nickname"
+        },
+        "rankId": {
+          "description": "Rank ID | 等级 ID",
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "RankId"
+        },
+        "rankName": {
+          "description": "RankName | 等级名称",
+          "type": "string",
+          "x-go-name": "RankName"
+        },
+        "token": {
+          "description": "Token for authorization | 验证身份的token",
+          "type": "string",
+          "x-go-name": "Token"
+        },
+        "userId": {
+          "description": "User's UUID | 用户的UUID",
+          "type": "string",
+          "x-go-name": "UserId"
         }
       },
       "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
@@ -1036,6 +1434,209 @@
       },
       "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
     },
+    "OauthLoginReq": {
+      "description": "Oauth log in request | Oauth 登录请求",
+      "type": "object",
+      "required": [
+        "state",
+        "provider"
+      ],
+      "properties": {
+        "provider": {
+          "description": "Provider name | 提供商名字",
+          "type": "string",
+          "maxLength": 40,
+          "x-go-name": "Provider",
+          "example": "google"
+        },
+        "state": {
+          "description": "State code to avoid hack | 状态码，请求前后相同避免安全问题",
+          "type": "string",
+          "maxLength": 30,
+          "x-go-name": "State"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "OauthProviderInfo": {
+      "description": "The response data of oauth provider information | 第三方信息",
+      "type": "object",
+      "properties": {
+        "authStyle": {
+          "description": "The type of auth | 鉴权方式",
+          "type": "integer",
+          "format": "uint64",
+          "maximum": 20,
+          "x-go-name": "AuthStyle"
+        },
+        "authUrl": {
+          "description": "Authority URL | 授权地址",
+          "type": "string",
+          "maxLength": 300,
+          "x-go-name": "AuthUrl"
+        },
+        "clientId": {
+          "description": "ClientId | 客户端ID",
+          "type": "string",
+          "maxLength": 80,
+          "x-go-name": "ClientId"
+        },
+        "clientSecret": {
+          "description": "ClientSecret | 客户端密钥",
+          "type": "string",
+          "maxLength": 100,
+          "x-go-name": "ClientSecret"
+        },
+        "createdAt": {
+          "description": "Create date | 创建日期",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "CreatedAt"
+        },
+        "id": {
+          "description": "ID",
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "Id"
+        },
+        "infoUrl": {
+          "description": "The URL to get user information | 获取信息地址",
+          "type": "string",
+          "maxLength": 300,
+          "x-go-name": "InfoUrl"
+        },
+        "name": {
+          "description": "Provider name | 第三方提供商名称",
+          "type": "string",
+          "maxLength": 30,
+          "x-go-name": "Name"
+        },
+        "redirectUrl": {
+          "description": "Redirect URL| 跳转地址",
+          "type": "string",
+          "maxLength": 300,
+          "x-go-name": "RedirectUrl"
+        },
+        "scopes": {
+          "description": "Scopes | 授权范围",
+          "type": "string",
+          "maxLength": 50,
+          "x-go-name": "Scopes"
+        },
+        "tokenUrl": {
+          "description": "The URL to get token | 获取Token的地址",
+          "type": "string",
+          "maxLength": 300,
+          "x-go-name": "TokenUrl"
+        },
+        "updatedAt": {
+          "description": "Update date | 更新日期",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "UpdatedAt"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "OauthProviderInfoResp": {
+      "description": "Oauth provider information response | 第三方信息返回体",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Error code | 错误代码",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "data": {
+          "description": "Data | 数据",
+          "type": "string",
+          "x-go-name": "Data",
+          "$ref": "#/definitions/OauthProviderInfo"
+        },
+        "msg": {
+          "description": "Message | 提示信息",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "OauthProviderListInfo": {
+      "description": "OauthProvider list data | 第三方列表数据",
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "The API list data | 第三方列表数据",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OauthProviderInfo"
+          },
+          "x-go-name": "Data"
+        },
+        "total": {
+          "description": "The total number of data | 数据总数",
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "Total"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "OauthProviderListReq": {
+      "description": "Get oauth provider list request params | 第三方列表请求参数",
+      "type": "object",
+      "required": [
+        "page",
+        "pageSize"
+      ],
+      "properties": {
+        "name": {
+          "description": "Name | 第三方提供商名称",
+          "type": "string",
+          "maxLength": 30,
+          "x-go-name": "Name"
+        },
+        "page": {
+          "description": "Page number | 第几页",
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "Page"
+        },
+        "pageSize": {
+          "description": "Page size | 单页数据行数",
+          "type": "integer",
+          "format": "uint64",
+          "maximum": 100000,
+          "x-go-name": "PageSize"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "OauthProviderListResp": {
+      "description": "The response data of oauth provider list | 第三方列表数据",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Error code | 错误代码",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "data": {
+          "description": "Data | 数据",
+          "type": "string",
+          "x-go-name": "Data",
+          "$ref": "#/definitions/OauthProviderListInfo"
+        },
+        "msg": {
+          "description": "Message | 提示信息",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
     "PageInfo": {
       "description": "The page request parameters | 列表请求参数",
       "type": "object",
@@ -1056,6 +1657,41 @@
           "format": "uint64",
           "maximum": 100000,
           "x-go-name": "PageSize"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "RedirectInfo": {
+      "description": "Redirect information | 跳转网址",
+      "type": "object",
+      "properties": {
+        "URL": {
+          "description": "Redirect URL | 跳转网址",
+          "type": "string"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "RedirectResp": {
+      "description": "Redirect response | 跳转网址返回信息",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Error code | 错误代码",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "data": {
+          "description": "Data | 数据",
+          "type": "string",
+          "x-go-name": "Data",
+          "$ref": "#/definitions/RedirectInfo"
+        },
+        "msg": {
+          "description": "Message | 提示信息",
+          "type": "string",
+          "x-go-name": "Msg"
         }
       },
       "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
@@ -1103,6 +1739,170 @@
           "type": "string",
           "maxLength": 20,
           "x-go-name": "Username"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "TokenInfo": {
+      "description": "The response data of token information | Token信息",
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "description": "Create date | 创建日期",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "CreatedAt"
+        },
+        "expiredAt": {
+          "description": "ExpiredAt | 过期时间",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "ExpiredAt"
+        },
+        "id": {
+          "description": "ID",
+          "type": "string",
+          "x-go-name": "Id"
+        },
+        "source": {
+          "description": "Source | Token 来源",
+          "type": "string",
+          "x-go-name": "Source"
+        },
+        "status": {
+          "description": "Status | 状态",
+          "type": "integer",
+          "format": "uint32",
+          "x-go-name": "Status"
+        },
+        "token": {
+          "description": "Token | 用户的Token",
+          "type": "string",
+          "x-go-name": "Token"
+        },
+        "updatedAt": {
+          "description": "Update date | 更新日期",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "UpdatedAt"
+        },
+        "uuid": {
+          "description": "User's UUID | 用户的UUID",
+          "type": "string",
+          "x-go-name": "Uuid"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "TokenInfoResp": {
+      "description": "Token information response | Token信息返回体",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Error code | 错误代码",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "data": {
+          "description": "Data | 数据",
+          "type": "string",
+          "x-go-name": "Data",
+          "$ref": "#/definitions/TokenInfo"
+        },
+        "msg": {
+          "description": "Message | 提示信息",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "TokenListInfo": {
+      "description": "Token list data | Token列表数据",
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "The API list data | Token列表数据",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TokenInfo"
+          },
+          "x-go-name": "Data"
+        },
+        "total": {
+          "description": "The total number of data | 数据总数",
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "Total"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "TokenListReq": {
+      "description": "Get token list request params | Token列表请求参数",
+      "type": "object",
+      "required": [
+        "page",
+        "pageSize"
+      ],
+      "properties": {
+        "email": {
+          "description": "Email",
+          "type": "string",
+          "x-go-name": "Email"
+        },
+        "nickname": {
+          "description": "Nickname",
+          "type": "string",
+          "x-go-name": "Nickname"
+        },
+        "page": {
+          "description": "Page number | 第几页",
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "Page"
+        },
+        "pageSize": {
+          "description": "Page size | 单页数据行数",
+          "type": "integer",
+          "format": "uint64",
+          "maximum": 100000,
+          "x-go-name": "PageSize"
+        },
+        "username": {
+          "description": "Username",
+          "type": "string",
+          "x-go-name": "Username"
+        },
+        "uuid": {
+          "description": "Uuid",
+          "type": "string",
+          "x-go-name": "Uuid"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "TokenListResp": {
+      "description": "The response data of token list | Token列表数据",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Error code | 错误代码",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "data": {
+          "description": "Data | 数据",
+          "type": "string",
+          "x-go-name": "Data",
+          "$ref": "#/definitions/TokenListInfo"
+        },
+        "msg": {
+          "description": "Message | 提示信息",
+          "type": "string",
+          "x-go-name": "Msg"
         }
       },
       "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"

@@ -112,7 +112,7 @@ func (l *InitDatabaseLogic) insertApiData() (err error) {
 		Path:        pointy.GetPointer("/member_rank"),
 		Description: pointy.GetPointer("apiDesc.getMemberRankById"),
 		ApiGroup:    pointy.GetPointer("member_rank"),
-		Method:      pointy.GetPointer("Post"),
+		Method:      pointy.GetPointer("POST"),
 	})
 
 	if err != nil {

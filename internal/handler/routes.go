@@ -7,6 +7,8 @@ import (
 	base "github.com/suyuan32/simple-admin-member-api/internal/handler/base"
 	member "github.com/suyuan32/simple-admin-member-api/internal/handler/member"
 	memberrank "github.com/suyuan32/simple-admin-member-api/internal/handler/memberrank"
+	oauthprovider "github.com/suyuan32/simple-admin-member-api/internal/handler/oauthprovider"
+	token "github.com/suyuan32/simple-admin-member-api/internal/handler/token"
 	"github.com/suyuan32/simple-admin-member-api/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
@@ -111,6 +113,94 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Method:  http.MethodPost,
 					Path:    "/member_rank",
 					Handler: memberrank.GetMemberRankByIdHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.Authority},
+			[]rest.Route{
+				{
+					Method:  http.MethodPost,
+					Path:    "/token/create",
+					Handler: token.CreateTokenHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/token/update",
+					Handler: token.UpdateTokenHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/token/delete",
+					Handler: token.DeleteTokenHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/token/list",
+					Handler: token.GetTokenListHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/token",
+					Handler: token.GetTokenByIdHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/token/logout",
+					Handler: token.LogoutHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/oauth/login",
+				Handler: oauthprovider.OauthLoginHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodGet,
+				Path:    "/oauth/login/callback",
+				Handler: oauthprovider.OauthCallbackHandler(serverCtx),
+			},
+		},
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.Authority},
+			[]rest.Route{
+				{
+					Method:  http.MethodPost,
+					Path:    "/oauth_provider/create",
+					Handler: oauthprovider.CreateOauthProviderHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/oauth_provider/update",
+					Handler: oauthprovider.UpdateOauthProviderHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/oauth_provider/delete",
+					Handler: oauthprovider.DeleteOauthProviderHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/oauth_provider/list",
+					Handler: oauthprovider.GetOauthProviderListHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/oauth_provider",
+					Handler: oauthprovider.GetOauthProviderByIdHandler(serverCtx),
 				},
 			}...,
 		),

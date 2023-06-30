@@ -3,7 +3,7 @@ import "base.api"
 type (
     // The response data of member rank information | MemberRank信息
     MemberRankInfo {
-        BaseInfo
+        BaseIDInfo
 
         // Translated Name | 国际化翻译
         Trans string `json:"trans,optional"`

@@ -38,7 +38,7 @@ func (l *GetMemberRankByIdLogic) GetMemberRankById(req *types.IDReq) (resp *type
 			Msg:  l.svcCtx.Trans.Trans(l.ctx, i18n.Success),
 		},
 		Data: types.MemberRankInfo{
-			BaseInfo: types.BaseInfo{
+			BaseIDInfo: types.BaseIDInfo{
 				Id:        data.Id,
 				CreatedAt: data.CreatedAt,
 				UpdatedAt: data.UpdatedAt,

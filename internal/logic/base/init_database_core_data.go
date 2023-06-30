@@ -200,5 +200,57 @@ func (l *InitDatabaseLogic) insertMenuData() error {
 		return err
 	}
 
+	_, err = l.svcCtx.CoreRpc.CreateMenu(l.ctx, &core.MenuInfo{
+		Level:     pointy.GetPointer(uint32(2)),
+		ParentId:  pointy.GetPointer(menuData.Id),
+		Path:      pointy.GetPointer("/member_token"),
+		Name:      pointy.GetPointer("MemberTokenManagement"),
+		Component: pointy.GetPointer("/mms/token/index"),
+		Sort:      pointy.GetPointer(uint32(3)),
+		Disabled:  pointy.GetPointer(false),
+		Meta: &core.Meta{
+			Title:              pointy.GetPointer("route.tokenManagement"),
+			Icon:               pointy.GetPointer("ant-design:lock-outlined"),
+			HideMenu:           pointy.GetPointer(false),
+			HideBreadcrumb:     pointy.GetPointer(false),
+			IgnoreKeepAlive:    pointy.GetPointer(false),
+			HideTab:            pointy.GetPointer(false),
+			CarryParam:         pointy.GetPointer(false),
+			HideChildrenInMenu: pointy.GetPointer(false),
+			Affix:              pointy.GetPointer(false),
+		},
+		MenuType: pointy.GetPointer(uint32(1)),
+	})
+
+	if err != nil {
+		return err
+	}
+
+	_, err = l.svcCtx.CoreRpc.CreateMenu(l.ctx, &core.MenuInfo{
+		Level:     pointy.GetPointer(uint32(2)),
+		ParentId:  pointy.GetPointer(menuData.Id),
+		Path:      pointy.GetPointer("/member_oauth"),
+		Name:      pointy.GetPointer("MemberOauthManagement"),
+		Component: pointy.GetPointer("/mms/oauth/index"),
+		Sort:      pointy.GetPointer(uint32(3)),
+		Disabled:  pointy.GetPointer(false),
+		Meta: &core.Meta{
+			Title:              pointy.GetPointer("route.oauthManagement"),
+			Icon:               pointy.GetPointer("ant-design:unlock-filled"),
+			HideMenu:           pointy.GetPointer(false),
+			HideBreadcrumb:     pointy.GetPointer(false),
+			IgnoreKeepAlive:    pointy.GetPointer(false),
+			HideTab:            pointy.GetPointer(false),
+			CarryParam:         pointy.GetPointer(false),
+			HideChildrenInMenu: pointy.GetPointer(false),
+			Affix:              pointy.GetPointer(false),
+		},
+		MenuType: pointy.GetPointer(uint32(1)),
+	})
+
+	if err != nil {
+		return err
+	}
+
 	return err
 }

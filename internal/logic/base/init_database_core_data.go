@@ -128,6 +128,7 @@ func (l *InitDatabaseLogic) insertMenuData() error {
 		ParentId:  pointy.GetPointer(common.DefaultParentId),
 		Name:      pointy.GetPointer("MemberManagementDirectory"),
 		Component: pointy.GetPointer("LAYOUT"),
+		Path:      pointy.GetPointer("/member_dir"),
 		Sort:      pointy.GetPointer(uint32(1)),
 		Disabled:  pointy.GetPointer(false),
 		Meta: &core.Meta{
@@ -184,7 +185,7 @@ func (l *InitDatabaseLogic) insertMenuData() error {
 		Disabled:  pointy.GetPointer(false),
 		Meta: &core.Meta{
 			Title:              pointy.GetPointer("route.memberRankManagement"),
-			Icon:               pointy.GetPointer("ic:round-person-outline"),
+			Icon:               pointy.GetPointer("ant-design:crown-outlined"),
 			HideMenu:           pointy.GetPointer(false),
 			HideBreadcrumb:     pointy.GetPointer(false),
 			IgnoreKeepAlive:    pointy.GetPointer(false),

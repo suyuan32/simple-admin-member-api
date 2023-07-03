@@ -2,14 +2,14 @@ module github.com/suyuan32/simple-admin-member-api
 
 go 1.20
 
-replace github.com/zeromicro/go-zero v1.5.3 => github.com/suyuan32/simple-admin-tools v1.5.10
+replace github.com/zeromicro/go-zero v1.5.3 => github.com/suyuan32/simple-admin-tools v1.5.11
 
 require (
 	github.com/casbin/casbin/v2 v2.71.1
 	github.com/mojocn/base64Captcha v1.3.5
-	github.com/suyuan32/simple-admin-common v1.0.11
-	github.com/suyuan32/simple-admin-core v1.0.11
-	github.com/suyuan32/simple-admin-member-rpc v1.0.12-beta
+	github.com/suyuan32/simple-admin-common v1.0.12
+	github.com/suyuan32/simple-admin-core v1.0.12
+	github.com/suyuan32/simple-admin-member-rpc v1.0.12
 	github.com/zeromicro/go-zero v1.5.3
 )
 

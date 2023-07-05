@@ -4,7 +4,7 @@ Port: 9104
 Timeout: 30000
 
 Auth:
-  AccessSecret: # the same as core
+  AccessSecret: jS6VKDtsJf3z1n2VKDtsJf3z1n2 # the same as core
   AccessExpire: 259200
 
 CROSConf:
@@ -21,20 +21,16 @@ Log:
 
 Prometheus:
   Host: 0.0.0.0
-  Port: 4000
+  Port: 4004
   Path: /metrics
 
-RedisConf:
-  Host: 127.0.0.1:6379
-  Type: node
-
 DatabaseConf:
-  Type: mysql
-  Host: 127.0.0.1
-  Port: 3306
+  Type: postgres
+  Host: 10.5.0.2
+  Port: 5432
   DBName: simple_admin
-  Username: # set your username
-  Password: # set your password
+  Username: postgres # set your username
+  Password: simple-admin. # set your password
   MaxOpenConn: 100
   SSLMode: disable
   CacheTime: 5
@@ -54,12 +50,12 @@ CasbinConf:
 
 ProjectConf:
   UseCaptcha: false
-  DefaultRankID: 1
+  DefaultRankId: 1
 
 MmsRpc:
-  Target: k8s://default/mms-rpc-svc:9103
+  Target: 10.5.0.10:9103
   Enabled: true
 
 CoreRpc:
-  Target: k8s://default/core-rpc-svc:9101
+  Target: 10.5.0.4:9101
   Enabled: true

@@ -10,7 +10,7 @@ require (
 	github.com/mojocn/base64Captcha v1.3.5
 	github.com/suyuan32/simple-admin-common v1.0.14
 	github.com/suyuan32/simple-admin-core v1.0.14
-	github.com/suyuan32/simple-admin-member-rpc v1.0.12
+	github.com/suyuan32/simple-admin-member-rpc v1.0.14
 	github.com/suyuan32/simple-admin-message-center v1.0.14
 	github.com/zeromicro/go-zero v1.5.3
 )

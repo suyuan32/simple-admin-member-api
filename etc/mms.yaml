@@ -24,6 +24,7 @@ Prometheus:
   Port: 4004
   Path: /metrics
 
+# The database config of casbin
 DatabaseConf:
   Type: mysql
   Host: 127.0.0.1

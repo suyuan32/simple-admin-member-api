@@ -4,6 +4,7 @@ import (
 	"github.com/mojocn/base64Captcha"
 	"github.com/suyuan32/simple-admin-common/utils/captcha"
 	"github.com/suyuan32/simple-admin-core/rpc/coreclient"
+	"github.com/suyuan32/simple-admin-message-center/mcmsclient"
 	"github.com/zeromicro/go-zero/zrpc"
 
 	"github.com/suyuan32/simple-admin-member-rpc/mmsclient"
@@ -25,8 +26,10 @@ type ServiceContext struct {
 	Authority rest.Middleware
 	Trans     *i18n.Translator
 	MmsRpc    mmsclient.Mms
+	McmsRpc   mcmsclient.Mcms
 	Captcha   *base64Captcha.Captcha
 	CoreRpc   coreclient.Core
+	Redis     *redis.Redis
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
@@ -41,8 +44,11 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		Config:    c,
 		Authority: middleware.NewAuthorityMiddleware(cbn, rds, trans).Handle,
 		Trans:     trans,
+		Redis:     rds,
+		Casbin:    cbn,
 		MmsRpc:    mmsclient.NewMms(zrpc.NewClientIfEnable(c.MmsRpc)),
 		Captcha:   captcha.MustNewRedisCaptcha(c.Captcha, rds),
 		CoreRpc:   coreclient.NewCore(zrpc.NewClientIfEnable(c.CoreRpc)),
+		McmsRpc:   mcmsclient.NewMcms(zrpc.NewClientIfEnable(c.McmsRpc)),
 	}
 }

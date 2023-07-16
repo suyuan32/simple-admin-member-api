@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	base "github.com/suyuan32/simple-admin-member-api/internal/handler/base"
+	captcha "github.com/suyuan32/simple-admin-member-api/internal/handler/captcha"
 	member "github.com/suyuan32/simple-admin-member-api/internal/handler/member"
 	memberrank "github.com/suyuan32/simple-admin-member-api/internal/handler/memberrank"
 	oauthprovider "github.com/suyuan32/simple-admin-member-api/internal/handler/oauthprovider"
@@ -205,5 +206,25 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			}...,
 		),
 		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodGet,
+				Path:    "/captcha",
+				Handler: captcha.GetCaptchaHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/captcha/email",
+				Handler: captcha.GetEmailCaptchaHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/captcha/sms",
+				Handler: captcha.GetSmsCaptchaHandler(serverCtx),
+			},
+		},
 	)
 }

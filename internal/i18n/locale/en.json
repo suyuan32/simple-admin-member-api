@@ -36,5 +36,11 @@
 		"wrongPassword": "Wrong Password",
 		"wrongUsernameOrPassword": "Wrong username or password",
 		"requireLogin": "Please log in again"
+	},
+	"mcms": {
+		"email": {
+			"subject": "Verification Code for 【Simple Admin】",
+			"content": "Your verification code is: "
+		}
 	}
 }

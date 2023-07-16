@@ -36,5 +36,11 @@
 		"wrongUsernameOrPassword": "用户名或密码错误",
 		"wrongPassword": "密码错误",
 		"requireLogin": "请重新登录"
+	},
+	"mcms": {
+		"email": {
+			"subject": "【Simple Admin】 的验证码",
+			"content": "您的验证码为： "
+		}
 	}
 }

@@ -18,6 +18,80 @@
   "host": "localhost:9104",
   "basePath": "/",
   "paths": {
+    "/captcha": {
+      "get": {
+        "description": "Get captcha | 获取验证码",
+        "tags": [
+          "captcha"
+        ],
+        "summary": "Get captcha | 获取验证码",
+        "operationId": "GetCaptcha",
+        "responses": {
+          "200": {
+            "description": "CaptchaResp",
+            "schema": {
+              "$ref": "#/definitions/CaptchaResp"
+            }
+          }
+        }
+      }
+    },
+    "/captcha/email": {
+      "post": {
+        "description": "Get Email Captcha | 获取邮箱验证码",
+        "tags": [
+          "captcha"
+        ],
+        "summary": "Get Email Captcha | 获取邮箱验证码",
+        "operationId": "GetEmailCaptcha",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/EmailCaptchaReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "BaseMsgResp",
+            "schema": {
+              "$ref": "#/definitions/BaseMsgResp"
+            }
+          }
+        }
+      }
+    },
+    "/captcha/sms": {
+      "post": {
+        "description": "Get SMS Captcha | 获取短信验证码",
+        "tags": [
+          "captcha"
+        ],
+        "summary": "Get SMS Captcha | 获取短信验证码",
+        "operationId": "GetSmsCaptcha",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/SmsCaptchaReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "BaseMsgResp",
+            "schema": {
+              "$ref": "#/definitions/BaseMsgResp"
+            }
+          }
+        }
+      }
+    },
     "/init/database": {
       "get": {
         "description": "Initialize database | 初始化数据库",
@@ -908,6 +982,57 @@
       },
       "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
     },
+    "CaptchaInfo": {
+      "description": "The information of captcha | 验证码数据",
+      "type": "object",
+      "properties": {
+        "captchaId": {
+          "type": "string",
+          "x-go-name": "CaptchaId"
+        },
+        "imgPath": {
+          "type": "string",
+          "x-go-name": "ImgPath"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "CaptchaResp": {
+      "description": "The response data of captcha | 验证码返回数据",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Error code | 错误代码",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "data": {
+          "description": "Data | 数据",
+          "type": "string",
+          "x-go-name": "Data",
+          "$ref": "#/definitions/CaptchaInfo"
+        },
+        "msg": {
+          "description": "Message | 提示信息",
+          "type": "string",
+          "x-go-name": "Msg"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "EmailCaptchaReq": {
+      "description": "The email captcha request | 邮箱验证码请求参数",
+      "type": "object",
+      "properties": {
+        "email": {
+          "description": "The email address | 邮箱地址",
+          "type": "string",
+          "x-go-name": "Email"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
     "IDPathReq": {
       "description": "Basic ID request | 基础ID地址参数请求",
       "type": "object",
@@ -1739,6 +1864,18 @@
           "type": "string",
           "maxLength": 20,
           "x-go-name": "Username"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "SmsCaptchaReq": {
+      "description": "The sms captcha request | 短信验证码请求参数",
+      "type": "object",
+      "properties": {
+        "phoneNumber": {
+          "description": "The phone number | 电话号码",
+          "type": "string",
+          "x-go-name": "PhoneNumber"
         }
       },
       "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"

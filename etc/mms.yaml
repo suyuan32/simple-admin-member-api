@@ -4,7 +4,7 @@ Port: 9104
 Timeout: 30000
 
 Auth:
-  AccessSecret: jS6VKDtsJf3z1n2VKDtsJf3z1n2 # the same as core
+  AccessSecret:  # the same as core
   AccessExpire: 259200
 
 CROSConf:
@@ -24,13 +24,14 @@ Prometheus:
   Port: 4004
   Path: /metrics
 
+# The database config of casbin
 DatabaseConf:
-  Type: postgres
-  Host: 10.5.0.2
-  Port: 5432
+  Type: mysql
+  Host: 127.0.0.1
+  Port: 3306
   DBName: simple_admin
-  Username: postgres # set your username
-  Password: simple-admin. # set your password
+  Username: # set your username
+  Password: # set your password
   MaxOpenConn: 100
   SSLMode: disable
   CacheTime: 5
@@ -49,13 +50,22 @@ CasbinConf:
     m = r.sub == p.sub && keyMatch2(r.obj,p.obj) && r.act == p.act
 
 ProjectConf:
-  UseCaptcha: false
-  DefaultRankId: 1
+  UseCaptcha: false  # If it is false, you can log in without captchaId and captcha fields
+  DefaultRankId: 1  # Default rankId when register
+  EmailCaptchaExpiredTime: 600 # The expired time for email captcha
+  SmsTemplateId: xxx  # The template id for sms
+  SmsAppId: xxx  # The app id for sms
+  SmsSignName: xxx  # The signature name of sms
 
 MmsRpc:
-  Target: 10.5.0.10:9103
+  Target: k8s://default/mms-rpc-svc:9103
   Enabled: true
 
 CoreRpc:
-  Target: 10.5.0.4:9101
+  Target: k8s://default/core-rpc-svc:9101
   Enabled: true
+
+McmsRpc:
+  Target: k8s://default/mcms-rpc-svc:9106
+  Enabled: false
+  Timeout: 5000

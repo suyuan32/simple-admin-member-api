@@ -36,12 +36,12 @@ func (l *InitDatabaseLogic) InitDatabase() (resp *types.BaseMsgResp, err error) 
 			if strings.Contains(err.Error(), "common.createFailed") {
 				return nil, errorx.NewInvalidArgumentError(i18n.AlreadyInit)
 			}
-			return nil, errorx.NewCodeInternalError(err.Error())
+			return nil, err
 		}
 
 		err = l.insertMenuData()
 		if err != nil {
-			return nil, errorx.NewCodeInternalError(err.Error())
+			return nil, err
 		}
 
 	}
@@ -49,6 +49,12 @@ func (l *InitDatabaseLogic) InitDatabase() (resp *types.BaseMsgResp, err error) 
 	data, err := l.svcCtx.MmsRpc.InitDatabase(l.ctx, &mms.Empty{})
 	if err != nil {
 		return nil, err
+	}
+
+	err = l.svcCtx.Casbin.LoadPolicy()
+	if err != nil {
+		logx.Errorw("failed to load Casbin Policy", logx.Field("detail", err))
+		return nil, errorx.NewCodeInternalError(i18n.DatabaseError)
 	}
 
 	return &types.BaseMsgResp{

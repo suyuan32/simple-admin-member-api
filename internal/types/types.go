@@ -483,3 +483,32 @@ type CallbackResp struct {
 	// RankName | 等级名称
 	RankName string `json:"rankName"`
 }
+
+// The information of captcha | 验证码数据
+// swagger:model CaptchaInfo
+type CaptchaInfo struct {
+	CaptchaId string `json:"captchaId"`
+	ImgPath   string `json:"imgPath"`
+}
+
+// The response data of captcha | 验证码返回数据
+// swagger:model CaptchaResp
+type CaptchaResp struct {
+	BaseDataInfo
+	// The menu authorization data | 菜单授权信息数据
+	Data CaptchaInfo `json:"data"`
+}
+
+// The email captcha request | 邮箱验证码请求参数
+// swagger:model EmailCaptchaReq
+type EmailCaptchaReq struct {
+	// The email address | 邮箱地址
+	Email string `json:"email"`
+}
+
+// The sms captcha request | 短信验证码请求参数
+// swagger:model SmsCaptchaReq
+type SmsCaptchaReq struct {
+	// The phone number | 电话号码
+	PhoneNumber string `json:"phoneNumber"`
+}

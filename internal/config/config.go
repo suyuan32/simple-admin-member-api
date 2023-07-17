@@ -16,13 +16,18 @@ type Config struct {
 	RedisConf    redis.RedisConf
 	CasbinConf   casbin.CasbinConf
 	MmsRpc       zrpc.RpcClientConf
-	Captcha      captcha.Conf
+	McmsRpc      zrpc.RpcClientConf
 	CoreRpc      zrpc.RpcClientConf
+	Captcha      captcha.Conf
 	ProjectConf  ProjectConf
 	CROSConf     config.CROSConf
 }
 
 type ProjectConf struct {
-	UseCaptcha    bool
-	DefaultRankId uint64
+	UseCaptcha              bool
+	DefaultRankId           uint64
+	EmailCaptchaExpiredTime int    `json:",default=600"`
+	SmsTemplateId           string `json:",optional"`
+	SmsAppId                string `json:",optional"`
+	SmsSignName             string `json:",optional"`
 }

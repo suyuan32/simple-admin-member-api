@@ -2,7 +2,7 @@ module github.com/suyuan32/simple-admin-member-api
 
 go 1.20
 
-replace github.com/zeromicro/go-zero v1.5.3 => github.com/suyuan32/simple-admin-tools v1.5.13
+replace github.com/zeromicro/go-zero v1.5.4 => github.com/suyuan32/simple-admin-tools v1.5.13
 
 require (
 	github.com/casbin/casbin/v2 v2.71.1
@@ -12,7 +12,7 @@ require (
 	github.com/suyuan32/simple-admin-core v1.0.14
 	github.com/suyuan32/simple-admin-member-rpc v1.0.14
 	github.com/suyuan32/simple-admin-message-center v1.0.14
-	github.com/zeromicro/go-zero v1.5.3
+	github.com/zeromicro/go-zero v1.5.4
 )
 
 require (

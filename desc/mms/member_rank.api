@@ -1,4 +1,4 @@
-import "base.api"
+import "../base.api"
 
 type (
     // The response data of member rank information | MemberRank信息

@@ -2,17 +2,17 @@ module github.com/suyuan32/simple-admin-member-api
 
 go 1.20
 
-replace github.com/zeromicro/go-zero v1.5.3 => github.com/suyuan32/simple-admin-tools v1.5.13
+replace github.com/zeromicro/go-zero v1.5.4 => github.com/suyuan32/simple-admin-tools v1.5.13
 
 require (
-	github.com/casbin/casbin/v2 v2.71.1
+	github.com/casbin/casbin/v2 v2.72.1
 	github.com/duke-git/lancet/v2 v2.2.3
 	github.com/mojocn/base64Captcha v1.3.5
-	github.com/suyuan32/simple-admin-common v1.0.14
-	github.com/suyuan32/simple-admin-core v1.0.14
-	github.com/suyuan32/simple-admin-member-rpc v1.0.14
-	github.com/suyuan32/simple-admin-message-center v1.0.14
-	github.com/zeromicro/go-zero v1.5.3
+	github.com/suyuan32/simple-admin-common v1.1.0
+	github.com/suyuan32/simple-admin-core v1.1.0
+	github.com/suyuan32/simple-admin-member-rpc v1.1.0
+	github.com/suyuan32/simple-admin-message-center v1.1.0
+	github.com/zeromicro/go-zero v1.5.4
 )
 
 require (
@@ -90,6 +90,9 @@ require (
 	github.com/prometheus/procfs v0.9.0 // indirect
 	github.com/redis/go-redis/v9 v9.0.5 // indirect
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
+	github.com/tidwall/gjson v1.14.4 // indirect
+	github.com/tidwall/match v1.1.1 // indirect
+	github.com/tidwall/pretty v1.2.0 // indirect
 	github.com/zclconf/go-cty v1.13.1 // indirect
 	go.etcd.io/etcd/api/v3 v3.5.9 // indirect
 	go.etcd.io/etcd/client/pkg/v3 v3.5.9 // indirect

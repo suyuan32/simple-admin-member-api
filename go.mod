@@ -2,17 +2,17 @@ module github.com/suyuan32/simple-admin-member-api
 
 go 1.20
 
-replace github.com/zeromicro/go-zero v1.5.4 => github.com/suyuan32/simple-admin-tools v1.5.14
+replace github.com/zeromicro/go-zero v1.5.5 => github.com/suyuan32/simple-admin-tools v1.5.16
 
 require (
-	github.com/casbin/casbin/v2 v2.73.0
-	github.com/duke-git/lancet/v2 v2.2.4
+	github.com/casbin/casbin/v2 v2.77.2
+	github.com/duke-git/lancet/v2 v2.2.5
 	github.com/mojocn/base64Captcha v1.3.5
-	github.com/suyuan32/simple-admin-common v1.1.1
-	github.com/suyuan32/simple-admin-core v1.1.1
+	github.com/suyuan32/simple-admin-common v1.1.4-0.20230907234509-0f50bae0cb12
+	github.com/suyuan32/simple-admin-core v1.1.3
 	github.com/suyuan32/simple-admin-member-rpc v1.1.1
-	github.com/suyuan32/simple-admin-message-center v1.1.1
-	github.com/zeromicro/go-zero v1.5.4
+	github.com/suyuan32/simple-admin-message-center v1.1.3
+	github.com/zeromicro/go-zero v1.5.5
 )
 
 require (
@@ -42,7 +42,7 @@ require (
 	github.com/go-openapi/swag v0.22.3 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
-	github.com/go-playground/validator/v10 v10.14.1 // indirect
+	github.com/go-playground/validator/v10 v10.15.1 // indirect
 	github.com/go-redis/redis/v8 v8.11.5 // indirect
 	github.com/go-sql-driver/mysql v1.7.1 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
@@ -55,7 +55,7 @@ require (
 	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/google/gofuzz v1.2.0 // indirect
 	github.com/google/pprof v0.0.0-20230222194610-99052d3372e7 // indirect
-	github.com/google/uuid v1.3.0 // indirect
+	github.com/google/uuid v1.3.1 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.15.2 // indirect
 	github.com/hashicorp/hcl/v2 v2.16.2 // indirect
 	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
@@ -82,13 +82,13 @@ require (
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
 	github.com/nicksnyder/go-i18n/v2 v2.2.1 // indirect
 	github.com/openzipkin/zipkin-go v0.4.1 // indirect
-	github.com/pelletier/go-toml/v2 v2.0.9 // indirect
+	github.com/pelletier/go-toml/v2 v2.1.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/prometheus/client_golang v1.16.0 // indirect
 	github.com/prometheus/client_model v0.3.0 // indirect
 	github.com/prometheus/common v0.42.0 // indirect
 	github.com/prometheus/procfs v0.10.1 // indirect
-	github.com/redis/go-redis/v9 v9.0.5 // indirect
+	github.com/redis/go-redis/v9 v9.1.0 // indirect
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
 	github.com/tidwall/gjson v1.14.4 // indirect
 	github.com/tidwall/match v1.1.1 // indirect
@@ -120,7 +120,7 @@ require (
 	golang.org/x/oauth2 v0.11.0 // indirect
 	golang.org/x/sys v0.11.0 // indirect
 	golang.org/x/term v0.11.0 // indirect
-	golang.org/x/text v0.12.0 // indirect
+	golang.org/x/text v0.13.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20230526161137-0005af68ea54 // indirect

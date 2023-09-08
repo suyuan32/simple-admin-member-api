@@ -9,6 +9,7 @@ import (
 	member "github.com/suyuan32/simple-admin-member-api/internal/handler/member"
 	memberrank "github.com/suyuan32/simple-admin-member-api/internal/handler/memberrank"
 	oauthprovider "github.com/suyuan32/simple-admin-member-api/internal/handler/oauthprovider"
+	publicmember "github.com/suyuan32/simple-admin-member-api/internal/handler/publicmember"
 	token "github.com/suyuan32/simple-admin-member-api/internal/handler/token"
 	"github.com/suyuan32/simple-admin-member-api/internal/svc"
 
@@ -76,12 +77,42 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			{
 				Method:  http.MethodPost,
 				Path:    "/member/login",
-				Handler: member.LoginHandler(serverCtx),
+				Handler: publicmember.LoginHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/member/login_by_email",
+				Handler: publicmember.LoginByEmailHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/member/login_by_sms",
+				Handler: publicmember.LoginBySmsHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodPost,
 				Path:    "/member/register",
-				Handler: member.RegisterHandler(serverCtx),
+				Handler: publicmember.RegisterHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/member/register_by_email",
+				Handler: publicmember.RegisterByEmailHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/member/register_by_sms",
+				Handler: publicmember.RegisterBySmsHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/member/reset_password_by_email",
+				Handler: publicmember.ResetPasswordByEmailHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/member/reset_password_by_sms",
+				Handler: publicmember.ResetPasswordBySmsHandler(serverCtx),
 			},
 		},
 	)

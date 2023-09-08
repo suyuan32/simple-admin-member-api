@@ -2,7 +2,7 @@ package oauthprovider
 
 import (
 	"context"
-	"github.com/suyuan32/simple-admin-member-api/internal/logic/member"
+	"github.com/suyuan32/simple-admin-member-api/internal/logic/publicmember"
 	"github.com/suyuan32/simple-admin-member-rpc/types/mms"
 	"net/http"
 	"strings"
@@ -65,7 +65,7 @@ func (l *OauthCallbackLogic) OauthCallback() (resp *types.CallbackResp, err erro
 		Expire:   uint64(time.Now().Add(time.Second * 259200).Unix()),
 		Avatar:   *result.Avatar,
 		RankId:   *result.RankId,
-		RankName: member.MemberRankData[*result.RankId],
+		RankName: publicmember.MemberRankData[*result.RankId],
 		Nickname: *result.Nickname,
 	}, nil
 }

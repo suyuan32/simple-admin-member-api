@@ -174,7 +174,7 @@ type MemberInfoResp struct {
 	Data MemberInfo `json:"data"`
 }
 
-// register request | 注册参数
+// Register request | 注册参数
 // swagger:model RegisterReq
 type RegisterReq struct {
 	// User Name | 用户名
@@ -202,7 +202,53 @@ type RegisterReq struct {
 	Email string `json:"email" validate:"required,email,max=100"`
 }
 
-// Login request | 登录参数
+// Register by email request | 邮箱注册参数
+// swagger:model RegisterByEmailReq
+type RegisterByEmailReq struct {
+	// User Name | 用户名
+	// required : true
+	// max length : 20
+	Username string `json:"username" validate:"required,alphanum,max=20"`
+	// Password | 密码
+	// required : true
+	// max length : 30
+	// min length : 6
+	Password string `json:"password" validate:"required,max=30,min=6"`
+	// The Captcha which users input | 用户输入的验证码
+	// required : true
+	// max length : 5
+	// min length : 5
+	Captcha string `json:"captcha" validate:"required,len=5"`
+	// The user's email address | 用户的邮箱
+	// required : true
+	// max length : 100
+	Email string `json:"email" validate:"required,email,max=100"`
+}
+
+// Register by SMS request | 短信注册参数
+// swagger:model RegisterBySmsReq
+type RegisterBySmsReq struct {
+	// User Name | 用户名
+	// required : true
+	// max length : 20
+	Username string `json:"username" validate:"required,alphanum,max=20"`
+	// Password | 密码
+	// required : true
+	// max length : 30
+	// min length : 6
+	Password string `json:"password" validate:"required,max=30,min=6"`
+	// The Captcha which users input | 用户输入的验证码
+	// required : true
+	// max length : 5
+	// min length : 5
+	Captcha string `json:"captcha" validate:"required,len=5"`
+	// The user's mobile phone number | 用户的手机号码
+	// required : true
+	// max length : 20
+	PhoneNumber string `json:"phoneNumber"  validate:"required,numeric,max=20"`
+}
+
+// Log in request | 登录参数
 // swagger:model LoginReq
 type LoginReq struct {
 	// User Name | 用户名
@@ -218,6 +264,50 @@ type LoginReq struct {
 	// max length : 20
 	// min length : 20
 	CaptchaId string `json:"captchaId,optional"  validate:"omitempty,len=20"`
+	// The Captcha which users input | 用户输入的验证码
+	// max length : 5
+	// min length : 5
+	Captcha string `json:"captcha,optional" validate:"omitempty,len=5"`
+}
+
+// Log in by email request | 邮箱登录参数
+// swagger:model LoginByEmailReq
+type LoginByEmailReq struct {
+	// User Name | 用户名
+	// required : true
+	// max length : 20
+	Username string `json:"username" validate:"required,alphanum,max=20"`
+	// Password | 密码
+	// required : true
+	// max length : 30
+	// min length : 6
+	Password string `json:"password" validate:"required,max=30,min=6"`
+	// The user's email address | 用户的邮箱
+	// required : true
+	// max length : 100
+	Email string `json:"email" validate:"required,email,max=100"`
+	// The Captcha which users input | 用户输入的验证码
+	// max length : 5
+	// min length : 5
+	Captcha string `json:"captcha,optional" validate:"omitempty,len=5"`
+}
+
+// Log in by SMS request | 短信登录参数
+// swagger:model LoginBySmsReq
+type LoginBySmsReq struct {
+	// User Name | 用户名
+	// required : true
+	// max length : 20
+	Username string `json:"username" validate:"required,alphanum,max=20"`
+	// Password | 密码
+	// required : true
+	// max length : 30
+	// min length : 6
+	Password string `json:"password" validate:"required,max=30,min=6"`
+	// The user's mobile phone number | 用户的手机号码
+	// required : true
+	// max length : 20
+	PhoneNumber string `json:"phoneNumber"  validate:"required,numeric,max=20"`
 	// The Captcha which users input | 用户输入的验证码
 	// max length : 5
 	// min length : 5
@@ -262,6 +352,23 @@ type ModifyProfileReq struct {
 	Email *string `json:"email,optional"`
 	// Avatar | 头像地址
 	Avatar *string `json:"avatar,optional"`
+}
+
+// Reset password by email request | 通过邮箱重置密码请求
+// swagger:model ResetPasswordByEmailReq
+type ResetPasswordByEmailReq struct {
+	Email    string `json:"email" validate:"email"`
+	Captcha  string `json:"captcha"`
+	Password string `json:"password"`
+}
+
+// Reset password by SMS request | 通过短信重置密码请求
+// swagger:model ResetPasswordBySmsReq
+type ResetPasswordBySmsReq struct {
+	// max length : 20
+	PhoneNumber string `json:"phoneNumber" validate:"numeric,max=20"`
+	Captcha     string `json:"captcha"`
+	Password    string `json:"password"`
 }
 
 // The response data of member rank information | MemberRank信息

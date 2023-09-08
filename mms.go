@@ -1,11 +1,11 @@
-//	Simple Admin Member management service
+//	Simple Admin Member Management Service
 //
-//	MMS: Member management service
+//	MMS: Member Management Service
 //
 //	Schemes: http, https
 //	Host: localhost:9104
 //	BasePath: /
-//	Version: 1.1.1
+//	Version: 1.1.3
 //	SecurityDefinitions:
 //	  Token:
 //	    type: apiKey

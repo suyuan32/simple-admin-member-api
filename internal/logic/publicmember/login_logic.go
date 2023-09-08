@@ -1,4 +1,4 @@
-package member
+package publicmember
 
 import (
 	"context"
@@ -36,6 +36,10 @@ func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic 
 }
 
 func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err error) {
+	if l.svcCtx.Config.ProjectConf.LoginVerify != "captcha" {
+		return nil, errorx.NewCodeAbortedError(i18n.PermissionDeny)
+	}
+
 	var isPass bool
 
 	if !l.svcCtx.Config.ProjectConf.UseCaptcha {

@@ -30,4 +30,7 @@ type ProjectConf struct {
 	SmsTemplateId           string `json:",optional"`
 	SmsAppId                string `json:",optional"`
 	SmsSignName             string `json:",optional"`
+	RegisterVerify          string `json:",default=captcha,options=[captcha,email,sms,sms_or_email]"`
+	LoginVerify             string `json:",default=captcha,options=[captcha,email,sms,sms_or_email]"`
+	ResetVerify             string `json:",default=captcha,options=[captcha,email,sms,sms_or_email]"`
 }

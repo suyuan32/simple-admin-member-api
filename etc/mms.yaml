@@ -56,7 +56,7 @@ ProjectConf:
   SmsTemplateId: xxx  # The template id for sms
   SmsAppId: xxx  # The app id for sms
   SmsSignName: xxx  # The signature name of sms
-  RegisterVerify: captcha
+  RegisterVerify: captcha # verify captcha type, support captcha, email, sms, sms_or_email
   LoginVerify: captcha
   ResetVerify: captcha
 

@@ -139,12 +139,6 @@ type (
 
     // Log in by email request | 邮箱登录参数
     LoginByEmailReq {
-        // User Name | 用户名
-        Username   string `json:"username" validate:"required,alphanum,max=20"`
-
-        // Password | 密码
-        Password   string `json:"password" validate:"required,max=30,min=6"`
-
         // The user's email address | 用户的邮箱
         Email     string `json:"email" validate:"required,email,max=100"`
 
@@ -154,12 +148,6 @@ type (
 
     // Log in by SMS request | 短信登录参数
     LoginBySmsReq {
-        // User Name | 用户名
-        Username   string `json:"username" validate:"required,alphanum,max=20"`
-
-        // Password | 密码
-        Password   string `json:"password" validate:"required,max=30,min=6"`
-
         // The user's mobile phone number | 用户的手机号码
         PhoneNumber   string  `json:"phoneNumber"  validate:"required,numeric,max=20"`
 

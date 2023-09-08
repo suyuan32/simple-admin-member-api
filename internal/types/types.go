@@ -273,15 +273,6 @@ type LoginReq struct {
 // Log in by email request | 邮箱登录参数
 // swagger:model LoginByEmailReq
 type LoginByEmailReq struct {
-	// User Name | 用户名
-	// required : true
-	// max length : 20
-	Username string `json:"username" validate:"required,alphanum,max=20"`
-	// Password | 密码
-	// required : true
-	// max length : 30
-	// min length : 6
-	Password string `json:"password" validate:"required,max=30,min=6"`
 	// The user's email address | 用户的邮箱
 	// required : true
 	// max length : 100
@@ -295,15 +286,6 @@ type LoginByEmailReq struct {
 // Log in by SMS request | 短信登录参数
 // swagger:model LoginBySmsReq
 type LoginBySmsReq struct {
-	// User Name | 用户名
-	// required : true
-	// max length : 20
-	Username string `json:"username" validate:"required,alphanum,max=20"`
-	// Password | 密码
-	// required : true
-	// max length : 30
-	// min length : 6
-	Password string `json:"password" validate:"required,max=30,min=6"`
 	// The user's mobile phone number | 用户的手机号码
 	// required : true
 	// max length : 20

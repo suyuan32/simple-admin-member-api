@@ -11,9 +11,9 @@
   ],
   "swagger": "2.0",
   "info": {
-    "description": "MMS: Member management service",
-    "title": "Simple Admin Member management service",
-    "version": "1.1.1"
+    "description": "MMS: Member Management Service",
+    "title": "Simple Admin Member Management Service",
+    "version": "1.1.3"
   },
   "host": "localhost:9104",
   "basePath": "/",
@@ -1255,8 +1255,6 @@
       "description": "Log in by email request | 邮箱登录参数",
       "type": "object",
       "required": [
-        "username",
-        "password",
         "email"
       ],
       "properties": {
@@ -1272,19 +1270,6 @@
           "type": "string",
           "maxLength": 100,
           "x-go-name": "Email"
-        },
-        "password": {
-          "description": "Password | 密码",
-          "type": "string",
-          "maxLength": 30,
-          "minLength": 6,
-          "x-go-name": "Password"
-        },
-        "username": {
-          "description": "User Name | 用户名",
-          "type": "string",
-          "maxLength": 20,
-          "x-go-name": "Username"
         }
       },
       "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
@@ -1293,8 +1278,6 @@
       "description": "Log in by SMS request | 短信登录参数",
       "type": "object",
       "required": [
-        "username",
-        "password",
         "phoneNumber"
       ],
       "properties": {
@@ -1305,24 +1288,11 @@
           "minLength": 5,
           "x-go-name": "Captcha"
         },
-        "password": {
-          "description": "Password | 密码",
-          "type": "string",
-          "maxLength": 30,
-          "minLength": 6,
-          "x-go-name": "Password"
-        },
         "phoneNumber": {
           "description": "The user's mobile phone number | 用户的手机号码",
           "type": "string",
           "maxLength": 20,
           "x-go-name": "PhoneNumber"
-        },
-        "username": {
-          "description": "User Name | 用户名",
-          "type": "string",
-          "maxLength": 20,
-          "x-go-name": "Username"
         }
       },
       "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"

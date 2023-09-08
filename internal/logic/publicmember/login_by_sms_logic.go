@@ -31,7 +31,7 @@ func NewLoginBySmsLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginB
 
 func (l *LoginBySmsLogic) LoginBySms(req *types.LoginBySmsReq) (resp *types.LoginResp, err error) {
 	if l.svcCtx.Config.ProjectConf.LoginVerify != "sms" && l.svcCtx.Config.ProjectConf.LoginVerify != "sms_or_email" {
-		return nil, errorx.NewCodeAbortedError(i18n.PermissionDeny)
+		return nil, errorx.NewCodeAbortedError("login.loginTypeForbidden")
 	}
 
 	captchaData, err := l.svcCtx.Redis.Get("CAPTCHA_" + req.PhoneNumber)

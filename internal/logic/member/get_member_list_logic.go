@@ -54,7 +54,6 @@ func (l *GetMemberListLogic) GetMemberList(req *types.MemberListReq) (resp *type
 				},
 				Status:   v.Status,
 				Username: v.Username,
-				Password: v.Password,
 				Nickname: v.Nickname,
 				RankId:   v.RankId,
 				Mobile:   v.Mobile,

@@ -39,7 +39,7 @@ func (l *RegisterBySmsLogic) RegisterBySms(req *types.RegisterBySmsReq) (resp *t
 	}
 
 	if captchaData == req.Captcha {
-		user, err := l.svcCtx.MmsRpc.CreateMember(l.ctx,
+		_, err := l.svcCtx.MmsRpc.CreateMember(l.ctx,
 			&mms.MemberInfo{
 				Username: &req.Username,
 				Password: &req.Password,
@@ -59,7 +59,7 @@ func (l *RegisterBySmsLogic) RegisterBySms(req *types.RegisterBySmsReq) (resp *t
 
 		return &types.BaseMsgResp{
 			Code: 0,
-			Msg:  l.svcCtx.Trans.Trans(l.ctx, user.Msg),
+			Msg:  l.svcCtx.Trans.Trans(l.ctx, "login.signupSuccessTitle"),
 		}, nil
 	}
 

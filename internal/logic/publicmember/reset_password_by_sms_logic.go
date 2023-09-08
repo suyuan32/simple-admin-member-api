@@ -51,7 +51,7 @@ func (l *ResetPasswordBySmsLogic) ResetPasswordBySms(req *types.ResetPasswordByS
 			return nil, errorx.NewCodeInvalidArgumentError("login.userNotExist")
 		}
 
-		result, err := l.svcCtx.MmsRpc.UpdateMember(l.ctx,
+		_, err = l.svcCtx.MmsRpc.UpdateMember(l.ctx,
 			&mms.MemberInfo{
 				Id:       memberData.Data[0].Id,
 				Password: &req.Password,
@@ -67,7 +67,7 @@ func (l *ResetPasswordBySmsLogic) ResetPasswordBySms(req *types.ResetPasswordByS
 
 		return &types.BaseMsgResp{
 			Code: 0,
-			Msg:  l.svcCtx.Trans.Trans(l.ctx, result.Msg),
+			Msg:  l.svcCtx.Trans.Trans(l.ctx, i18n.Success),
 		}, nil
 	}
 

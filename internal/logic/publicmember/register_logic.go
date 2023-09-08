@@ -35,7 +35,7 @@ func (l *RegisterLogic) Register(req *types.RegisterReq) (resp *types.BaseMsgRes
 	}
 
 	if ok := l.svcCtx.Captcha.Verify("CAPTCHA_"+req.CaptchaId, req.Captcha, true); ok {
-		user, err := l.svcCtx.MmsRpc.CreateMember(l.ctx,
+		_, err := l.svcCtx.MmsRpc.CreateMember(l.ctx,
 			&mms.MemberInfo{
 				Username: &req.Username,
 				Password: &req.Password,
@@ -48,7 +48,7 @@ func (l *RegisterLogic) Register(req *types.RegisterReq) (resp *types.BaseMsgRes
 			return nil, err
 		}
 		resp = &types.BaseMsgResp{
-			Msg: l.svcCtx.Trans.Trans(l.ctx, user.Msg),
+			Msg: l.svcCtx.Trans.Trans(l.ctx, "login.signupSuccessTitle"),
 		}
 		return resp, nil
 	} else {

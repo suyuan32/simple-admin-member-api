@@ -38,7 +38,7 @@ func (l *RegisterByEmailLogic) RegisterByEmail(req *types.RegisterByEmailReq) (r
 	}
 
 	if captchaData == req.Captcha {
-		user, err := l.svcCtx.MmsRpc.CreateMember(l.ctx,
+		_, err := l.svcCtx.MmsRpc.CreateMember(l.ctx,
 			&mms.MemberInfo{
 				Username: &req.Username,
 				Password: &req.Password,
@@ -58,7 +58,7 @@ func (l *RegisterByEmailLogic) RegisterByEmail(req *types.RegisterByEmailReq) (r
 
 		return &types.BaseMsgResp{
 			Code: 0,
-			Msg:  l.svcCtx.Trans.Trans(l.ctx, user.Msg),
+			Msg:  l.svcCtx.Trans.Trans(l.ctx, "login.signupSuccessTitle"),
 		}, nil
 	}
 

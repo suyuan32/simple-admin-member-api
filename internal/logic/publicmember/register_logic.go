@@ -30,7 +30,7 @@ func NewRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Register
 }
 
 func (l *RegisterLogic) Register(req *types.RegisterReq) (resp *types.BaseMsgResp, err error) {
-	if l.svcCtx.Config.ProjectConf.LoginVerify != "captcha" {
+	if l.svcCtx.Config.ProjectConf.RegisterVerify != "captcha" {
 		return nil, errorx.NewCodeAbortedError(i18n.PermissionDeny)
 	}
 

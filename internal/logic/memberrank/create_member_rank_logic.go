@@ -2,7 +2,7 @@ package memberrank
 
 import (
 	"context"
-	"github.com/suyuan32/simple-admin-member-api/internal/logic/member"
+	"github.com/suyuan32/simple-admin-member-api/internal/logic/publicmember"
 
 	"github.com/suyuan32/simple-admin-member-rpc/types/mms"
 
@@ -39,7 +39,7 @@ func (l *CreateMemberRankLogic) CreateMemberRank(req *types.MemberRankInfo) (res
 		return nil, err
 	}
 
-	member.MemberRankData = make(map[uint64]string)
+	publicmember.MemberRankData = make(map[uint64]string)
 
 	return &types.BaseMsgResp{Msg: l.svcCtx.Trans.Trans(l.ctx, data.Msg)}, nil
 }

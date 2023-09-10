@@ -74,7 +74,7 @@ type (
         Data MemberInfo `json:"data"`
     }
 
-    // register request | 注册参数
+    // Register request | 注册参数
     RegisterReq {
         // User Name | 用户名
         Username  string `json:"username" validate:"required,alphanum,max=20"`
@@ -92,7 +92,37 @@ type (
         Email     string `json:"email" validate:"required,email,max=100"`
     }
 
-    // Login request | 登录参数
+    // Register by email request | 邮箱注册参数
+    RegisterByEmailReq {
+        // User Name | 用户名
+        Username  string `json:"username" validate:"required,alphanum,max=20"`
+
+        // Password | 密码
+        Password  string `json:"password" validate:"required,max=30,min=6"`
+
+        // The Captcha which users input | 用户输入的验证码
+        Captcha   string `json:"captcha" validate:"required,len=5"`
+
+        // The user's email address | 用户的邮箱
+        Email     string `json:"email" validate:"required,email,max=100"`
+    }
+
+    // Register by SMS request | 短信注册参数
+    RegisterBySmsReq {
+        // User Name | 用户名
+        Username  string `json:"username" validate:"required,alphanum,max=20"`
+
+        // Password | 密码
+        Password  string `json:"password" validate:"required,max=30,min=6"`
+
+        // The Captcha which users input | 用户输入的验证码
+        Captcha   string `json:"captcha" validate:"required,len=5"`
+
+        // The user's mobile phone number | 用户的手机号码
+        PhoneNumber   string  `json:"phoneNumber"  validate:"required,numeric,max=20"`
+    }
+
+    // Log in request | 登录参数
     LoginReq {
         // User Name | 用户名
         Username   string `json:"username" validate:"required,alphanum,max=20"`
@@ -102,6 +132,24 @@ type (
 
         // Captcha ID which store in redis | 验证码编号, 存在redis中
         CaptchaId  string `json:"captchaId,optional"  validate:"omitempty,len=20"`
+
+        // The Captcha which users input | 用户输入的验证码
+        Captcha    string `json:"captcha,optional" validate:"omitempty,len=5"`
+    }
+
+    // Log in by email request | 邮箱登录参数
+    LoginByEmailReq {
+        // The user's email address | 用户的邮箱
+        Email     string `json:"email" validate:"required,email,max=100"`
+
+        // The Captcha which users input | 用户输入的验证码
+        Captcha    string `json:"captcha,optional" validate:"omitempty,len=5"`
+    }
+
+    // Log in by SMS request | 短信登录参数
+    LoginBySmsReq {
+        // The user's mobile phone number | 用户的手机号码
+        PhoneNumber   string  `json:"phoneNumber"  validate:"required,numeric,max=20"`
 
         // The Captcha which users input | 用户输入的验证码
         Captcha    string `json:"captcha,optional" validate:"omitempty,len=5"`
@@ -153,6 +201,20 @@ type (
         // Avatar | 头像地址
         Avatar  *string `json:"avatar,optional"`
     }
+
+    // Reset password by email request | 通过邮箱重置密码请求
+    ResetPasswordByEmailReq {
+        Email     string  `json:"email" validate:"email"`
+        Captcha   string  `json:"captcha"`
+        Password  string  `json:"password"`
+    }
+
+    // Reset password by SMS request | 通过短信重置密码请求
+    ResetPasswordBySmsReq {
+        PhoneNumber     string  `json:"phoneNumber" validate:"numeric,max=20"`
+        Captcha         string  `json:"captcha"`
+        Password        string  `json:"password"`
+    }
 )
 
 @server(
@@ -195,7 +257,7 @@ service Mms {
 }
 
 @server(
-    group: member
+    group: publicmember
 )
 
 service Mms {
@@ -203,7 +265,31 @@ service Mms {
     @handler login
     post /member/login (LoginReq) returns (LoginResp)
 
+    // Log in by email | 邮箱登录
+    @handler loginByEmail
+    post /member/login_by_email (LoginByEmailReq) returns (LoginResp)
+
+    // Log in by SMS | 短信登录
+    @handler loginBySms
+    post /member/login_by_sms (LoginBySmsReq) returns (LoginResp)
+
     // Register | 注册
     @handler register
     post /member/register (RegisterReq) returns (BaseMsgResp)
+
+    // Register by Email | 邮箱注册
+    @handler registerByEmail
+    post /member/register_by_email (RegisterByEmailReq) returns (BaseMsgResp)
+
+    // Register by SMS | 短信注册
+    @handler registerBySms
+    post /member/register_by_sms (RegisterBySmsReq) returns (BaseMsgResp)
+
+    // Reset password by Email | 通过邮箱重置密码
+    @handler resetPasswordByEmail
+    post /member/reset_password_by_email (ResetPasswordByEmailReq) returns (BaseMsgResp)
+
+    // Reset password by SMS | 通过短信重置密码
+    @handler resetPasswordBySms
+    post /member/reset_password_by_sms (ResetPasswordBySmsReq) returns (BaseMsgResp)
 }

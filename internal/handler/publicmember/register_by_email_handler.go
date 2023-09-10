@@ -1,40 +1,40 @@
-package member
+package publicmember
 
 import (
 	"net/http"
 
 	"github.com/zeromicro/go-zero/rest/httpx"
 
-	"github.com/suyuan32/simple-admin-member-api/internal/logic/member"
+	"github.com/suyuan32/simple-admin-member-api/internal/logic/publicmember"
 	"github.com/suyuan32/simple-admin-member-api/internal/svc"
 	"github.com/suyuan32/simple-admin-member-api/internal/types"
 )
 
-// swagger:route post /member/login member Login
+// swagger:route post /member/register_by_email publicmember RegisterByEmail
 //
-// Log in | 登录
+// Register by Email | 邮箱注册
 //
-// Log in | 登录
+// Register by Email | 邮箱注册
 //
 // Parameters:
 //  + name: body
 //    require: true
 //    in: body
-//    type: LoginReq
+//    type: RegisterByEmailReq
 //
 // Responses:
-//  200: LoginResp
+//  200: BaseMsgResp
 
-func LoginHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
+func RegisterByEmailHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var req types.LoginReq
+		var req types.RegisterByEmailReq
 		if err := httpx.Parse(r, &req, true); err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
 			return
 		}
 
-		l := member.NewLoginLogic(r.Context(), svcCtx)
-		resp, err := l.Login(&req)
+		l := publicmember.NewRegisterByEmailLogic(r.Context(), svcCtx)
+		resp, err := l.RegisterByEmail(&req)
 		if err != nil {
 			err = svcCtx.Trans.TransError(r.Context(), err)
 			httpx.ErrorCtx(r.Context(), w, err)

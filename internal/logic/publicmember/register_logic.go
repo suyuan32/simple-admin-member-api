@@ -1,4 +1,4 @@
-package member
+package publicmember
 
 import (
 	"context"
@@ -29,8 +29,12 @@ func NewRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Register
 }
 
 func (l *RegisterLogic) Register(req *types.RegisterReq) (resp *types.BaseMsgResp, err error) {
+	if l.svcCtx.Config.ProjectConf.RegisterVerify != "captcha" {
+		return nil, errorx.NewCodeAbortedError("login.registerTypeForbidden")
+	}
+
 	if ok := l.svcCtx.Captcha.Verify("CAPTCHA_"+req.CaptchaId, req.Captcha, true); ok {
-		user, err := l.svcCtx.MmsRpc.CreateMember(l.ctx,
+		_, err := l.svcCtx.MmsRpc.CreateMember(l.ctx,
 			&mms.MemberInfo{
 				Username: &req.Username,
 				Password: &req.Password,
@@ -43,7 +47,7 @@ func (l *RegisterLogic) Register(req *types.RegisterReq) (resp *types.BaseMsgRes
 			return nil, err
 		}
 		resp = &types.BaseMsgResp{
-			Msg: l.svcCtx.Trans.Trans(l.ctx, user.Msg),
+			Msg: l.svcCtx.Trans.Trans(l.ctx, "login.signupSuccessTitle"),
 		}
 		return resp, nil
 	} else {

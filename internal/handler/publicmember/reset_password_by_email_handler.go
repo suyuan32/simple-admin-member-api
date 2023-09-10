@@ -1,40 +1,40 @@
-package member
+package publicmember
 
 import (
 	"net/http"
 
 	"github.com/zeromicro/go-zero/rest/httpx"
 
-	"github.com/suyuan32/simple-admin-member-api/internal/logic/member"
+	"github.com/suyuan32/simple-admin-member-api/internal/logic/publicmember"
 	"github.com/suyuan32/simple-admin-member-api/internal/svc"
 	"github.com/suyuan32/simple-admin-member-api/internal/types"
 )
 
-// swagger:route post /member/register member Register
+// swagger:route post /member/reset_password_by_email publicmember ResetPasswordByEmail
 //
-// Register | 注册
+// Reset password by Email | 通过邮箱重置密码
 //
-// Register | 注册
+// Reset password by Email | 通过邮箱重置密码
 //
 // Parameters:
 //  + name: body
 //    require: true
 //    in: body
-//    type: RegisterReq
+//    type: ResetPasswordByEmailReq
 //
 // Responses:
 //  200: BaseMsgResp
 
-func RegisterHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
+func ResetPasswordByEmailHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var req types.RegisterReq
+		var req types.ResetPasswordByEmailReq
 		if err := httpx.Parse(r, &req, true); err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
 			return
 		}
 
-		l := member.NewRegisterLogic(r.Context(), svcCtx)
-		resp, err := l.Register(&req)
+		l := publicmember.NewResetPasswordByEmailLogic(r.Context(), svcCtx)
+		resp, err := l.ResetPasswordByEmail(&req)
 		if err != nil {
 			err = svcCtx.Trans.TransError(r.Context(), err)
 			httpx.ErrorCtx(r.Context(), w, err)

@@ -68,6 +68,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/member/profile",
 				Handler: member.ModifyProfileHandler(serverCtx),
 			},
+			{
+				Method:  http.MethodGet,
+				Path:    "/member/logout",
+				Handler: member.LogoutHandler(serverCtx),
+			},
 		},
 		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
 	)

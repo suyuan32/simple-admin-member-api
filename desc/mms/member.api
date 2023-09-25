@@ -264,7 +264,7 @@ service Mms {
     @handler logout
     get /member/logout returns (BaseMsgResp)
 
-    // Bind WeChat account |绑定微信号
+    // Bind WeChat account | 绑定微信号
     @handler bindWechat
     post /member/bind/wechat (BindWechatReq) returns (BaseMsgResp)
 }

@@ -140,11 +140,11 @@
     },
     "/member/bind/wechat": {
       "post": {
-        "description": "Bind WeChat account |绑定微信号",
+        "description": "Bind WeChat account | 绑定微信号",
         "tags": [
           "member"
         ],
-        "summary": "Bind WeChat account |绑定微信号",
+        "summary": "Bind WeChat account | 绑定微信号",
         "operationId": "BindWechat",
         "parameters": [
           {

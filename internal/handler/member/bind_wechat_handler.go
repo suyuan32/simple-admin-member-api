@@ -12,9 +12,9 @@ import (
 
 // swagger:route post /member/bind/wechat member BindWechat
 //
-// Bind WeChat account |绑定微信号
+// Bind WeChat account | 绑定微信号
 //
-// Bind WeChat account |绑定微信号
+// Bind WeChat account | 绑定微信号
 //
 // Parameters:
 //  + name: body

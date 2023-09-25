@@ -91,8 +91,17 @@ type (
         URL string `json:"URL"`
     }
 
-    // The oauth callback response data | Oauth回调数据
+    // The oauth log in response data | 第三方登录返回数据
     CallbackResp {
+        BaseDataInfo
+
+        // The oauth log in callback information | 第三方登陆返回的数据信息
+        Data CallbackInfo `json:"data"`
+    }
+
+
+    // The oauth callback info response data | Oauth回调数据
+    CallbackInfo {
         // User's UUID | 用户的UUID
         UserId       string          `json:"userId"`
 
@@ -114,10 +123,16 @@ type (
         // RankName | 等级名称
         RankName    string          `json:"rankName"`
     }
+
+    // Wechat mini program login request | 微信小程序登录请求
+    WechatMiniProgramLoginReq {
+        // Code
+        Code  string `json:"code"`
+    }
 )
 
 @server (
-    group: oauthprovider
+    group: publicoauth
 )
 
 service Mms {
@@ -128,6 +143,10 @@ service Mms {
     // Oauth log in callback route | Oauth 登录返回调接口
     @handler oauthCallback
     get /oauth/login/callback returns (CallbackResp)
+
+    // Wechat Mini program login | 微信小程序登录
+    @handler wechatMiniProgramLogin
+    post /oauth/login/wechat/mini_program (WechatMiniProgramLoginReq) returns (CallbackResp)
 }
 
 
@@ -157,6 +176,4 @@ service Mms {
     // Get oauth provider by ID | 通过ID获取第三方
     @handler getOauthProviderById
     post /oauth_provider (IDReq) returns (OauthProviderInfoResp)
-
-
 }

@@ -353,6 +353,12 @@ type ResetPasswordBySmsReq struct {
 	Password    string `json:"password"`
 }
 
+// Bind wechat request | 绑定微信请求
+// swagger:model BindWechatReq
+type BindWechatReq struct {
+	Code string `json:"code"`
+}
+
 // The response data of member rank information | MemberRank信息
 // swagger:model MemberRankInfo
 type MemberRankInfo struct {
@@ -554,9 +560,17 @@ type RedirectInfo struct {
 	URL string `json:"URL"`
 }
 
-// The oauth callback response data | Oauth回调数据
+// The oauth log in response data | 第三方登录返回数据
 // swagger:model CallbackResp
 type CallbackResp struct {
+	BaseDataInfo
+	// The oauth log in callback information | 第三方登陆返回的数据信息
+	Data CallbackInfo `json:"data"`
+}
+
+// The oauth callback info response data | Oauth回调数据
+// swagger:model CallbackInfo
+type CallbackInfo struct {
 	// User's UUID | 用户的UUID
 	UserId string `json:"userId"`
 	// Rank ID | 等级 ID
@@ -571,6 +585,13 @@ type CallbackResp struct {
 	Nickname string `json:"nickname"`
 	// RankName | 等级名称
 	RankName string `json:"rankName"`
+}
+
+// Wechat mini program login request | 微信小程序登录请求
+// swagger:model WechatMiniProgramLoginReq
+type WechatMiniProgramLoginReq struct {
+	// Code
+	Code string `json:"code"`
 }
 
 // The information of captcha | 验证码数据

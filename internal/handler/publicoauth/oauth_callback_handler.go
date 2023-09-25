@@ -1,15 +1,15 @@
-package oauthprovider
+package publicoauth
 
 import (
 	"net/http"
 
 	"github.com/zeromicro/go-zero/rest/httpx"
 
-	"github.com/suyuan32/simple-admin-member-api/internal/logic/oauthprovider"
+	"github.com/suyuan32/simple-admin-member-api/internal/logic/publicoauth"
 	"github.com/suyuan32/simple-admin-member-api/internal/svc"
 )
 
-// swagger:route get /oauth/login/callback oauthprovider OauthCallback
+// swagger:route get /oauth/login/callback publicoauth OauthCallback
 //
 // Oauth log in callback route | Oauth 登录返回调接口
 //
@@ -20,7 +20,7 @@ import (
 
 func OauthCallbackHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		l := oauthprovider.NewOauthCallbackLogic(r, svcCtx)
+		l := publicoauth.NewOauthCallbackLogic(r, svcCtx)
 		resp, err := l.OauthCallback()
 		if err != nil {
 			err = svcCtx.Trans.TransError(r.Context(), err)

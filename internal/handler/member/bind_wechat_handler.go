@@ -1,40 +1,40 @@
-package oauthprovider
+package member
 
 import (
 	"net/http"
 
 	"github.com/zeromicro/go-zero/rest/httpx"
 
-	"github.com/suyuan32/simple-admin-member-api/internal/logic/oauthprovider"
+	"github.com/suyuan32/simple-admin-member-api/internal/logic/member"
 	"github.com/suyuan32/simple-admin-member-api/internal/svc"
 	"github.com/suyuan32/simple-admin-member-api/internal/types"
 )
 
-// swagger:route post /oauth/login oauthprovider OauthLogin
+// swagger:route post /member/bind/wechat member BindWechat
 //
-// Oauth log in | Oauth 登录
+// Bind WeChat account |绑定微信号
 //
-// Oauth log in | Oauth 登录
+// Bind WeChat account |绑定微信号
 //
 // Parameters:
 //  + name: body
 //    require: true
 //    in: body
-//    type: OauthLoginReq
+//    type: BindWechatReq
 //
 // Responses:
-//  200: RedirectResp
+//  200: BaseMsgResp
 
-func OauthLoginHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
+func BindWechatHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var req types.OauthLoginReq
+		var req types.BindWechatReq
 		if err := httpx.Parse(r, &req, true); err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
 			return
 		}
 
-		l := oauthprovider.NewOauthLoginLogic(r.Context(), svcCtx)
-		resp, err := l.OauthLogin(&req)
+		l := member.NewBindWechatLogic(r.Context(), svcCtx)
+		resp, err := l.BindWechat(&req)
 		if err != nil {
 			err = svcCtx.Trans.TransError(r.Context(), err)
 			httpx.ErrorCtx(r.Context(), w, err)

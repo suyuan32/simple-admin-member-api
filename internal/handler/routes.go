@@ -10,6 +10,7 @@ import (
 	memberrank "github.com/suyuan32/simple-admin-member-api/internal/handler/memberrank"
 	oauthprovider "github.com/suyuan32/simple-admin-member-api/internal/handler/oauthprovider"
 	publicmember "github.com/suyuan32/simple-admin-member-api/internal/handler/publicmember"
+	publicoauth "github.com/suyuan32/simple-admin-member-api/internal/handler/publicoauth"
 	token "github.com/suyuan32/simple-admin-member-api/internal/handler/token"
 	"github.com/suyuan32/simple-admin-member-api/internal/svc"
 
@@ -72,6 +73,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Method:  http.MethodGet,
 				Path:    "/member/logout",
 				Handler: member.LogoutHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/member/bind/wechat",
+				Handler: member.BindWechatHandler(serverCtx),
 			},
 		},
 		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
@@ -200,12 +206,17 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			{
 				Method:  http.MethodPost,
 				Path:    "/oauth/login",
-				Handler: oauthprovider.OauthLoginHandler(serverCtx),
+				Handler: publicoauth.OauthLoginHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodGet,
 				Path:    "/oauth/login/callback",
-				Handler: oauthprovider.OauthCallbackHandler(serverCtx),
+				Handler: publicoauth.OauthCallbackHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/oauth/login/wechat/mini_program",
+				Handler: publicoauth.WechatMiniProgramLoginHandler(serverCtx),
 			},
 		},
 	)

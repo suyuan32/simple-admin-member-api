@@ -59,6 +59,7 @@ ProjectConf:
   RegisterVerify: captcha # verify captcha type, support captcha, email, sms, sms_or_email
   LoginVerify: captcha
   ResetVerify: email # support  email, sms, sms_or_email
+  WechatMiniOauthProvider: wechat_mini # the oauth provider for wechat mini program
 
 MmsRpc:
   Target: k8s://default/mms-rpc-svc:9103

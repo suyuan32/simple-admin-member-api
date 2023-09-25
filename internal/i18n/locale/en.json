@@ -38,7 +38,9 @@
 		"requireLogin": "Please log in again",
 		"loginTypeForbidden": "This login method has been disabled by the administrator. Please try another login method.",
 		"registerTypeForbidden": "This registration method has been disabled by the administrator. Please try another registration method.",
-		"resetTypeForbidden": "This password reset method has been disabled by the administrator. Please try another password reset method."
+		"resetTypeForbidden": "This password reset method has been disabled by the administrator. Please try another password reset method.",
+		"bindWechatToAccount": "Please log in and bind the wechat account firstly",
+		"alreadyBindWechatToAccount": "This WeChat account had been bound to another account"
 	},
 	"mcms": {
 		"email": {

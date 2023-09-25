@@ -215,6 +215,11 @@ type (
         Captcha         string  `json:"captcha"`
         Password        string  `json:"password"`
     }
+
+    // Bind wechat request | 绑定微信请求
+    BindWechatReq {
+        Code string `json:"code"`
+    }
 )
 
 @server(
@@ -257,7 +262,11 @@ service Mms {
 
     // Log out the service | 用户登出
     @handler logout
-    get /member/logout () returns (BaseMsgResp)
+    get /member/logout returns (BaseMsgResp)
+
+    // Bind WeChat account |绑定微信号
+    @handler bindWechat
+    post /member/bind/wechat (BindWechatReq) returns (BaseMsgResp)
 }
 
 @server(

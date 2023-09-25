@@ -1,15 +1,18 @@
-package oauthprovider
+package publicoauth
 
 import (
 	"context"
-	"github.com/suyuan32/simple-admin-member-rpc/types/mms"
-
-	"github.com/suyuan32/simple-admin-common/i18n"
 
 	"github.com/suyuan32/simple-admin-member-api/internal/svc"
 	"github.com/suyuan32/simple-admin-member-api/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
+)
+
+import (
+	"github.com/suyuan32/simple-admin-member-rpc/types/mms"
+
+	"github.com/suyuan32/simple-admin-common/i18n"
 )
 
 type OauthLoginLogic struct {

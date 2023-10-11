@@ -25,6 +25,10 @@ PROJECT_BUILD_SUFFIX=api-docker
 # Swagger type, support yml,json | Swagger 文件类型，支持yml,json
 SWAGGER_TYPE=json
 
+
+# The arch of the build | 构建的架构
+GOARCH=amd64
+
 # ---- You may not need to modify the codes below | 下面的代码大概率不需要更改 ----
 
 GO ?= go
@@ -80,17 +84,17 @@ gen-api: # Generate API files | 生成 API 的代码
 
 .PHONY: build-win
 build-win: # Build project for Windows | 构建Windows下的可执行文件
-	env CGO_ENABLED=0 GOOS=windows go build -ldflags "$(LDFLAGS)" -o $(SERVICE_STYLE)_$(PROJECT_BUILD_SUFFIX).exe $(SERVICE_STYLE).go
+	env CGO_ENABLED=0 GOOS=windows GOARCH=$(GOARCH) go build -ldflags "$(LDFLAGS)" -trimpath -o $(SERVICE_STYLE)_$(PROJECT_BUILD_SUFFIX).exe $(SERVICE_STYLE).go
 	@echo "Build project for Windows successfully"
 
 .PHONY: build-mac
 build-mac: # Build project for MacOS | 构建MacOS下的可执行文件
-	env CGO_ENABLED=0 GOOS=darwin go build -ldflags "$(LDFLAGS)" -o $(SERVICE_STYLE)_$(PROJECT_BUILD_SUFFIX) $(SERVICE_STYLE).go
+	env CGO_ENABLED=0 GOOS=darwin GOARCH=$(GOARCH) go build -ldflags "$(LDFLAGS)" -trimpath -o $(SERVICE_STYLE)_$(PROJECT_BUILD_SUFFIX) $(SERVICE_STYLE).go
 	@echo "Build project for MacOS successfully"
 
 .PHONY: build-linux
 build-linux: # Build project for Linux | 构建Linux下的可执行文件
-	env CGO_ENABLED=0 GOOS=linux go build -ldflags "$(LDFLAGS)" -o $(SERVICE_STYLE)_$(PROJECT_BUILD_SUFFIX) $(SERVICE_STYLE).go
+	env CGO_ENABLED=0 GOOS=linux GOARCH=$(GOARCH) go build -ldflags "$(LDFLAGS)" -trimpath -o $(SERVICE_STYLE)_$(PROJECT_BUILD_SUFFIX) $(SERVICE_STYLE).go
 	@echo "Build project for Linux successfully"
 
 .PHONY: help

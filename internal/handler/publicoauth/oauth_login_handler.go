@@ -1,16 +1,16 @@
-package oauthprovider
+package publicoauth
 
 import (
 	"net/http"
 
 	"github.com/zeromicro/go-zero/rest/httpx"
 
-	"github.com/suyuan32/simple-admin-member-api/internal/logic/oauthprovider"
+	"github.com/suyuan32/simple-admin-member-api/internal/logic/publicoauth"
 	"github.com/suyuan32/simple-admin-member-api/internal/svc"
 	"github.com/suyuan32/simple-admin-member-api/internal/types"
 )
 
-// swagger:route post /oauth/login oauthprovider OauthLogin
+// swagger:route post /oauth/login publicoauth OauthLogin
 //
 // Oauth log in | Oauth 登录
 //
@@ -33,7 +33,7 @@ func OauthLoginHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 			return
 		}
 
-		l := oauthprovider.NewOauthLoginLogic(r.Context(), svcCtx)
+		l := publicoauth.NewOauthLoginLogic(r.Context(), svcCtx)
 		resp, err := l.OauthLogin(&req)
 		if err != nil {
 			err = svcCtx.Trans.TransError(r.Context(), err)

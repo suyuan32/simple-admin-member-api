@@ -1,4 +1,4 @@
-package oauthprovider
+package publicoauth
 
 import (
 	"context"
@@ -60,12 +60,15 @@ func (l *OauthCallbackLogic) OauthCallback() (resp *types.CallbackResp, err erro
 	}
 
 	return &types.CallbackResp{
-		UserId:   *result.Id,
-		Token:    token,
-		Expire:   uint64(time.Now().Add(time.Second * 259200).Unix()),
-		Avatar:   *result.Avatar,
-		RankId:   *result.RankId,
-		RankName: publicmember.MemberRankData[*result.RankId],
-		Nickname: *result.Nickname,
+		BaseDataInfo: types.BaseDataInfo{Msg: l.svcCtx.Trans.Trans(l.ctx, "login.loginSuccessTitle")},
+		Data: types.CallbackInfo{
+			UserId:   *result.Id,
+			Token:    token,
+			Expire:   uint64(time.Now().Add(time.Second * 259200).Unix()),
+			Avatar:   *result.Avatar,
+			RankId:   *result.RankId,
+			RankName: publicmember.MemberRankData[*result.RankId],
+			Nickname: *result.Nickname,
+		},
 	}, nil
 }

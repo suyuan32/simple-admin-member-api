@@ -13,7 +13,7 @@
   "info": {
     "description": "MMS: Member Management Service",
     "title": "Simple Admin Member Management Service",
-    "version": "1.1.4"
+    "version": "1.1.5"
   },
   "host": "localhost:9104",
   "basePath": "/",
@@ -133,6 +133,34 @@
             "description": "MemberInfoResp",
             "schema": {
               "$ref": "#/definitions/MemberInfoResp"
+            }
+          }
+        }
+      }
+    },
+    "/member/bind/wechat": {
+      "post": {
+        "description": "Bind WeChat account | 绑定微信号",
+        "tags": [
+          "member"
+        ],
+        "summary": "Bind WeChat account | 绑定微信号",
+        "operationId": "BindWechat",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/BindWechatReq"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "BaseMsgResp",
+            "schema": {
+              "$ref": "#/definitions/BaseMsgResp"
             }
           }
         }
@@ -301,6 +329,24 @@
             "description": "LoginResp",
             "schema": {
               "$ref": "#/definitions/LoginResp"
+            }
+          }
+        }
+      }
+    },
+    "/member/logout": {
+      "get": {
+        "description": "Log out the service | 用户登出",
+        "tags": [
+          "member"
+        ],
+        "summary": "Log out the service | 用户登出",
+        "operationId": "Logout",
+        "responses": {
+          "200": {
+            "description": "BaseMsgResp",
+            "schema": {
+              "$ref": "#/definitions/BaseMsgResp"
             }
           }
         }
@@ -646,7 +692,7 @@
       "post": {
         "description": "Oauth log in | Oauth 登录",
         "tags": [
-          "oauthprovider"
+          "publicoauth"
         ],
         "summary": "Oauth log in | Oauth 登录",
         "operationId": "OauthLogin",
@@ -674,10 +720,38 @@
       "get": {
         "description": "Oauth log in callback route | Oauth 登录返回调接口",
         "tags": [
-          "oauthprovider"
+          "publicoauth"
         ],
         "summary": "Oauth log in callback route | Oauth 登录返回调接口",
         "operationId": "OauthCallback",
+        "responses": {
+          "200": {
+            "description": "CallbackResp",
+            "schema": {
+              "$ref": "#/definitions/CallbackResp"
+            }
+          }
+        }
+      }
+    },
+    "/oauth/login/wechat/mini_program": {
+      "post": {
+        "description": "Wechat Mini program login | 微信小程序登录",
+        "tags": [
+          "publicoauth"
+        ],
+        "summary": "Wechat Mini program login | 微信小程序登录",
+        "operationId": "WechatMiniProgramLogin",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/WechatMiniProgramLoginReq"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "CallbackResp",
@@ -1106,8 +1180,19 @@
       },
       "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
     },
-    "CallbackResp": {
-      "description": "The oauth callback response data | Oauth回调数据",
+    "BindWechatReq": {
+      "description": "Bind wechat request | 绑定微信请求",
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "x-go-name": "Code"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "CallbackInfo": {
+      "description": "The oauth callback info response data | Oauth回调数据",
       "type": "object",
       "properties": {
         "avatar": {
@@ -1146,6 +1231,30 @@
           "description": "User's UUID | 用户的UUID",
           "type": "string",
           "x-go-name": "UserId"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "CallbackResp": {
+      "description": "The oauth log in response data | 第三方登录返回数据",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Error code | 错误代码",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "data": {
+          "description": "Data | 数据",
+          "type": "string",
+          "x-go-name": "Data",
+          "$ref": "#/definitions/CallbackInfo"
+        },
+        "msg": {
+          "description": "Message | 提示信息",
+          "type": "string",
+          "x-go-name": "Msg"
         }
       },
       "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
@@ -2405,6 +2514,18 @@
             "type": "string"
           },
           "x-go-name": "Ids"
+        }
+      },
+      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
+    },
+    "WechatMiniProgramLoginReq": {
+      "description": "Wechat mini program login request | 微信小程序登录请求",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Code",
+          "type": "string",
+          "x-go-name": "Code"
         }
       },
       "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"

@@ -30,7 +30,8 @@ func NewLoginBySmsLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginB
 }
 
 func (l *LoginBySmsLogic) LoginBySms(req *types.LoginBySmsReq) (resp *types.LoginResp, err error) {
-	if l.svcCtx.Config.ProjectConf.LoginVerify != "sms" && l.svcCtx.Config.ProjectConf.LoginVerify != "sms_or_email" {
+	if l.svcCtx.Config.ProjectConf.LoginVerify != "sms" && l.svcCtx.Config.ProjectConf.LoginVerify != "sms_or_email" &&
+		l.svcCtx.Config.ProjectConf.LoginVerify != "all" {
 		return nil, errorx.NewCodeAbortedError("login.loginTypeForbidden")
 	}
 

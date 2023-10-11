@@ -62,14 +62,17 @@ ProjectConf:
   WechatMiniOauthProvider: wechat_mini # the oauth provider for wechat mini program
 
 MmsRpc:
-  Target: k8s://default/mms-rpc-svc:9103
+  Endpoints:
+    - 10.5.0.10:9103
   Enabled: true
 
 CoreRpc:
-  Target: k8s://default/core-rpc-svc:9101
+  Endpoints:
+    - 10.5.0.4:9101
   Enabled: true
 
 McmsRpc:
-  Target: k8s://default/mcms-rpc-svc:9106
-  Enabled: false
+  Endpoints:
+    - 10.5.0.9:9106
+  Enabled: true
   Timeout: 5000

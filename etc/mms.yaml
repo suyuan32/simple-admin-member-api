@@ -61,6 +61,10 @@ ProjectConf:
   ResetVerify: email # support  email, sms, sms_or_email
   WechatMiniOauthProvider: wechat_mini # the oauth provider for wechat mini program
 
+RedisConf:
+  Host: 127.0.0.1:6379
+  Type: node
+
 MmsRpc:
   Endpoints:
     - 10.5.0.10:9103

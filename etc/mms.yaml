@@ -4,7 +4,7 @@ Port: 9104
 Timeout: 30000
 
 Auth:
-  AccessSecret:  # the same as core
+  AccessSecret: jS6VKDtsJf3z1n2VKDtsJf3z1n2  # the same as core
   AccessExpire: 259200
 
 CROSConf:
@@ -24,17 +24,20 @@ Prometheus:
   Port: 4004
   Path: /metrics
 
-# The database config of casbin
 DatabaseConf:
-  Type: mysql
-  Host: 127.0.0.1
-  Port: 3306
+  Type: postgres
+  Host: postgresql-server
+  Port: 5432
   DBName: simple_admin
-  Username: # set your username
-  Password: # set your password
+  Username: postgres # set your username
+  Password: simple-admin. # set your password
   MaxOpenConn: 100
   SSLMode: disable
   CacheTime: 5
+
+RedisConf:
+  Host: redis-server:6379
+  Type: node
 
 CasbinConf:
   ModelText: |
@@ -61,22 +64,18 @@ ProjectConf:
   ResetVerify: email # support  email, sms, sms_or_email
   WechatMiniOauthProvider: wechat_mini # the oauth provider for wechat mini program
 
-RedisConf:
-  Host: 127.0.0.1:6379
-  Type: node
-
 MmsRpc:
   Endpoints:
-    - 10.5.0.10:9103
+    - mms-rpc:9103
   Enabled: true
 
 CoreRpc:
   Endpoints:
-    - 10.5.0.4:9101
+    - core-rpc:9101
   Enabled: true
 
 McmsRpc:
   Endpoints:
-    - 10.5.0.9:9106
+    - mcms-rpc:9106
   Enabled: true
   Timeout: 5000

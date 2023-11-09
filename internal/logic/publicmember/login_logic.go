@@ -62,7 +62,7 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err erro
 
 		token, err := jwt.NewJwtToken(l.svcCtx.Config.Auth.AccessSecret, time.Now().Unix(),
 			l.svcCtx.Config.Auth.AccessExpire, jwt.WithOption("userId", user.Id), jwt.WithOption("rankId",
-				user.RankId), jwt.WithOption("roleId", common.DefaultInvalidRoleId))
+				user.RankCode), jwt.WithOption("roleId", common.DefaultInvalidRoleId))
 		if err != nil {
 			return nil, err
 		}
@@ -94,7 +94,7 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err erro
 			Data: types.LoginInfo{
 				UserId:   *user.Id,
 				Token:    token,
-				RankId:   *user.RankId,
+				RankCode: *user.RankCode,
 				Nickname: *user.Nickname,
 				RankName: l.svcCtx.Trans.Trans(l.ctx, MemberRankData[*user.RankId]),
 				Avatar:   *user.Avatar,

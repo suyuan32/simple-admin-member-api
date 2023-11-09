@@ -548,6 +548,42 @@
         }
       }
     },
+    "/member/vip": {
+      "get": {
+        "description": "Test VIP authorization | 测试 VIP 授权",
+        "tags": [
+          "vipdemo"
+        ],
+        "summary": "Test VIP authorization | 测试 VIP 授权",
+        "operationId": "TestVip",
+        "responses": {
+          "200": {
+            "description": "BaseMsgResp",
+            "schema": {
+              "$ref": "#/definitions/BaseMsgResp"
+            }
+          }
+        }
+      }
+    },
+    "/member/vvip": {
+      "get": {
+        "description": "Test VVIP authorization | 测试 VVIP 授权",
+        "tags": [
+          "vipdemo"
+        ],
+        "summary": "Test VVIP authorization | 测试 VVIP 授权",
+        "operationId": "TestVvip",
+        "responses": {
+          "200": {
+            "description": "BaseMsgResp",
+            "schema": {
+              "$ref": "#/definitions/BaseMsgResp"
+            }
+          }
+        }
+      }
+    },
     "/member_rank": {
       "post": {
         "description": "Get member rank by ID | 通过ID获取会员等级",
@@ -1426,11 +1462,10 @@
           "type": "string",
           "x-go-name": "Nickname"
         },
-        "rankId": {
-          "description": "Rank ID | 等级 ID",
-          "type": "integer",
-          "format": "uint64",
-          "x-go-name": "RankId"
+        "rankCode": {
+          "description": "Rank Code | 等级码",
+          "type": "string",
+          "x-go-name": "RankCode"
         },
         "rankName": {
           "description": "RankName | 等级名称",

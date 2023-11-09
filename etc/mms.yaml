@@ -60,6 +60,7 @@ ProjectConf:
   LoginVerify: captcha
   ResetVerify: email # support  email, sms, sms_or_email
   WechatMiniOauthProvider: wechat_mini # the oauth provider for wechat mini program
+  AllowInit: true
 
 RedisConf:
   Host: 127.0.0.1:6379

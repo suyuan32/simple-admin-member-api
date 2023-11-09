@@ -43,7 +43,8 @@ func (l *OauthCallbackLogic) OauthCallback() (resp *types.CallbackResp, err erro
 	}
 
 	token, err := jwt.NewJwtToken(l.svcCtx.Config.Auth.AccessSecret, time.Now().Unix(),
-		l.svcCtx.Config.Auth.AccessExpire, jwt.WithOption("userId", result.Id))
+		l.svcCtx.Config.Auth.AccessExpire, jwt.WithOption("userId", result.Id), jwt.WithOption("rankId",
+			result.RankCode), jwt.WithOption("roleId", "invalid"))
 
 	// add token into database
 	expiredAt := time.Now().Add(time.Second * 259200).Unix()
@@ -66,7 +67,7 @@ func (l *OauthCallbackLogic) OauthCallback() (resp *types.CallbackResp, err erro
 			Token:    token,
 			Expire:   uint64(time.Now().Add(time.Second * 259200).Unix()),
 			Avatar:   *result.Avatar,
-			RankId:   *result.RankId,
+			RankId:   *result.RankCode,
 			RankName: publicmember.MemberRankData[*result.RankId],
 			Nickname: *result.Nickname,
 		},

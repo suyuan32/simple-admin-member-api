@@ -106,7 +106,7 @@ type (
         UserId       string          `json:"userId"`
 
         // Rank ID | 等级 ID
-        RankId       uint64          `json:"rankId"`
+        RankId     string          `json:"rankId"`
 
         // Token for authorization | 验证身份的token
         Token        string          `json:"token"`

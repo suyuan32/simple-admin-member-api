@@ -168,8 +168,8 @@ type (
         // User's UUID | 用户的UUID
         UserId       string          `json:"userId"`
 
-        // Rank ID | 等级 ID
-        RankId       uint64          `json:"rankId"`
+        // Rank Code | 等级码
+        RankId       string          `json:"rankId"`
 
         // Token for authorization | 验证身份的token
         Token        string          `json:"token"`
@@ -305,4 +305,17 @@ service Mms {
     // Reset password by SMS | 通过短信重置密码
     @handler resetPasswordBySms
     post /member/reset_password_by_sms (ResetPasswordBySmsReq) returns (BaseMsgResp)
+}
+
+// VIP Demo | VIP 示例接口
+@server(
+    jwt: Auth
+    group: vipdemo
+    middleware: Vip
+)
+
+service Mms {
+    // Test VIP authorization | 测试 VIP 授权
+    @handler testVip
+    get /member/vip returns (BaseMsgResp)
 }

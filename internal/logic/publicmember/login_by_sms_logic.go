@@ -63,7 +63,7 @@ func (l *LoginBySmsLogic) LoginBySms(req *types.LoginBySmsReq) (resp *types.Logi
 
 		token, err := jwt.NewJwtToken(l.svcCtx.Config.Auth.AccessSecret, time.Now().Unix(),
 			l.svcCtx.Config.Auth.AccessExpire, jwt.WithOption("userId", memberData.Data[0].Id), jwt.WithOption("rankId",
-				memberData.Data[0].RankId), jwt.WithOption("roleId", common.DefaultInvalidRoleId))
+				memberData.Data[0].RankCode), jwt.WithOption("roleId", "invalid"))
 		if err != nil {
 			return nil, err
 		}
@@ -98,7 +98,7 @@ func (l *LoginBySmsLogic) LoginBySms(req *types.LoginBySmsReq) (resp *types.Logi
 			},
 			Data: types.LoginInfo{
 				UserId:   *memberData.Data[0].Id,
-				RankId:   *memberData.Data[0].RankId,
+				RankId:   *memberData.Data[0].RankCode,
 				Token:    token,
 				Expire:   uint64(expiredAt),
 				Avatar:   *memberData.Data[0].Avatar,

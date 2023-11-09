@@ -12,6 +12,7 @@ import (
 	publicmember "github.com/suyuan32/simple-admin-member-api/internal/handler/publicmember"
 	publicoauth "github.com/suyuan32/simple-admin-member-api/internal/handler/publicoauth"
 	token "github.com/suyuan32/simple-admin-member-api/internal/handler/token"
+	vipdemo "github.com/suyuan32/simple-admin-member-api/internal/handler/vipdemo"
 	"github.com/suyuan32/simple-admin-member-api/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
@@ -126,6 +127,20 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: publicmember.ResetPasswordBySmsHandler(serverCtx),
 			},
 		},
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.Vip},
+			[]rest.Route{
+				{
+					Method:  http.MethodGet,
+					Path:    "/member/vip",
+					Handler: vipdemo.TestVipHandler(serverCtx),
+				},
+			}...,
+		),
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
 	)
 
 	server.AddRoutes(

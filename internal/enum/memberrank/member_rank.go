@@ -1,6 +1,6 @@
 package memberrank
 
 const (
-	Normal = 1 + iota
-	VIP
+	Normal = "001"
+	VIP    = "002"
 )

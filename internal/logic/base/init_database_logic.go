@@ -30,6 +30,10 @@ func NewInitDatabaseLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Init
 }
 
 func (l *InitDatabaseLogic) InitDatabase() (resp *types.BaseMsgResp, err error) {
+	if !l.svcCtx.Config.ProjectConf.AllowInit {
+		return nil, errorx.NewCodeInvalidArgumentError(i18n.PermissionDeny)
+	}
+
 	if l.svcCtx.Config.CoreRpc.Enabled {
 		err = l.insertApiData()
 		if err != nil {

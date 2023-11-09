@@ -24,6 +24,7 @@ type ServiceContext struct {
 	Config    config.Config
 	Casbin    *casbin.Enforcer
 	Authority rest.Middleware
+	Vip       rest.Middleware
 	Trans     *i18n.Translator
 	MmsRpc    mmsclient.Mms
 	McmsRpc   mcmsclient.Mcms
@@ -43,6 +44,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 	return &ServiceContext{
 		Config:    c,
 		Authority: middleware.NewAuthorityMiddleware(cbn, rds, trans).Handle,
+		Vip:       middleware.NewVipMiddleware().Handle,
 		Trans:     trans,
 		Redis:     rds,
 		Casbin:    cbn,

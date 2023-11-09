@@ -1,24 +1,28 @@
 package middleware
 
 import (
+	"github.com/suyuan32/simple-admin-member-api/internal/enum/memberrank"
+	"github.com/zeromicro/go-zero/core/errorx"
+	"github.com/zeromicro/go-zero/rest/httpx"
 	"net/http"
 	"strings"
 )
 
-type VIPMiddleware struct {
+type VipMiddleware struct {
 }
 
-func NewVIPMiddleware() *VIPMiddleware {
-	return &VIPMiddleware{}
+func NewVipMiddleware() *VipMiddleware {
+	return &VipMiddleware{}
 }
 
-func (m *VIPMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
+func (m *VipMiddleware) Handle(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		// get the role id
-		roleIds := r.Context().Value("rankId").(string)
+		// get the rank id
+		rankId := r.Context().Value("rankId").(string)
 
-		if !strings.Contains(roleIds, "002") {
-
+		if !strings.Contains(rankId, memberrank.VIP) {
+			httpx.Error(w, errorx.NewApiUnauthorizedError("only VIP user can access the API"))
+			return
 		}
 
 		next(w, r)

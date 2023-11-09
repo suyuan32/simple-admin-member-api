@@ -13,7 +13,7 @@
   "info": {
     "description": "MMS: Member Management Service",
     "title": "Simple Admin Member Management Service",
-    "version": "1.1.7"
+    "version": "1.1.8"
   },
   "host": "localhost:9104",
   "basePath": "/",
@@ -556,24 +556,6 @@
         ],
         "summary": "Test VIP authorization | 测试 VIP 授权",
         "operationId": "TestVip",
-        "responses": {
-          "200": {
-            "description": "BaseMsgResp",
-            "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
-            }
-          }
-        }
-      }
-    },
-    "/member/vvip": {
-      "get": {
-        "description": "Test VVIP authorization | 测试 VVIP 授权",
-        "tags": [
-          "vipdemo"
-        ],
-        "summary": "Test VVIP authorization | 测试 VVIP 授权",
-        "operationId": "TestVvip",
         "responses": {
           "200": {
             "description": "BaseMsgResp",
@@ -1249,8 +1231,7 @@
         },
         "rankId": {
           "description": "Rank ID | 等级 ID",
-          "type": "integer",
-          "format": "uint64",
+          "type": "string",
           "x-go-name": "RankId"
         },
         "rankName": {
@@ -1462,10 +1443,10 @@
           "type": "string",
           "x-go-name": "Nickname"
         },
-        "rankCode": {
+        "rankId": {
           "description": "Rank Code | 等级码",
           "type": "string",
-          "x-go-name": "RankCode"
+          "x-go-name": "RankId"
         },
         "rankName": {
           "description": "RankName | 等级名称",

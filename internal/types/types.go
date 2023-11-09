@@ -310,7 +310,7 @@ type LoginInfo struct {
 	// User's UUID | 用户的UUID
 	UserId string `json:"userId"`
 	// Rank Code | 等级码
-	RankCode string `json:"rankCode"`
+	RankId string `json:"rankId"`
 	// Token for authorization | 验证身份的token
 	Token string `json:"token"`
 	// Expire timestamp | 过期时间戳
@@ -574,7 +574,7 @@ type CallbackInfo struct {
 	// User's UUID | 用户的UUID
 	UserId string `json:"userId"`
 	// Rank ID | 等级 ID
-	RankId uint64 `json:"rankId"`
+	RankId string `json:"rankId"`
 	// Token for authorization | 验证身份的token
 	Token string `json:"token"`
 	// Expire timestamp | 过期时间戳

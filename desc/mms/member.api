@@ -169,7 +169,7 @@ type (
         UserId       string          `json:"userId"`
 
         // Rank Code | 等级码
-        RankCode     string          `json:"rankCode"`
+        RankId       string          `json:"rankId"`
 
         // Token for authorization | 验证身份的token
         Token        string          `json:"token"`
@@ -309,9 +309,9 @@ service Mms {
 
 // VIP Demo | VIP 示例接口
 @server(
-    middleware: VIP
-    auth: JWT
+    jwt: Auth
     group: vipdemo
+    middleware: Vip
 )
 
 service Mms {

@@ -23,7 +23,5 @@ func NewTestVipLogic(ctx context.Context, svcCtx *svc.ServiceContext) *TestVipLo
 }
 
 func (l *TestVipLogic) TestVip() (resp *types.BaseMsgResp, err error) {
-	// todo: add your logic here and delete this line
-
-	return
+	return &types.BaseMsgResp{Msg: "Hello VIP user!"}, nil
 }

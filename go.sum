@@ -196,7 +196,6 @@ github.com/google/martian v2.1.0+incompatible/go.mod h1:9I4somxYTbIHy5NJKHRl3wXi
 github.com/google/pprof v0.0.0-20181206194817-3ea8567a2e57/go.mod h1:zfwlbNMJ+OItoe0UupaVj+oy1omPYYDuagoSzA8v9mc=
 github.com/google/pprof v0.0.0-20190515194954-54271f7e092f/go.mod h1:zfwlbNMJ+OItoe0UupaVj+oy1omPYYDuagoSzA8v9mc=
 github.com/google/pprof v0.0.0-20230222194610-99052d3372e7 h1:pNFnpaSXfibgW7aUbk9pwLmI7LNwh/iR46x/YwN/lNg=
-github.com/google/pprof v0.0.0-20230222194610-99052d3372e7/go.mod h1:uglQLonpP8qtYCYyzA+8c/9qtqgA3qsXGYqCPKARAFg=
 github.com/google/renameio v0.1.0/go.mod h1:KWCgfxg9yswjAJkECMjeO8J8rahYeXnNhOm40UhjYkI=
 github.com/google/uuid v1.1.2/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/google/uuid v1.2.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
@@ -463,8 +462,8 @@ github.com/suyuan32/simple-admin-common v1.2.2 h1:0TRPwuZE2GfuLypEqykU9b++W/k5ue
 github.com/suyuan32/simple-admin-common v1.2.2/go.mod h1:WAc8SBBgrjSuo/A8NiBTgTzpCKb6JnpOErRUcJbgccI=
 github.com/suyuan32/simple-admin-core v1.2.2 h1:ATMrOYJf7IIHnxXSvgZM/SP/L+xAtsCN+Ybok+ZJIbI=
 github.com/suyuan32/simple-admin-core v1.2.2/go.mod h1:/BPaj3q8jd5Ts4Uaw+ogTE0aH0YeA3rNSYzhT+GhLSo=
-github.com/suyuan32/simple-admin-member-rpc v1.1.7 h1:Jlk7XNtEj+mt12V+ynxqiW6aOa2lmwvItjKsYxkiuW8=
-github.com/suyuan32/simple-admin-member-rpc v1.1.7/go.mod h1:6WxOA+4UJh3Nso95S4ir3NA6OvLgupYy1LC4tuTs30o=
+github.com/suyuan32/simple-admin-member-rpc v1.1.8 h1:QhF6gg1ZgQT3K6glRGB+p2+C6Jtm2wi1C3MTLaqXYzQ=
+github.com/suyuan32/simple-admin-member-rpc v1.1.8/go.mod h1:XP2aVCAUmhx8VLAgWelpxl3gCNCiboOyHAoXzFgVUEk=
 github.com/suyuan32/simple-admin-message-center v1.2.2 h1:lF8nBWbpk+teONHcldx4yJrzps+LppDbVrFgnoezHzE=
 github.com/suyuan32/simple-admin-message-center v1.2.2/go.mod h1:M9M1DwJtThVQ2IzFMnXi1qqxbPMr+5T6T38wABcKaJQ=
 github.com/suyuan32/simple-admin-tools v1.6.0 h1:10Dw2oJCEHYnfd6KUMWPsRAlJReQ1dBlE2MLjIVJwhM=

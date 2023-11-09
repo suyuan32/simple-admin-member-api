@@ -359,7 +359,7 @@ type BindWechatReq struct {
 	Code string `json:"code"`
 }
 
-// The response data of member rank information | MemberRank信息
+// The response data of member rank information | 会员等级信息
 // swagger:model MemberRankInfo
 type MemberRankInfo struct {
 	BaseIDInfo
@@ -375,23 +375,23 @@ type MemberRankInfo struct {
 	Code *string `json:"code,optional"`
 }
 
-// The response data of member rank list | MemberRank列表数据
+// The response data of member rank list | 会员等级列表数据
 // swagger:model MemberRankListResp
 type MemberRankListResp struct {
 	BaseDataInfo
-	// MemberRank list data | MemberRank列表数据
+	// MemberRank list data | 会员等级列表数据
 	Data MemberRankListInfo `json:"data"`
 }
 
-// MemberRank list data | MemberRank列表数据
+// MemberRank list data | 会员等级列表数据
 // swagger:model MemberRankListInfo
 type MemberRankListInfo struct {
 	BaseListInfo
-	// The API list data | MemberRank列表数据
+	// The API list data | 会员等级列表数据
 	Data []MemberRankInfo `json:"data"`
 }
 
-// Get member rank list request params | MemberRank列表请求参数
+// Get member rank list request params | 会员等级列表请求参数
 // swagger:model MemberRankListReq
 type MemberRankListReq struct {
 	PageInfo
@@ -403,11 +403,11 @@ type MemberRankListReq struct {
 	Remark *string `json:"remark,optional"`
 }
 
-// MemberRank information response | MemberRank信息返回体
+// MemberRank information response | 会员等级信息返回体
 // swagger:model MemberRankInfoResp
 type MemberRankInfoResp struct {
 	BaseDataInfo
-	// MemberRank information | MemberRank数据
+	// MemberRank information | 会员等级数据
 	Data MemberRankInfo `json:"data"`
 }
 

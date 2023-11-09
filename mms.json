@@ -1714,7 +1714,7 @@
       "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
     },
     "MemberRankInfo": {
-      "description": "The response data of member rank information | MemberRank信息",
+      "description": "The response data of member rank information | 会员等级信息",
       "type": "object",
       "properties": {
         "code": {
@@ -1764,7 +1764,7 @@
       "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
     },
     "MemberRankInfoResp": {
-      "description": "MemberRank information response | MemberRank信息返回体",
+      "description": "MemberRank information response | 会员等级信息返回体",
       "type": "object",
       "properties": {
         "code": {
@@ -1788,11 +1788,11 @@
       "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
     },
     "MemberRankListInfo": {
-      "description": "MemberRank list data | MemberRank列表数据",
+      "description": "MemberRank list data | 会员等级列表数据",
       "type": "object",
       "properties": {
         "data": {
-          "description": "The API list data | MemberRank列表数据",
+          "description": "The API list data | 会员等级列表数据",
           "type": "array",
           "items": {
             "$ref": "#/definitions/MemberRankInfo"
@@ -1809,7 +1809,7 @@
       "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
     },
     "MemberRankListReq": {
-      "description": "Get member rank list request params | MemberRank列表请求参数",
+      "description": "Get member rank list request params | 会员等级列表请求参数",
       "type": "object",
       "required": [
         "page",
@@ -1848,7 +1848,7 @@
       "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
     },
     "MemberRankListResp": {
-      "description": "The response data of member rank list | MemberRank列表数据",
+      "description": "The response data of member rank list | 会员等级列表数据",
       "type": "object",
       "properties": {
         "code": {

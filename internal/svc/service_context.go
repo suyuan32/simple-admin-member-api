@@ -2,6 +2,7 @@ package svc
 
 import (
 	"github.com/mojocn/base64Captcha"
+	"github.com/redis/go-redis/v9"
 	"github.com/suyuan32/simple-admin-common/utils/captcha"
 	"github.com/suyuan32/simple-admin-core/rpc/coreclient"
 	"github.com/suyuan32/simple-admin-message-center/mcmsclient"
@@ -16,7 +17,6 @@ import (
 	"github.com/suyuan32/simple-admin-common/i18n"
 
 	"github.com/casbin/casbin/v2"
-	"github.com/zeromicro/go-zero/core/stores/redis"
 	"github.com/zeromicro/go-zero/rest"
 )
 
@@ -30,14 +30,14 @@ type ServiceContext struct {
 	McmsRpc   mcmsclient.Mcms
 	Captcha   *base64Captcha.Captcha
 	CoreRpc   coreclient.Core
-	Redis     *redis.Redis
+	Redis     *redis.Client
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
 
-	rds := redis.MustNewRedis(c.RedisConf)
+	rds := c.RedisConf.MustNewRedis()
 
-	cbn := c.CasbinConf.MustNewCasbinWithRedisWatcher(c.DatabaseConf.Type, c.DatabaseConf.GetDSN(), c.RedisConf)
+	cbn := c.CasbinConf.MustNewCasbinWithOriginalRedisWatcher(c.DatabaseConf.Type, c.DatabaseConf.GetDSN(), c.RedisConf)
 
 	trans := i18n.NewTranslator(i18n2.LocaleFS)
 
@@ -49,7 +49,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		Redis:     rds,
 		Casbin:    cbn,
 		MmsRpc:    mmsclient.NewMms(zrpc.NewClientIfEnable(c.MmsRpc)),
-		Captcha:   captcha.MustNewRedisCaptcha(c.Captcha, rds),
+		Captcha:   captcha.MustNewOriginalRedisCaptcha(c.Captcha, rds),
 		CoreRpc:   coreclient.NewCore(zrpc.NewClientIfEnable(c.CoreRpc)),
 		McmsRpc:   mcmsclient.NewMcms(zrpc.NewClientIfEnable(c.McmsRpc)),
 	}

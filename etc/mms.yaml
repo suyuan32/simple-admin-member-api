@@ -19,11 +19,6 @@ Log:
   KeepDays: 7
   StackCoolDownMillis: 100
 
-Prometheus:
-  Host: 0.0.0.0
-  Port: 4004
-  Path: /metrics
-
 DatabaseConf:
   Type: postgres
   Host: postgresql-server
@@ -37,7 +32,7 @@ DatabaseConf:
 
 RedisConf:
   Host: redis-server:6379
-  Type: node
+  Db: 0
 
 CasbinConf:
   ModelText: |

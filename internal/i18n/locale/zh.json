@@ -8,15 +8,15 @@
 		"createFailed": "新建失败",
 		"deleteSuccess": "删除成功",
 		"deleteFailed": "删除失败",
-		"changeStatusSuccess": "状态修改成功",
-		"changeStatusFailed": "状态修改失败",
 		"targetNotExist": "目标不存在",
 		"databaseError": "数据库错误",
 		"redisError": "Redis 错误",
 		"permissionDeny": "用户无权限访问此接口",
 		"constraintError": "操作失败: 数据冲突",
 		"validationError": "操作失败: 校验失败",
-		"notSingularError": "操作失败: 数据不唯一"
+		"notSingularError": "操作失败: 数据不唯一",
+		"serviceUnavailable": "服务不可用，请检查服务是否已启用",
+		"cacheError": "缓存出错"
 	},
 	"init": {
 		"initializeIsRunning": "正在初始化...",

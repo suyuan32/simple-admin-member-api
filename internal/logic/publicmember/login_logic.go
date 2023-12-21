@@ -2,6 +2,7 @@ package publicmember
 
 import (
 	"context"
+	"github.com/suyuan32/simple-admin-common/config"
 	"github.com/suyuan32/simple-admin-common/enum/common"
 	"github.com/suyuan32/simple-admin-common/utils/pointy"
 	"time"
@@ -44,7 +45,7 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err erro
 	if !l.svcCtx.Config.ProjectConf.UseCaptcha {
 		isPass = true
 	} else {
-		isPass = l.svcCtx.Captcha.Verify("CAPTCHA_"+req.CaptchaId, req.Captcha, true)
+		isPass = l.svcCtx.Captcha.Verify(config.RedisCaptchaPrefix+req.CaptchaId, req.Captcha, true)
 	}
 
 	if isPass {

@@ -8,6 +8,7 @@ import (
 
 func (l *InitDatabaseLogic) insertApiData() (err error) {
 	_, err = l.svcCtx.CoreRpc.CreateApi(l.ctx, &core.ApiInfo{
+		ServiceName: pointy.GetPointer("Mms"),
 		Path:        pointy.GetPointer("/member/create"),
 		Description: pointy.GetPointer("apiDesc.createMember"),
 		ApiGroup:    pointy.GetPointer("member"),
@@ -19,6 +20,7 @@ func (l *InitDatabaseLogic) insertApiData() (err error) {
 	}
 
 	_, err = l.svcCtx.CoreRpc.CreateApi(l.ctx, &core.ApiInfo{
+		ServiceName: pointy.GetPointer("Mms"),
 		Path:        pointy.GetPointer("/member/update"),
 		Description: pointy.GetPointer("apiDesc.updateMember"),
 		ApiGroup:    pointy.GetPointer("member"),
@@ -30,6 +32,7 @@ func (l *InitDatabaseLogic) insertApiData() (err error) {
 	}
 
 	_, err = l.svcCtx.CoreRpc.CreateApi(l.ctx, &core.ApiInfo{
+		ServiceName: pointy.GetPointer("Mms"),
 		Path:        pointy.GetPointer("/member/delete"),
 		Description: pointy.GetPointer("apiDesc.deleteMember"),
 		ApiGroup:    pointy.GetPointer("member"),
@@ -41,6 +44,7 @@ func (l *InitDatabaseLogic) insertApiData() (err error) {
 	}
 
 	_, err = l.svcCtx.CoreRpc.CreateApi(l.ctx, &core.ApiInfo{
+		ServiceName: pointy.GetPointer("Mms"),
 		Path:        pointy.GetPointer("/member/list"),
 		Description: pointy.GetPointer("apiDesc.getMemberList"),
 		ApiGroup:    pointy.GetPointer("member"),
@@ -52,6 +56,7 @@ func (l *InitDatabaseLogic) insertApiData() (err error) {
 	}
 
 	_, err = l.svcCtx.CoreRpc.CreateApi(l.ctx, &core.ApiInfo{
+		ServiceName: pointy.GetPointer("Mms"),
 		Path:        pointy.GetPointer("/member"),
 		Description: pointy.GetPointer("apiDesc.getMemberById"),
 		ApiGroup:    pointy.GetPointer("member"),
@@ -65,6 +70,7 @@ func (l *InitDatabaseLogic) insertApiData() (err error) {
 	// MEMBER RANK
 
 	_, err = l.svcCtx.CoreRpc.CreateApi(l.ctx, &core.ApiInfo{
+		ServiceName: pointy.GetPointer("Mms"),
 		Path:        pointy.GetPointer("/member_rank/create"),
 		Description: pointy.GetPointer("apiDesc.createMemberRank"),
 		ApiGroup:    pointy.GetPointer("member_rank"),
@@ -76,6 +82,7 @@ func (l *InitDatabaseLogic) insertApiData() (err error) {
 	}
 
 	_, err = l.svcCtx.CoreRpc.CreateApi(l.ctx, &core.ApiInfo{
+		ServiceName: pointy.GetPointer("Mms"),
 		Path:        pointy.GetPointer("/member_rank/update"),
 		Description: pointy.GetPointer("apiDesc.updateMemberRank"),
 		ApiGroup:    pointy.GetPointer("member_rank"),
@@ -87,6 +94,7 @@ func (l *InitDatabaseLogic) insertApiData() (err error) {
 	}
 
 	_, err = l.svcCtx.CoreRpc.CreateApi(l.ctx, &core.ApiInfo{
+		ServiceName: pointy.GetPointer("Mms"),
 		Path:        pointy.GetPointer("/member_rank/delete"),
 		Description: pointy.GetPointer("apiDesc.deleteMemberRank"),
 		ApiGroup:    pointy.GetPointer("member_rank"),
@@ -98,6 +106,7 @@ func (l *InitDatabaseLogic) insertApiData() (err error) {
 	}
 
 	_, err = l.svcCtx.CoreRpc.CreateApi(l.ctx, &core.ApiInfo{
+		ServiceName: pointy.GetPointer("Mms"),
 		Path:        pointy.GetPointer("/member_rank/list"),
 		Description: pointy.GetPointer("apiDesc.getMemberRankList"),
 		ApiGroup:    pointy.GetPointer("member_rank"),
@@ -109,6 +118,7 @@ func (l *InitDatabaseLogic) insertApiData() (err error) {
 	}
 
 	_, err = l.svcCtx.CoreRpc.CreateApi(l.ctx, &core.ApiInfo{
+		ServiceName: pointy.GetPointer("Mms"),
 		Path:        pointy.GetPointer("/member_rank"),
 		Description: pointy.GetPointer("apiDesc.getMemberRankById"),
 		ApiGroup:    pointy.GetPointer("member_rank"),

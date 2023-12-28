@@ -9,10 +9,10 @@ require (
 	github.com/duke-git/lancet/v2 v2.2.8
 	github.com/mojocn/base64Captcha v1.3.6
 	github.com/redis/go-redis/v9 v9.3.1
-	github.com/suyuan32/simple-admin-common v1.2.8
-	github.com/suyuan32/simple-admin-core v1.2.8
-	github.com/suyuan32/simple-admin-member-rpc v1.2.1-0.20231228014650-22458eaa4ca9
-	github.com/suyuan32/simple-admin-message-center v1.2.8
+	github.com/suyuan32/simple-admin-common v1.3.0
+	github.com/suyuan32/simple-admin-core v1.3.0
+	github.com/suyuan32/simple-admin-member-rpc v1.2.1
+	github.com/suyuan32/simple-admin-message-center v1.3.0
 	github.com/zeromicro/go-zero v1.6.1
 )
 

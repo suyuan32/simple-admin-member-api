@@ -84,6 +84,7 @@ func (l *LoginByEmailLogic) LoginByEmail(req *types.LoginByEmailReq) (resp *type
 			Token:     pointy.GetPointer(token),
 			Source:    pointy.GetPointer("mms_member"),
 			Status:    pointy.GetPointer(uint32(common.StatusNormal)),
+			Username:  memberData.Data[0].Username,
 			ExpiredAt: pointy.GetPointer(expiredAt),
 		})
 

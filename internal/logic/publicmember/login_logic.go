@@ -83,6 +83,7 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err erro
 			Token:     pointy.GetPointer(token),
 			Source:    pointy.GetPointer("mms_member"),
 			Status:    pointy.GetPointer(uint32(common.StatusNormal)),
+			Username:  user.Username,
 			ExpiredAt: pointy.GetPointer(expiredAt),
 		})
 

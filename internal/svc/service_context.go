@@ -30,12 +30,12 @@ type ServiceContext struct {
 	McmsRpc   mcmsclient.Mcms
 	Captcha   *base64Captcha.Captcha
 	CoreRpc   coreclient.Core
-	Redis     *redis.Client
+	Redis     redis.UniversalClient
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
 
-	rds := c.RedisConf.MustNewRedis()
+	rds := c.RedisConf.MustNewUniversalRedis()
 
 	cbn := c.CasbinConf.MustNewCasbinWithOriginalRedisWatcher(c.DatabaseConf.Type, c.DatabaseConf.GetDSN(), c.RedisConf)
 

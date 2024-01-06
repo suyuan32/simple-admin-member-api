@@ -13,7 +13,7 @@
   "info": {
     "description": "MMS: Member Management Service",
     "title": "Simple Admin Member Management Service",
-    "version": "1.2.1"
+    "version": "1.2.2"
   },
   "host": "localhost:9104",
   "basePath": "/",
@@ -1221,7 +1221,7 @@
         "expire": {
           "description": "Expire timestamp | 过期时间戳",
           "type": "integer",
-          "format": "uint64",
+          "format": "int64",
           "x-go-name": "Expire"
         },
         "nickname": {

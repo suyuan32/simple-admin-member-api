@@ -78,7 +78,7 @@ func (l *LoginByEmailLogic) LoginByEmail(req *types.LoginByEmailReq) (resp *type
 		}
 
 		// add token into database
-		expiredAt := time.Now().Add(time.Second * time.Duration(l.svcCtx.Config.Auth.AccessExpire)).Unix()
+		expiredAt := time.Now().Add(time.Second * time.Duration(l.svcCtx.Config.Auth.AccessExpire)).UnixMilli()
 		_, err = l.svcCtx.MmsRpc.CreateToken(l.ctx, &mms.TokenInfo{
 			Uuid:      memberData.Data[0].Id,
 			Token:     pointy.GetPointer(token),

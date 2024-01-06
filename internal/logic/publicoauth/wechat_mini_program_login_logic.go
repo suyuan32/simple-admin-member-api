@@ -51,7 +51,7 @@ func (l *WechatMiniProgramLoginLogic) WechatMiniProgramLogin(req *types.WechatMi
 			data.Data[0].RankCode), jwt.WithOption("roleId", "invalid"))
 
 	// add token into database
-	expiredAt := time.Now().Add(time.Second * 259200).Unix()
+	expiredAt := time.Now().Add(time.Second * time.Duration(l.svcCtx.Config.Auth.AccessExpire)).UnixMilli()
 	_, err = l.svcCtx.MmsRpc.CreateToken(l.ctx, &mms.TokenInfo{
 		Uuid:      data.Data[0].Id,
 		Token:     pointy.GetPointer(token),
@@ -69,7 +69,7 @@ func (l *WechatMiniProgramLoginLogic) WechatMiniProgramLogin(req *types.WechatMi
 		Data: types.CallbackInfo{
 			UserId:   *data.Data[0].Id,
 			Token:    token,
-			Expire:   uint64(time.Now().Add(time.Second * 259200).Unix()),
+			Expire:   expiredAt,
 			Avatar:   *data.Data[0].Avatar,
 			RankId:   *data.Data[0].RankCode,
 			RankName: publicmember.MemberRankData[*data.Data[0].RankId],

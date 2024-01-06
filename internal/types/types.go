@@ -580,7 +580,7 @@ type CallbackInfo struct {
 	// Token for authorization | 验证身份的token
 	Token string `json:"token"`
 	// Expire timestamp | 过期时间戳
-	Expire uint64 `json:"expire"`
+	Expire int64 `json:"expire"`
 	// Avatar | 用户头像
 	Avatar string `json:"avatar"`
 	// Nickname | 用户昵称

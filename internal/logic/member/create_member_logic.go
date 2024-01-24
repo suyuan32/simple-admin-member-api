@@ -28,15 +28,16 @@ func NewCreateMemberLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Crea
 func (l *CreateMemberLogic) CreateMember(req *types.MemberInfo) (resp *types.BaseMsgResp, err error) {
 	data, err := l.svcCtx.MmsRpc.CreateMember(l.ctx,
 		&mms.MemberInfo{
-			Id:       req.Id,
-			Status:   req.Status,
-			Username: req.Username,
-			Password: req.Password,
-			Nickname: req.Nickname,
-			RankId:   req.RankId,
-			Mobile:   req.Mobile,
-			Email:    req.Email,
-			Avatar:   req.Avatar,
+			Id:        req.Id,
+			Status:    req.Status,
+			Username:  req.Username,
+			Password:  req.Password,
+			Nickname:  req.Nickname,
+			RankId:    req.RankId,
+			Mobile:    req.Mobile,
+			Email:     req.Email,
+			Avatar:    req.Avatar,
+			ExpiredAt: req.ExpiredAt,
 		})
 	if err != nil {
 		return nil, err

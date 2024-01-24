@@ -62,6 +62,11 @@ func (l *LoginBySmsLogic) LoginBySms(req *types.LoginBySmsReq) (resp *types.Logi
 			logx.Errorw("failed to delete captcha in redis", logx.Field("detail", err))
 		}
 
+		// check whether is expired
+		if (time.Now().UnixMilli() - *memberData.Data[0].ExpiredAt) >= 0 {
+			return nil, errorx.NewCodeAbortedError("login.expiredAccount")
+		}
+
 		token, err := jwt.NewJwtToken(l.svcCtx.Config.Auth.AccessSecret, time.Now().Unix(),
 			l.svcCtx.Config.Auth.AccessExpire, jwt.WithOption("userId", memberData.Data[0].Id), jwt.WithOption("rankId",
 				memberData.Data[0].RankCode), jwt.WithOption("roleId", "invalid"))

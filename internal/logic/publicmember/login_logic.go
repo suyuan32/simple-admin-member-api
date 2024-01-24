@@ -61,6 +61,11 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err erro
 			return nil, errorx.NewCodeInvalidArgumentError("login.wrongUsernameOrPassword")
 		}
 
+		// check whether is expired
+		if (time.Now().UnixMilli() - *user.ExpiredAt) >= 0 {
+			return nil, errorx.NewCodeAbortedError("login.expiredAccount")
+		}
+
 		token, err := jwt.NewJwtToken(l.svcCtx.Config.Auth.AccessSecret, time.Now().Unix(),
 			l.svcCtx.Config.Auth.AccessExpire, jwt.WithOption("userId", user.Id), jwt.WithOption("rankId",
 				user.RankCode), jwt.WithOption("roleId", "invalid"))

@@ -19,13 +19,13 @@
 		"cacheError": "Cache error"
 	},
 	"init": {
-		"alreadyInit": "The database had been initialized.",
+		"alreadyInit": "The database had been initialized",
 		"initializeIsRunning": "The initialization is running..."
 	},
 	"memberRank": {
 		"normal": "Normal Member",
 		"vip": "VIP",
-		"memberExistError": "There are members under this rank, it is forbidden to delete."
+		"memberExistError": "There are members under this rank, it is forbidden to delete"
 	},
 	"login": {
 		"loginSuccessTitle": "Login successful",
@@ -36,11 +36,12 @@
 		"wrongPassword": "Wrong Password",
 		"wrongUsernameOrPassword": "Wrong username or password",
 		"requireLogin": "Please log in again",
-		"loginTypeForbidden": "This login method has been disabled by the administrator. Please try another login method.",
-		"registerTypeForbidden": "This registration method has been disabled by the administrator. Please try another registration method.",
-		"resetTypeForbidden": "This password reset method has been disabled by the administrator. Please try another password reset method.",
+		"loginTypeForbidden": "This login method has been disabled by the administrator. Please try another login method",
+		"registerTypeForbidden": "This registration method has been disabled by the administrator. Please try another registration method",
+		"resetTypeForbidden": "This password reset method has been disabled by the administrator. Please try another password reset method",
 		"bindWechatToAccount": "Please log in and bind the wechat account firstly",
-		"alreadyBindWechatToAccount": "This WeChat account had been bound to another account"
+		"alreadyBindWechatToAccount": "This WeChat account had been bound to another account",
+		"expiredAccount": "The account has expired, please contact the administrator"
 	},
 	"mcms": {
 		"email": {

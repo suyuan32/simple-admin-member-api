@@ -52,13 +52,14 @@ func (l *GetMemberListLogic) GetMemberList(req *types.MemberListReq) (resp *type
 					CreatedAt: v.CreatedAt,
 					UpdatedAt: v.UpdatedAt,
 				},
-				Status:   v.Status,
-				Username: v.Username,
-				Nickname: v.Nickname,
-				RankId:   v.RankId,
-				Mobile:   v.Mobile,
-				Email:    v.Email,
-				Avatar:   v.Avatar,
+				Status:    v.Status,
+				Username:  v.Username,
+				Nickname:  v.Nickname,
+				RankId:    v.RankId,
+				Mobile:    v.Mobile,
+				Email:     v.Email,
+				Avatar:    v.Avatar,
+				ExpiredAt: v.ExpiredAt,
 			})
 	}
 	return resp, nil

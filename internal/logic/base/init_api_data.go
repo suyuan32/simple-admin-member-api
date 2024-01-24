@@ -134,13 +134,14 @@ func (l *InitDatabaseLogic) insertApiData() (err error) {
 
 func (l *InitDatabaseLogic) insertMenuData() error {
 	menuData, err := l.svcCtx.CoreRpc.CreateMenu(l.ctx, &core.MenuInfo{
-		Level:     pointy.GetPointer(uint32(2)),
-		ParentId:  pointy.GetPointer(common.DefaultParentId),
-		Name:      pointy.GetPointer("MemberManagementDirectory"),
-		Component: pointy.GetPointer("LAYOUT"),
-		Path:      pointy.GetPointer("/member_dir"),
-		Sort:      pointy.GetPointer(uint32(1)),
-		Disabled:  pointy.GetPointer(false),
+		Level:       pointy.GetPointer(uint32(2)),
+		ParentId:    pointy.GetPointer(common.DefaultParentId),
+		Name:        pointy.GetPointer("MemberManagementDirectory"),
+		Component:   pointy.GetPointer("LAYOUT"),
+		Path:        pointy.GetPointer("/member_dir"),
+		Sort:        pointy.GetPointer(uint32(1)),
+		Disabled:    pointy.GetPointer(false),
+		ServiceName: pointy.GetPointer("Mms"),
 		Meta: &core.Meta{
 			Title:              pointy.GetPointer("route.memberManagement"),
 			Icon:               pointy.GetPointer("ic:round-person-outline"),
@@ -160,13 +161,14 @@ func (l *InitDatabaseLogic) insertMenuData() error {
 	}
 
 	_, err = l.svcCtx.CoreRpc.CreateMenu(l.ctx, &core.MenuInfo{
-		Level:     pointy.GetPointer(uint32(2)),
-		ParentId:  pointy.GetPointer(menuData.Id),
-		Path:      pointy.GetPointer("/member"),
-		Name:      pointy.GetPointer("MemberManagement"),
-		Component: pointy.GetPointer("/mms/member/index"),
-		Sort:      pointy.GetPointer(uint32(1)),
-		Disabled:  pointy.GetPointer(false),
+		Level:       pointy.GetPointer(uint32(2)),
+		ParentId:    pointy.GetPointer(menuData.Id),
+		Path:        pointy.GetPointer("/member"),
+		Name:        pointy.GetPointer("MemberManagement"),
+		Component:   pointy.GetPointer("/mms/member/index"),
+		Sort:        pointy.GetPointer(uint32(1)),
+		Disabled:    pointy.GetPointer(false),
+		ServiceName: pointy.GetPointer("Mms"),
 		Meta: &core.Meta{
 			Title:              pointy.GetPointer("route.memberManagement"),
 			Icon:               pointy.GetPointer("ic:round-person-outline"),
@@ -186,13 +188,14 @@ func (l *InitDatabaseLogic) insertMenuData() error {
 	}
 
 	_, err = l.svcCtx.CoreRpc.CreateMenu(l.ctx, &core.MenuInfo{
-		Level:     pointy.GetPointer(uint32(2)),
-		ParentId:  pointy.GetPointer(menuData.Id),
-		Path:      pointy.GetPointer("/member_rank"),
-		Name:      pointy.GetPointer("MemberRankManagement"),
-		Component: pointy.GetPointer("/mms/memberRank/index"),
-		Sort:      pointy.GetPointer(uint32(2)),
-		Disabled:  pointy.GetPointer(false),
+		Level:       pointy.GetPointer(uint32(2)),
+		ParentId:    pointy.GetPointer(menuData.Id),
+		Path:        pointy.GetPointer("/member_rank"),
+		Name:        pointy.GetPointer("MemberRankManagement"),
+		Component:   pointy.GetPointer("/mms/memberRank/index"),
+		Sort:        pointy.GetPointer(uint32(2)),
+		Disabled:    pointy.GetPointer(false),
+		ServiceName: pointy.GetPointer("Mms"),
 		Meta: &core.Meta{
 			Title:              pointy.GetPointer("route.memberRankManagement"),
 			Icon:               pointy.GetPointer("ant-design:crown-outlined"),
@@ -212,13 +215,14 @@ func (l *InitDatabaseLogic) insertMenuData() error {
 	}
 
 	_, err = l.svcCtx.CoreRpc.CreateMenu(l.ctx, &core.MenuInfo{
-		Level:     pointy.GetPointer(uint32(2)),
-		ParentId:  pointy.GetPointer(menuData.Id),
-		Path:      pointy.GetPointer("/member_token"),
-		Name:      pointy.GetPointer("MemberTokenManagement"),
-		Component: pointy.GetPointer("/mms/token/index"),
-		Sort:      pointy.GetPointer(uint32(3)),
-		Disabled:  pointy.GetPointer(false),
+		Level:       pointy.GetPointer(uint32(2)),
+		ParentId:    pointy.GetPointer(menuData.Id),
+		Path:        pointy.GetPointer("/member_token"),
+		Name:        pointy.GetPointer("MemberTokenManagement"),
+		Component:   pointy.GetPointer("/mms/token/index"),
+		Sort:        pointy.GetPointer(uint32(3)),
+		Disabled:    pointy.GetPointer(false),
+		ServiceName: pointy.GetPointer("Mms"),
 		Meta: &core.Meta{
 			Title:              pointy.GetPointer("route.tokenManagement"),
 			Icon:               pointy.GetPointer("ant-design:lock-outlined"),
@@ -238,13 +242,14 @@ func (l *InitDatabaseLogic) insertMenuData() error {
 	}
 
 	_, err = l.svcCtx.CoreRpc.CreateMenu(l.ctx, &core.MenuInfo{
-		Level:     pointy.GetPointer(uint32(2)),
-		ParentId:  pointy.GetPointer(menuData.Id),
-		Path:      pointy.GetPointer("/member_oauth"),
-		Name:      pointy.GetPointer("MemberOauthManagement"),
-		Component: pointy.GetPointer("/mms/oauth/index"),
-		Sort:      pointy.GetPointer(uint32(3)),
-		Disabled:  pointy.GetPointer(false),
+		Level:       pointy.GetPointer(uint32(2)),
+		ParentId:    pointy.GetPointer(menuData.Id),
+		Path:        pointy.GetPointer("/member_oauth"),
+		Name:        pointy.GetPointer("MemberOauthManagement"),
+		Component:   pointy.GetPointer("/mms/oauth/index"),
+		Sort:        pointy.GetPointer(uint32(3)),
+		Disabled:    pointy.GetPointer(false),
+		ServiceName: pointy.GetPointer("Mms"),
 		Meta: &core.Meta{
 			Title:              pointy.GetPointer("route.oauthManagement"),
 			Icon:               pointy.GetPointer("ant-design:unlock-filled"),

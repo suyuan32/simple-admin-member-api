@@ -132,6 +132,8 @@ type MemberInfo struct {
 	Email *string `json:"email,optional"`
 	// Avatar | 头像地址
 	Avatar *string `json:"avatar,optional"`
+	// Expired At | 到期时间
+	ExpiredAt *int64 `json:"expiredAt,optional"`
 }
 
 // The response data of member list | 会员列表数据

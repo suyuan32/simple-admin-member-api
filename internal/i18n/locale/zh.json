@@ -40,7 +40,8 @@
 		"registerTypeForbidden": "此注册方式被管理员关闭，请尝试其他注册方式",
 		"resetTypeForbidden": "此重置密码方式被管理员关闭，请尝试其他重置密码方式",
 		"bindWechatToAccount": "请先登录并绑定微信号",
-		"alreadyBindWechatToAccount": "微信号已被其他账号绑定"
+		"alreadyBindWechatToAccount": "微信号已被其他账号绑定",
+		"expiredAccount": "账号已过期，请联系管理员"
 	},
 	"mcms": {
 		"email": {

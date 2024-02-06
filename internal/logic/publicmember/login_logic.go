@@ -66,9 +66,21 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err erro
 			return nil, errorx.NewCodeAbortedError("login.expiredAccount")
 		}
 
+		// check whether is disabled
+		if *user.Status == uint32(2) {
+			return nil, errorx.NewCodeAbortedError("login.disabledAccount")
+		}
+
+		// Check the remaining available time
+		expire := l.svcCtx.Config.Auth.AccessExpire
+		if (*user.ExpiredAt - time.Now().UnixMilli()) < expire*1000 {
+			expire = (*user.ExpiredAt - time.Now().UnixMilli()) / 1000
+		}
+
 		token, err := jwt.NewJwtToken(l.svcCtx.Config.Auth.AccessSecret, time.Now().Unix(),
-			l.svcCtx.Config.Auth.AccessExpire, jwt.WithOption("userId", user.Id), jwt.WithOption("rankId",
+			expire, jwt.WithOption("userId", user.Id), jwt.WithOption("rankId",
 				user.RankCode), jwt.WithOption("roleId", "invalid"))
+
 		if err != nil {
 			return nil, err
 		}

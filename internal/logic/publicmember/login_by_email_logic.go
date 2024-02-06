@@ -67,8 +67,19 @@ func (l *LoginByEmailLogic) LoginByEmail(req *types.LoginByEmailReq) (resp *type
 			return nil, errorx.NewCodeAbortedError("login.expiredAccount")
 		}
 
+		// check whether is disabled
+		if *memberData.Data[0].Status == uint32(2) {
+			return nil, errorx.NewCodeAbortedError("login.disabledAccount")
+		}
+
+		// Check the remaining available time
+		expire := l.svcCtx.Config.Auth.AccessExpire
+		if (*memberData.Data[0].ExpiredAt - time.Now().UnixMilli()) < expire*1000 {
+			expire = (*memberData.Data[0].ExpiredAt - time.Now().UnixMilli()) / 1000
+		}
+
 		token, err := jwt.NewJwtToken(l.svcCtx.Config.Auth.AccessSecret, time.Now().Unix(),
-			l.svcCtx.Config.Auth.AccessExpire, jwt.WithOption("userId", memberData.Data[0].Id), jwt.WithOption("rankId",
+			expire, jwt.WithOption("userId", memberData.Data[0].Id), jwt.WithOption("rankId",
 				memberData.Data[0].RankCode), jwt.WithOption("roleId", "invalid"))
 		if err != nil {
 			return nil, err

@@ -6,6 +6,8 @@ toolchain go1.22.0
 
 replace github.com/zeromicro/go-zero v1.6.3 => github.com/suyuan32/simple-admin-tools v1.6.8
 
+replace github.com/mojocn/base64Captcha v1.3.6 => github.com/suyuan32/base64Captcha v1.3.7
+
 require (
 	github.com/casbin/casbin/v2 v2.82.0
 	github.com/duke-git/lancet/v2 v2.3.0

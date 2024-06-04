@@ -42,7 +42,8 @@
 		"bindWechatToAccount": "Please log in and bind the wechat account firstly",
 		"alreadyBindWechatToAccount": "This WeChat account had been bound to another account",
 		"expiredAccount": "The account has expired, please contact the administrator",
-		"disabledAccount": "This account has been disabled, please contact the administrator"
+		"disabledAccount": "This account has been disabled, please contact the administrator",
+		"userBanned": "Your account has been deactivated or is under review, please contact the administrator."
 	},
 	"mcms": {
 		"email": {

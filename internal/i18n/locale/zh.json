@@ -42,7 +42,8 @@
 		"bindWechatToAccount": "请先登录并绑定微信号",
 		"alreadyBindWechatToAccount": "微信号已被其他账号绑定",
 		"expiredAccount": "账号已过期，请联系管理员",
-		"disabledAccount": "账号已被停用，请联系管理员"
+		"disabledAccount": "账号已被停用，请联系管理员",
+		"userBanned": "您的账户已停用或在审核中，请联系管理员"
 	},
 	"mcms": {
 		"email": {

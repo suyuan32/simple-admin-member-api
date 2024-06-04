@@ -68,8 +68,8 @@ func (l *LoginByEmailLogic) LoginByEmail(req *types.LoginByEmailReq) (resp *type
 		}
 
 		// check whether is disabled
-		if *memberData.Data[0].Status == uint32(2) {
-			return nil, errorx.NewCodeAbortedError("login.disabledAccount")
+		if *memberData.Data[0].Status != uint32(common.StatusNormal) {
+			return nil, errorx.NewCodeInvalidArgumentError("login.userBanned")
 		}
 
 		// Check the remaining available time

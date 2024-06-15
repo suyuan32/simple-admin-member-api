@@ -30,6 +30,9 @@ DatabaseConf:
   SSLMode: disable
   CacheTime: 5
 
+I18nConf:
+  Dir:
+
 RedisConf:
   Host: redis-server:6379
   Db: 0

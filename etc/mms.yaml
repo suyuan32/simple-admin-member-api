@@ -36,6 +36,9 @@ DatabaseConf:
   SSLMode: disable
   CacheTime: 5
 
+I18nConf:
+  Dir:
+
 CasbinConf:
   ModelText: |
     [request_definition]

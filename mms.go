@@ -5,7 +5,7 @@
 //	Schemes: http, https
 //	Host: localhost:9104
 //	BasePath: /
-//	Version: 1.2.6
+//	Version: 1.2.7
 //	SecurityDefinitions:
 //	  Token:
 //	    type: apiKey

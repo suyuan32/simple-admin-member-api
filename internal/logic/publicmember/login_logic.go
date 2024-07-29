@@ -66,9 +66,8 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err erro
 			return nil, errorx.NewCodeAbortedError("login.expiredAccount")
 		}
 
-		// check whether is disabled
-		if *user.Status == uint32(2) {
-			return nil, errorx.NewCodeAbortedError("login.disabledAccount")
+		if user.Status != nil && *user.Status != uint32(common.StatusNormal) {
+			return nil, errorx.NewCodeInvalidArgumentError("login.userBanned")
 		}
 
 		// Check the remaining available time

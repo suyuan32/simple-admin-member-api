@@ -6,13 +6,13 @@
 //	Host: localhost:9104
 //	BasePath: /
 //	Version: 1.3.1
-//	SecurityDefinitions:
-//	  Token:
-//	    type: apiKey
-//	    name: Authorization
-//	    in: header
-//	Security:
-//	    - Token: []
+//		SecurityDefinitions:
+//		  Token:
+//		    type: apiKey
+//		    name: Authorization
+//		    in: header
+//		Security:
+//	  	  Token:
 //	Consumes:
 //	  - application/json
 //

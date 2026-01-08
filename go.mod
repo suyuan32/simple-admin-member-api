@@ -13,7 +13,7 @@ require (
 	github.com/redis/go-redis/v9 v9.17.2
 	github.com/suyuan32/simple-admin-common v1.7.9
 	github.com/suyuan32/simple-admin-core v1.7.9
-	github.com/suyuan32/simple-admin-member-rpc v1.3.2
+	github.com/suyuan32/simple-admin-member-rpc v1.3.3
 	github.com/suyuan32/simple-admin-message-center v1.7.5
 	github.com/zeromicro/go-zero v1.9.4
 )

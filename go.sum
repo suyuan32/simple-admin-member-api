@@ -228,8 +228,8 @@ github.com/suyuan32/simple-admin-common v1.7.9 h1:R0yMU6Dd7aFUx0LhlO9/3TDWL8Ck2t
 github.com/suyuan32/simple-admin-common v1.7.9/go.mod h1:AitgGNZTO2bQyjm04I0RSUyoPwD0//FjJQKhZHenXe8=
 github.com/suyuan32/simple-admin-core v1.7.9 h1:8Ml3Jet2bbhE9qmjq70k1DmrXFZ6zoVXPzRiZFCPI84=
 github.com/suyuan32/simple-admin-core v1.7.9/go.mod h1:0M1zyDfQlVgQFABIvVwLZZo7WQx8tH3Fwj4HeZVHARk=
-github.com/suyuan32/simple-admin-member-rpc v1.3.2 h1:sRzF0izgBpN9A05Msa3vdH1w4u66LdYpT7OdaWahIZ0=
-github.com/suyuan32/simple-admin-member-rpc v1.3.2/go.mod h1:l5IXmGHNqS4o45GzP6weuBDabMiVovQKV82rDlzBGbA=
+github.com/suyuan32/simple-admin-member-rpc v1.3.3 h1:T92BT21adzzbWsl0F+ouuXBNcUrJGChz+bmgffDSjss=
+github.com/suyuan32/simple-admin-member-rpc v1.3.3/go.mod h1:cUeO4v2R8oaS8lOwtxVJ8b8P9AxPaKtO9YkWp7HhkG0=
 github.com/suyuan32/simple-admin-message-center v1.7.5 h1:g/QT/Ze0/ujt4zMi56P4MPhLKwVPmqZgC+1pOtuerOk=
 github.com/suyuan32/simple-admin-message-center v1.7.5/go.mod h1:FiUOzciu54bCR700iZrs1Z1ndDcx/BLt77ynsgixW4M=
 github.com/suyuan32/simple-admin-tools v1.9.5 h1:66ilHvG91O+sBqkqtPad8gfnLiTujwOldm95hWTxKqA=

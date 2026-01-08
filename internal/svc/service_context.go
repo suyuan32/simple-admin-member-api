@@ -16,7 +16,7 @@ import (
 
 	"github.com/suyuan32/simple-admin-common/i18n"
 
-	"github.com/casbin/casbin/v2"
+	"github.com/casbin/casbin/v3"
 	"github.com/zeromicro/go-zero/rest"
 )
 

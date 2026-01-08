@@ -13,7 +13,7 @@
   "info": {
     "description": "MMS: Member Management Service",
     "title": "Simple Admin Member Management Service",
-    "version": "1.3.2"
+    "version": "1.3.3"
   },
   "host": "localhost:9104",
   "basePath": "/",

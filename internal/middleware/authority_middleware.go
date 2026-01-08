@@ -9,7 +9,7 @@ import (
 	"github.com/suyuan32/simple-admin-common/config"
 	"github.com/suyuan32/simple-admin-common/utils/jwt"
 
-	"github.com/casbin/casbin/v2"
+	"github.com/casbin/casbin/v3"
 	"github.com/suyuan32/simple-admin-common/enum/errorcode"
 	"github.com/suyuan32/simple-admin-common/orm/ent/entctx/rolectx"
 	"github.com/zeromicro/go-zero/core/errorx"

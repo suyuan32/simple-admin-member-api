@@ -10,21 +10,6 @@ import (
 	"github.com/suyuan32/simple-admin-member-api/internal/types"
 )
 
-// swagger:route post /member/profile member ModifyProfile
-//
-// Modify users' own profile | 用户修改信息接口
-//
-// Modify users' own profile | 用户修改信息接口
-//
-// Parameters:
-//  + name: body
-//    require: true
-//    in: body
-//    type: ModifyProfileReq
-//
-// Responses:
-//  200: BaseMsgResp
-
 func ModifyProfileHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.ModifyProfileReq

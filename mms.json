@@ -11,9 +11,8 @@
   ],
   "swagger": "2.0",
   "info": {
-    "description": "MMS: Member Management Service",
-    "title": "Simple Admin Member Management Service",
-    "version": "1.3.4"
+    "title": "mms",
+    "version": "1.0"
   },
   "host": "localhost:9104",
   "basePath": "/",
@@ -21,16 +20,45 @@
     "/captcha": {
       "get": {
         "description": "Get captcha | 获取验证码",
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "captcha"
         ],
         "summary": "Get captcha | 获取验证码",
-        "operationId": "GetCaptcha",
+        "operationId": "captchaGetCaptcha",
         "responses": {
           "200": {
-            "description": "CaptchaResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/CaptchaResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "data": {
+                  "description": "The menu authorization data | 菜单授权信息数据",
+                  "type": "object",
+                  "required": [
+                    "captchaId",
+                    "imgPath"
+                  ],
+                  "properties": {
+                    "captchaId": {
+                      "type": "string"
+                    },
+                    "imgPath": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -39,26 +67,51 @@
     "/captcha/email": {
       "post": {
         "description": "Get Email Captcha | 获取邮箱验证码",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "captcha"
         ],
         "summary": "Get Email Captcha | 获取邮箱验证码",
-        "operationId": "GetEmailCaptcha",
+        "operationId": "captchaGetEmailCaptcha",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/EmailCaptchaReq"
+              "required": [
+                "email"
+              ],
+              "properties": {
+                "email": {
+                  "description": "The email address | 邮箱地址",
+                  "type": "string"
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -67,26 +120,51 @@
     "/captcha/sms": {
       "post": {
         "description": "Get SMS Captcha | 获取短信验证码",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "captcha"
         ],
         "summary": "Get SMS Captcha | 获取短信验证码",
-        "operationId": "GetSmsCaptcha",
+        "operationId": "captchaGetSmsCaptcha",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/SmsCaptchaReq"
+              "required": [
+                "phoneNumber"
+              ],
+              "properties": {
+                "phoneNumber": {
+                  "description": "The phone number | 电话号码",
+                  "type": "string"
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -95,16 +173,29 @@
     "/init/database": {
       "get": {
         "description": "Initialize database | 初始化数据库",
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "base"
         ],
         "summary": "Initialize database | 初始化数据库",
-        "operationId": "InitDatabase",
+        "operationId": "baseInitDatabase",
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -113,26 +204,107 @@
     "/member": {
       "post": {
         "description": "Get member by ID | 通过ID获取会员",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "member"
         ],
         "summary": "Get member by ID | 通过ID获取会员",
-        "operationId": "GetMemberById",
+        "operationId": "memberGetMemberById",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/UUIDReq"
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "description": "ID Required: true Max length: 36",
+                  "type": "string",
+                  "maxLength": 36,
+                  "minLength": 36
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "MemberInfoResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/MemberInfoResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "data": {
+                  "description": "Member information | 会员数据",
+                  "type": "object",
+                  "properties": {
+                    "avatar": {
+                      "description": "Avatar | 头像地址",
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "description": "Create date | 创建日期",
+                      "type": "integer"
+                    },
+                    "email": {
+                      "description": "Email | 邮箱",
+                      "type": "string"
+                    },
+                    "expiredAt": {
+                      "description": "Expired At | 到期时间",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "description": "ID",
+                      "type": "string"
+                    },
+                    "mobile": {
+                      "description": "Mobile | 手机",
+                      "type": "string"
+                    },
+                    "nickname": {
+                      "description": "Nickname | 昵称",
+                      "type": "string"
+                    },
+                    "password": {
+                      "description": "Password | 密码",
+                      "type": "string"
+                    },
+                    "rankId": {
+                      "description": "RankId | 等级ID",
+                      "type": "integer"
+                    },
+                    "status": {
+                      "description": "Status | 状态",
+                      "type": "integer"
+                    },
+                    "updatedAt": {
+                      "description": "Update date | 更新日期",
+                      "type": "integer"
+                    },
+                    "username": {
+                      "description": "Username | 用户名",
+                      "type": "string"
+                    }
+                  }
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -141,26 +313,50 @@
     "/member/bind/wechat": {
       "post": {
         "description": "Bind WeChat account | 绑定微信号",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "member"
         ],
         "summary": "Bind WeChat account | 绑定微信号",
-        "operationId": "BindWechat",
+        "operationId": "memberBindWechat",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/BindWechatReq"
+              "required": [
+                "code"
+              ],
+              "properties": {
+                "code": {
+                  "type": "string"
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -169,26 +365,92 @@
     "/member/create": {
       "post": {
         "description": "Create member information | 创建会员",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "member"
         ],
         "summary": "Create member information | 创建会员",
-        "operationId": "CreateMember",
+        "operationId": "memberCreateMember",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/MemberInfo"
+              "properties": {
+                "avatar": {
+                  "description": "Avatar | 头像地址",
+                  "type": "string"
+                },
+                "createdAt": {
+                  "description": "Create date | 创建日期",
+                  "type": "integer"
+                },
+                "email": {
+                  "description": "Email | 邮箱",
+                  "type": "string"
+                },
+                "expiredAt": {
+                  "description": "Expired At | 到期时间",
+                  "type": "integer"
+                },
+                "id": {
+                  "description": "ID",
+                  "type": "string"
+                },
+                "mobile": {
+                  "description": "Mobile | 手机",
+                  "type": "string"
+                },
+                "nickname": {
+                  "description": "Nickname | 昵称",
+                  "type": "string"
+                },
+                "password": {
+                  "description": "Password | 密码",
+                  "type": "string"
+                },
+                "rankId": {
+                  "description": "RankId | 等级ID",
+                  "type": "integer"
+                },
+                "status": {
+                  "description": "Status | 状态",
+                  "type": "integer"
+                },
+                "updatedAt": {
+                  "description": "Update date | 更新日期",
+                  "type": "integer"
+                },
+                "username": {
+                  "description": "Username | 用户名",
+                  "type": "string"
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -197,26 +459,54 @@
     "/member/delete": {
       "post": {
         "description": "Delete member information | 删除会员信息",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "member"
         ],
         "summary": "Delete member information | 删除会员信息",
-        "operationId": "DeleteMember",
+        "operationId": "memberDeleteMember",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/UUIDsReq"
+              "required": [
+                "ids"
+              ],
+              "properties": {
+                "ids": {
+                  "description": "Ids Required: true",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -225,26 +515,149 @@
     "/member/list": {
       "post": {
         "description": "Get member list | 获取会员列表",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "member"
         ],
         "summary": "Get member list | 获取会员列表",
-        "operationId": "GetMemberList",
+        "operationId": "memberGetMemberList",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/MemberListReq"
+              "required": [
+                "page",
+                "pageSize"
+              ],
+              "properties": {
+                "email": {
+                  "description": "Email | 邮箱",
+                  "type": "string"
+                },
+                "mobile": {
+                  "description": "Mobile | 手机",
+                  "type": "string"
+                },
+                "nickname": {
+                  "description": "Nickname | 昵称",
+                  "type": "string"
+                },
+                "page": {
+                  "description": "Page number | 第几页 Required: true",
+                  "type": "integer"
+                },
+                "pageSize": {
+                  "description": "Page size | 单页数据行数 Required: true Maximum: 100000",
+                  "type": "integer",
+                  "maximum": 100000
+                },
+                "rankId": {
+                  "description": "Rank ID | 等级ID",
+                  "type": "integer"
+                },
+                "username": {
+                  "description": "Username | 用户名",
+                  "type": "string"
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "MemberListResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/MemberListResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "data": {
+                  "description": "Member list data | 会员列表数据",
+                  "type": "object",
+                  "required": [
+                    "total",
+                    "data",
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "description": "The API list data | 会员列表数据",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "avatar": {
+                            "description": "Avatar | 头像地址",
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "description": "Create date | 创建日期",
+                            "type": "integer"
+                          },
+                          "email": {
+                            "description": "Email | 邮箱",
+                            "type": "string"
+                          },
+                          "expiredAt": {
+                            "description": "Expired At | 到期时间",
+                            "type": "integer"
+                          },
+                          "id": {
+                            "description": "ID",
+                            "type": "string"
+                          },
+                          "mobile": {
+                            "description": "Mobile | 手机",
+                            "type": "string"
+                          },
+                          "nickname": {
+                            "description": "Nickname | 昵称",
+                            "type": "string"
+                          },
+                          "password": {
+                            "description": "Password | 密码",
+                            "type": "string"
+                          },
+                          "rankId": {
+                            "description": "RankId | 等级ID",
+                            "type": "integer"
+                          },
+                          "status": {
+                            "description": "Status | 状态",
+                            "type": "integer"
+                          },
+                          "updatedAt": {
+                            "description": "Update date | 更新日期",
+                            "type": "integer"
+                          },
+                          "username": {
+                            "description": "Username | 用户名",
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "total": {
+                      "description": "The total number of data | 数据总数",
+                      "type": "integer"
+                    }
+                  }
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -253,26 +666,114 @@
     "/member/login": {
       "post": {
         "description": "Log in | 登录",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "publicmember"
         ],
         "summary": "Log in | 登录",
-        "operationId": "Login",
+        "operationId": "publicmemberLogin",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/LoginReq"
+              "required": [
+                "username",
+                "password"
+              ],
+              "properties": {
+                "captcha": {
+                  "description": "The Captcha which users input | 用户输入的验证码",
+                  "type": "string",
+                  "maxLength": 5,
+                  "minLength": 5
+                },
+                "captchaId": {
+                  "description": "Captcha ID which store in redis | 验证码编号, 存在redis中",
+                  "type": "string",
+                  "maxLength": 20,
+                  "minLength": 20
+                },
+                "password": {
+                  "description": "Password | 密码",
+                  "type": "string",
+                  "maxLength": 30,
+                  "minLength": 6
+                },
+                "username": {
+                  "description": "User Name | 用户名",
+                  "type": "string",
+                  "maxLength": 20
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "LoginResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/LoginResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "data": {
+                  "description": "The log in information | 登陆返回的数据信息",
+                  "type": "object",
+                  "required": [
+                    "userId",
+                    "rankId",
+                    "token",
+                    "expire",
+                    "avatar",
+                    "nickname",
+                    "rankName"
+                  ],
+                  "properties": {
+                    "avatar": {
+                      "description": "Avatar | 用户头像",
+                      "type": "string"
+                    },
+                    "expire": {
+                      "description": "Expire timestamp | 过期时间戳",
+                      "type": "integer"
+                    },
+                    "nickname": {
+                      "description": "Nickname | 用户昵称",
+                      "type": "string"
+                    },
+                    "rankId": {
+                      "description": "Rank Code | 等级码",
+                      "type": "string"
+                    },
+                    "rankName": {
+                      "description": "RankName | 等级名称",
+                      "type": "string"
+                    },
+                    "token": {
+                      "description": "Token for authorization | 验证身份的token",
+                      "type": "string"
+                    },
+                    "userId": {
+                      "description": "User's UUID | 用户的UUID",
+                      "type": "string"
+                    }
+                  }
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -281,26 +782,101 @@
     "/member/login_by_email": {
       "post": {
         "description": "Log in by email | 邮箱登录",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "publicmember"
         ],
         "summary": "Log in by email | 邮箱登录",
-        "operationId": "LoginByEmail",
+        "operationId": "publicmemberLoginByEmail",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/LoginByEmailReq"
+              "required": [
+                "email"
+              ],
+              "properties": {
+                "captcha": {
+                  "description": "The Captcha which users input | 用户输入的验证码",
+                  "type": "string",
+                  "maxLength": 5,
+                  "minLength": 5
+                },
+                "email": {
+                  "description": "The user's email address | 用户的邮箱",
+                  "type": "string",
+                  "maxLength": 100
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "LoginResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/LoginResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "data": {
+                  "description": "The log in information | 登陆返回的数据信息",
+                  "type": "object",
+                  "required": [
+                    "userId",
+                    "rankId",
+                    "token",
+                    "expire",
+                    "avatar",
+                    "nickname",
+                    "rankName"
+                  ],
+                  "properties": {
+                    "avatar": {
+                      "description": "Avatar | 用户头像",
+                      "type": "string"
+                    },
+                    "expire": {
+                      "description": "Expire timestamp | 过期时间戳",
+                      "type": "integer"
+                    },
+                    "nickname": {
+                      "description": "Nickname | 用户昵称",
+                      "type": "string"
+                    },
+                    "rankId": {
+                      "description": "Rank Code | 等级码",
+                      "type": "string"
+                    },
+                    "rankName": {
+                      "description": "RankName | 等级名称",
+                      "type": "string"
+                    },
+                    "token": {
+                      "description": "Token for authorization | 验证身份的token",
+                      "type": "string"
+                    },
+                    "userId": {
+                      "description": "User's UUID | 用户的UUID",
+                      "type": "string"
+                    }
+                  }
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -309,26 +885,101 @@
     "/member/login_by_sms": {
       "post": {
         "description": "Log in by SMS | 短信登录",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "publicmember"
         ],
         "summary": "Log in by SMS | 短信登录",
-        "operationId": "LoginBySms",
+        "operationId": "publicmemberLoginBySms",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/LoginBySmsReq"
+              "required": [
+                "phoneNumber"
+              ],
+              "properties": {
+                "captcha": {
+                  "description": "The Captcha which users input | 用户输入的验证码",
+                  "type": "string",
+                  "maxLength": 5,
+                  "minLength": 5
+                },
+                "phoneNumber": {
+                  "description": "The user's mobile phone number | 用户的手机号码",
+                  "type": "string",
+                  "maxLength": 20
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "LoginResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/LoginResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "data": {
+                  "description": "The log in information | 登陆返回的数据信息",
+                  "type": "object",
+                  "required": [
+                    "userId",
+                    "rankId",
+                    "token",
+                    "expire",
+                    "avatar",
+                    "nickname",
+                    "rankName"
+                  ],
+                  "properties": {
+                    "avatar": {
+                      "description": "Avatar | 用户头像",
+                      "type": "string"
+                    },
+                    "expire": {
+                      "description": "Expire timestamp | 过期时间戳",
+                      "type": "integer"
+                    },
+                    "nickname": {
+                      "description": "Nickname | 用户昵称",
+                      "type": "string"
+                    },
+                    "rankId": {
+                      "description": "Rank Code | 等级码",
+                      "type": "string"
+                    },
+                    "rankName": {
+                      "description": "RankName | 等级名称",
+                      "type": "string"
+                    },
+                    "token": {
+                      "description": "Token for authorization | 验证身份的token",
+                      "type": "string"
+                    },
+                    "userId": {
+                      "description": "User's UUID | 用户的UUID",
+                      "type": "string"
+                    }
+                  }
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -337,16 +988,29 @@
     "/member/logout": {
       "get": {
         "description": "Log out the service | 用户登出",
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "member"
         ],
         "summary": "Log out the service | 用户登出",
-        "operationId": "Logout",
+        "operationId": "memberLogout",
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -355,26 +1019,60 @@
     "/member/profile": {
       "post": {
         "description": "Modify users' own profile | 用户修改信息接口",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "member"
         ],
         "summary": "Modify users' own profile | 用户修改信息接口",
-        "operationId": "ModifyProfile",
+        "operationId": "memberModifyProfile",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/ModifyProfileReq"
+              "properties": {
+                "avatar": {
+                  "description": "Avatar | 头像地址",
+                  "type": "string"
+                },
+                "email": {
+                  "description": "Email | 邮箱",
+                  "type": "string"
+                },
+                "mobile": {
+                  "description": "Mobile | 手机",
+                  "type": "string"
+                },
+                "nickname": {
+                  "description": "Nickname | 昵称",
+                  "type": "string"
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -383,26 +1081,79 @@
     "/member/register": {
       "post": {
         "description": "Register | 注册",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "publicmember"
         ],
         "summary": "Register | 注册",
-        "operationId": "Register",
+        "operationId": "publicmemberRegister",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/RegisterReq"
+              "required": [
+                "username",
+                "password",
+                "captchaId",
+                "captcha",
+                "email"
+              ],
+              "properties": {
+                "captcha": {
+                  "description": "The Captcha which users input | 用户输入的验证码",
+                  "type": "string",
+                  "maxLength": 5,
+                  "minLength": 5
+                },
+                "captchaId": {
+                  "description": "Captcha ID which store in redis | 验证码编号, 存在redis中",
+                  "type": "string",
+                  "maxLength": 20,
+                  "minLength": 20
+                },
+                "email": {
+                  "description": "The user's email address | 用户的邮箱",
+                  "type": "string",
+                  "maxLength": 100
+                },
+                "password": {
+                  "description": "Password | 密码",
+                  "type": "string",
+                  "maxLength": 30,
+                  "minLength": 6
+                },
+                "username": {
+                  "description": "User Name | 用户名",
+                  "type": "string",
+                  "maxLength": 20
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -411,26 +1162,72 @@
     "/member/register_by_email": {
       "post": {
         "description": "Register by Email | 邮箱注册",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "publicmember"
         ],
         "summary": "Register by Email | 邮箱注册",
-        "operationId": "RegisterByEmail",
+        "operationId": "publicmemberRegisterByEmail",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/RegisterByEmailReq"
+              "required": [
+                "username",
+                "password",
+                "captcha",
+                "email"
+              ],
+              "properties": {
+                "captcha": {
+                  "description": "The Captcha which users input | 用户输入的验证码",
+                  "type": "string",
+                  "maxLength": 5,
+                  "minLength": 5
+                },
+                "email": {
+                  "description": "The user's email address | 用户的邮箱",
+                  "type": "string",
+                  "maxLength": 100
+                },
+                "password": {
+                  "description": "Password | 密码",
+                  "type": "string",
+                  "maxLength": 30,
+                  "minLength": 6
+                },
+                "username": {
+                  "description": "User Name | 用户名",
+                  "type": "string",
+                  "maxLength": 20
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -439,26 +1236,72 @@
     "/member/register_by_sms": {
       "post": {
         "description": "Register by SMS | 短信注册",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "publicmember"
         ],
         "summary": "Register by SMS | 短信注册",
-        "operationId": "RegisterBySms",
+        "operationId": "publicmemberRegisterBySms",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/RegisterBySmsReq"
+              "required": [
+                "username",
+                "password",
+                "captcha",
+                "phoneNumber"
+              ],
+              "properties": {
+                "captcha": {
+                  "description": "The Captcha which users input | 用户输入的验证码",
+                  "type": "string",
+                  "maxLength": 5,
+                  "minLength": 5
+                },
+                "password": {
+                  "description": "Password | 密码",
+                  "type": "string",
+                  "maxLength": 30,
+                  "minLength": 6
+                },
+                "phoneNumber": {
+                  "description": "The user's mobile phone number | 用户的手机号码",
+                  "type": "string",
+                  "maxLength": 20
+                },
+                "username": {
+                  "description": "User Name | 用户名",
+                  "type": "string",
+                  "maxLength": 20
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -467,26 +1310,58 @@
     "/member/reset_password_by_email": {
       "post": {
         "description": "Reset password by Email | 通过邮箱重置密码",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "publicmember"
         ],
         "summary": "Reset password by Email | 通过邮箱重置密码",
-        "operationId": "ResetPasswordByEmail",
+        "operationId": "publicmemberResetPasswordByEmail",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/ResetPasswordByEmailReq"
+              "required": [
+                "email",
+                "captcha",
+                "password"
+              ],
+              "properties": {
+                "captcha": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -495,26 +1370,59 @@
     "/member/reset_password_by_sms": {
       "post": {
         "description": "Reset password by SMS | 通过短信重置密码",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "publicmember"
         ],
         "summary": "Reset password by SMS | 通过短信重置密码",
-        "operationId": "ResetPasswordBySms",
+        "operationId": "publicmemberResetPasswordBySms",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/ResetPasswordBySmsReq"
+              "required": [
+                "phoneNumber",
+                "captcha",
+                "password"
+              ],
+              "properties": {
+                "captcha": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "phoneNumber": {
+                  "type": "string",
+                  "maxLength": 20
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -523,26 +1431,92 @@
     "/member/update": {
       "post": {
         "description": "Update member information | 更新会员",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "member"
         ],
         "summary": "Update member information | 更新会员",
-        "operationId": "UpdateMember",
+        "operationId": "memberUpdateMember",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/MemberInfo"
+              "properties": {
+                "avatar": {
+                  "description": "Avatar | 头像地址",
+                  "type": "string"
+                },
+                "createdAt": {
+                  "description": "Create date | 创建日期",
+                  "type": "integer"
+                },
+                "email": {
+                  "description": "Email | 邮箱",
+                  "type": "string"
+                },
+                "expiredAt": {
+                  "description": "Expired At | 到期时间",
+                  "type": "integer"
+                },
+                "id": {
+                  "description": "ID",
+                  "type": "string"
+                },
+                "mobile": {
+                  "description": "Mobile | 手机",
+                  "type": "string"
+                },
+                "nickname": {
+                  "description": "Nickname | 昵称",
+                  "type": "string"
+                },
+                "password": {
+                  "description": "Password | 密码",
+                  "type": "string"
+                },
+                "rankId": {
+                  "description": "RankId | 等级ID",
+                  "type": "integer"
+                },
+                "status": {
+                  "description": "Status | 状态",
+                  "type": "integer"
+                },
+                "updatedAt": {
+                  "description": "Update date | 更新日期",
+                  "type": "integer"
+                },
+                "username": {
+                  "description": "Username | 用户名",
+                  "type": "string"
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -551,16 +1525,29 @@
     "/member/vip": {
       "get": {
         "description": "Test VIP authorization | 测试 VIP 授权",
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "vipdemo"
         ],
         "summary": "Test VIP authorization | 测试 VIP 授权",
-        "operationId": "TestVip",
+        "operationId": "vipdemoTestVip",
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -569,26 +1556,89 @@
     "/member_rank": {
       "post": {
         "description": "Get member rank by ID | 通过ID获取会员等级",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "memberrank"
         ],
         "summary": "Get member rank by ID | 通过ID获取会员等级",
-        "operationId": "GetMemberRankById",
+        "operationId": "memberrankGetMemberRankById",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/IDReq"
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "description": "ID Required: true",
+                  "type": "integer"
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "MemberRankInfoResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/MemberRankInfoResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "data": {
+                  "description": "MemberRank information | 会员等级数据",
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "description": "Rank Code | 等级代码",
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "description": "Create date | 创建日期",
+                      "type": "integer"
+                    },
+                    "description": {
+                      "description": "Description | 等级描述",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "ID",
+                      "type": "integer"
+                    },
+                    "name": {
+                      "description": "Rank name | 等级名称",
+                      "type": "string"
+                    },
+                    "remark": {
+                      "description": "Remark | 备注",
+                      "type": "string"
+                    },
+                    "trans": {
+                      "description": "Translated Name | 国际化翻译",
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "description": "Update date | 更新日期",
+                      "type": "integer"
+                    }
+                  }
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -597,26 +1647,76 @@
     "/member_rank/create": {
       "post": {
         "description": "Create member rank information | 创建会员等级",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "memberrank"
         ],
         "summary": "Create member rank information | 创建会员等级",
-        "operationId": "CreateMemberRank",
+        "operationId": "memberrankCreateMemberRank",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/MemberRankInfo"
+              "properties": {
+                "code": {
+                  "description": "Rank Code | 等级代码",
+                  "type": "string"
+                },
+                "createdAt": {
+                  "description": "Create date | 创建日期",
+                  "type": "integer"
+                },
+                "description": {
+                  "description": "Description | 等级描述",
+                  "type": "string"
+                },
+                "id": {
+                  "description": "ID",
+                  "type": "integer"
+                },
+                "name": {
+                  "description": "Rank name | 等级名称",
+                  "type": "string"
+                },
+                "remark": {
+                  "description": "Remark | 备注",
+                  "type": "string"
+                },
+                "trans": {
+                  "description": "Translated Name | 国际化翻译",
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "description": "Update date | 更新日期",
+                  "type": "integer"
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -625,26 +1725,54 @@
     "/member_rank/delete": {
       "post": {
         "description": "Delete member rank information | 删除会员等级信息",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "memberrank"
         ],
         "summary": "Delete member rank information | 删除会员等级信息",
-        "operationId": "DeleteMemberRank",
+        "operationId": "memberrankDeleteMemberRank",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/IDsReq"
+              "required": [
+                "ids"
+              ],
+              "properties": {
+                "ids": {
+                  "description": "IDs Required: true",
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  }
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -653,26 +1781,125 @@
     "/member_rank/list": {
       "post": {
         "description": "Get member rank list | 获取会员等级列表",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "memberrank"
         ],
         "summary": "Get member rank list | 获取会员等级列表",
-        "operationId": "GetMemberRankList",
+        "operationId": "memberrankGetMemberRankList",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/MemberRankListReq"
+              "required": [
+                "page",
+                "pageSize"
+              ],
+              "properties": {
+                "description": {
+                  "description": "Description | 描述",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Name | 等级名称",
+                  "type": "string"
+                },
+                "page": {
+                  "description": "Page number | 第几页 Required: true",
+                  "type": "integer"
+                },
+                "pageSize": {
+                  "description": "Page size | 单页数据行数 Required: true Maximum: 100000",
+                  "type": "integer",
+                  "maximum": 100000
+                },
+                "remark": {
+                  "description": "Remark | 备注",
+                  "type": "string"
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "MemberRankListResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/MemberRankListResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "data": {
+                  "description": "MemberRank list data | 会员等级列表数据",
+                  "type": "object",
+                  "required": [
+                    "total",
+                    "data",
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "description": "The API list data | 会员等级列表数据",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "description": "Rank Code | 等级代码",
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "description": "Create date | 创建日期",
+                            "type": "integer"
+                          },
+                          "description": {
+                            "description": "Description | 等级描述",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "ID",
+                            "type": "integer"
+                          },
+                          "name": {
+                            "description": "Rank name | 等级名称",
+                            "type": "string"
+                          },
+                          "remark": {
+                            "description": "Remark | 备注",
+                            "type": "string"
+                          },
+                          "trans": {
+                            "description": "Translated Name | 国际化翻译",
+                            "type": "string"
+                          },
+                          "updatedAt": {
+                            "description": "Update date | 更新日期",
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    },
+                    "total": {
+                      "description": "The total number of data | 数据总数",
+                      "type": "integer"
+                    }
+                  }
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -681,26 +1908,76 @@
     "/member_rank/update": {
       "post": {
         "description": "Update member rank information | 更新会员等级",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "memberrank"
         ],
         "summary": "Update member rank information | 更新会员等级",
-        "operationId": "UpdateMemberRank",
+        "operationId": "memberrankUpdateMemberRank",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/MemberRankInfo"
+              "properties": {
+                "code": {
+                  "description": "Rank Code | 等级代码",
+                  "type": "string"
+                },
+                "createdAt": {
+                  "description": "Create date | 创建日期",
+                  "type": "integer"
+                },
+                "description": {
+                  "description": "Description | 等级描述",
+                  "type": "string"
+                },
+                "id": {
+                  "description": "ID",
+                  "type": "integer"
+                },
+                "name": {
+                  "description": "Rank name | 等级名称",
+                  "type": "string"
+                },
+                "remark": {
+                  "description": "Remark | 备注",
+                  "type": "string"
+                },
+                "trans": {
+                  "description": "Translated Name | 国际化翻译",
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "description": "Update date | 更新日期",
+                  "type": "integer"
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -709,26 +1986,71 @@
     "/oauth/login": {
       "post": {
         "description": "Oauth log in | Oauth 登录",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "publicoauth"
         ],
         "summary": "Oauth log in | Oauth 登录",
-        "operationId": "OauthLogin",
+        "operationId": "publicoauthOauthLogin",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/OauthLoginReq"
+              "required": [
+                "state",
+                "provider"
+              ],
+              "properties": {
+                "provider": {
+                  "description": "Provider name | 提供商名字 Example: google",
+                  "type": "string",
+                  "maxLength": 40
+                },
+                "state": {
+                  "description": "State code to avoid hack | 状态码，请求前后相同避免安全问题",
+                  "type": "string",
+                  "maxLength": 30
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "RedirectResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/RedirectResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "data": {
+                  "description": "Redirect information | 跳转网址",
+                  "type": "object",
+                  "required": [
+                    "URL"
+                  ],
+                  "properties": {
+                    "URL": {
+                      "description": "Redirect URL | 跳转网址",
+                      "type": "string"
+                    }
+                  }
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -737,16 +2059,72 @@
     "/oauth/login/callback": {
       "get": {
         "description": "Oauth log in callback route | Oauth 登录返回调接口",
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "publicoauth"
         ],
         "summary": "Oauth log in callback route | Oauth 登录返回调接口",
-        "operationId": "OauthCallback",
+        "operationId": "publicoauthOauthCallback",
         "responses": {
           "200": {
-            "description": "CallbackResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/CallbackResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "data": {
+                  "description": "The oauth log in callback information | 第三方登陆返回的数据信息",
+                  "type": "object",
+                  "required": [
+                    "userId",
+                    "rankId",
+                    "token",
+                    "expire",
+                    "avatar",
+                    "nickname",
+                    "rankName"
+                  ],
+                  "properties": {
+                    "avatar": {
+                      "description": "Avatar | 用户头像",
+                      "type": "string"
+                    },
+                    "expire": {
+                      "description": "Expire timestamp | 过期时间戳",
+                      "type": "integer"
+                    },
+                    "nickname": {
+                      "description": "Nickname | 用户昵称",
+                      "type": "string"
+                    },
+                    "rankId": {
+                      "description": "Rank ID | 等级 ID",
+                      "type": "string"
+                    },
+                    "rankName": {
+                      "description": "RankName | 等级名称",
+                      "type": "string"
+                    },
+                    "token": {
+                      "description": "Token for authorization | 验证身份的token",
+                      "type": "string"
+                    },
+                    "userId": {
+                      "description": "User's UUID | 用户的UUID",
+                      "type": "string"
+                    }
+                  }
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -755,26 +2133,94 @@
     "/oauth/login/wechat/mini_program": {
       "post": {
         "description": "Wechat Mini program login | 微信小程序登录",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "publicoauth"
         ],
         "summary": "Wechat Mini program login | 微信小程序登录",
-        "operationId": "WechatMiniProgramLogin",
+        "operationId": "publicoauthWechatMiniProgramLogin",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/WechatMiniProgramLoginReq"
+              "required": [
+                "code"
+              ],
+              "properties": {
+                "code": {
+                  "description": "Code",
+                  "type": "string"
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "CallbackResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/CallbackResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "data": {
+                  "description": "The oauth log in callback information | 第三方登陆返回的数据信息",
+                  "type": "object",
+                  "required": [
+                    "userId",
+                    "rankId",
+                    "token",
+                    "expire",
+                    "avatar",
+                    "nickname",
+                    "rankName"
+                  ],
+                  "properties": {
+                    "avatar": {
+                      "description": "Avatar | 用户头像",
+                      "type": "string"
+                    },
+                    "expire": {
+                      "description": "Expire timestamp | 过期时间戳",
+                      "type": "integer"
+                    },
+                    "nickname": {
+                      "description": "Nickname | 用户昵称",
+                      "type": "string"
+                    },
+                    "rankId": {
+                      "description": "Rank ID | 等级 ID",
+                      "type": "string"
+                    },
+                    "rankName": {
+                      "description": "RankName | 等级名称",
+                      "type": "string"
+                    },
+                    "token": {
+                      "description": "Token for authorization | 验证身份的token",
+                      "type": "string"
+                    },
+                    "userId": {
+                      "description": "User's UUID | 用户的UUID",
+                      "type": "string"
+                    }
+                  }
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -783,26 +2229,113 @@
     "/oauth_provider": {
       "post": {
         "description": "Get oauth provider by ID | 通过ID获取第三方",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "oauthprovider"
         ],
         "summary": "Get oauth provider by ID | 通过ID获取第三方",
-        "operationId": "GetOauthProviderById",
+        "operationId": "oauthproviderGetOauthProviderById",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/IDReq"
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "description": "ID Required: true",
+                  "type": "integer"
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "OauthProviderInfoResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/OauthProviderInfoResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "data": {
+                  "description": "OauthProvider information | 第三方数据",
+                  "type": "object",
+                  "properties": {
+                    "authStyle": {
+                      "description": "The type of auth | 鉴权方式",
+                      "type": "integer"
+                    },
+                    "authUrl": {
+                      "description": "Authority URL | 授权地址",
+                      "type": "string",
+                      "maxLength": 300
+                    },
+                    "clientId": {
+                      "description": "ClientId | 客户端ID",
+                      "type": "string",
+                      "maxLength": 80
+                    },
+                    "clientSecret": {
+                      "description": "ClientSecret | 客户端密钥",
+                      "type": "string",
+                      "maxLength": 100
+                    },
+                    "createdAt": {
+                      "description": "Create date | 创建日期",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "description": "ID",
+                      "type": "integer"
+                    },
+                    "infoUrl": {
+                      "description": "The URL to get user information | 获取信息地址",
+                      "type": "string",
+                      "maxLength": 300
+                    },
+                    "name": {
+                      "description": "Provider name | 第三方提供商名称",
+                      "type": "string",
+                      "maxLength": 30
+                    },
+                    "redirectUrl": {
+                      "description": "Redirect URL| 跳转地址",
+                      "type": "string",
+                      "maxLength": 300
+                    },
+                    "scopes": {
+                      "description": "Scopes | 授权范围",
+                      "type": "string",
+                      "maxLength": 50
+                    },
+                    "tokenUrl": {
+                      "description": "The URL to get token | 获取Token的地址",
+                      "type": "string",
+                      "maxLength": 300
+                    },
+                    "updatedAt": {
+                      "description": "Update date | 更新日期",
+                      "type": "integer"
+                    }
+                  }
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -811,26 +2344,100 @@
     "/oauth_provider/create": {
       "post": {
         "description": "Create oauth provider information | 创建第三方",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "oauthprovider"
         ],
         "summary": "Create oauth provider information | 创建第三方",
-        "operationId": "CreateOauthProvider",
+        "operationId": "oauthproviderCreateOauthProvider",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/OauthProviderInfo"
+              "properties": {
+                "authStyle": {
+                  "description": "The type of auth | 鉴权方式",
+                  "type": "integer"
+                },
+                "authUrl": {
+                  "description": "Authority URL | 授权地址",
+                  "type": "string",
+                  "maxLength": 300
+                },
+                "clientId": {
+                  "description": "ClientId | 客户端ID",
+                  "type": "string",
+                  "maxLength": 80
+                },
+                "clientSecret": {
+                  "description": "ClientSecret | 客户端密钥",
+                  "type": "string",
+                  "maxLength": 100
+                },
+                "createdAt": {
+                  "description": "Create date | 创建日期",
+                  "type": "integer"
+                },
+                "id": {
+                  "description": "ID",
+                  "type": "integer"
+                },
+                "infoUrl": {
+                  "description": "The URL to get user information | 获取信息地址",
+                  "type": "string",
+                  "maxLength": 300
+                },
+                "name": {
+                  "description": "Provider name | 第三方提供商名称",
+                  "type": "string",
+                  "maxLength": 30
+                },
+                "redirectUrl": {
+                  "description": "Redirect URL| 跳转地址",
+                  "type": "string",
+                  "maxLength": 300
+                },
+                "scopes": {
+                  "description": "Scopes | 授权范围",
+                  "type": "string",
+                  "maxLength": 50
+                },
+                "tokenUrl": {
+                  "description": "The URL to get token | 获取Token的地址",
+                  "type": "string",
+                  "maxLength": 300
+                },
+                "updatedAt": {
+                  "description": "Update date | 更新日期",
+                  "type": "integer"
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -839,26 +2446,54 @@
     "/oauth_provider/delete": {
       "post": {
         "description": "Delete oauth provider information | 删除第三方信息",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "oauthprovider"
         ],
         "summary": "Delete oauth provider information | 删除第三方信息",
-        "operationId": "DeleteOauthProvider",
+        "operationId": "oauthproviderDeleteOauthProvider",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/IDsReq"
+              "required": [
+                "ids"
+              ],
+              "properties": {
+                "ids": {
+                  "description": "IDs Required: true",
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  }
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -867,26 +2502,142 @@
     "/oauth_provider/list": {
       "post": {
         "description": "Get oauth provider list | 获取第三方列表",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "oauthprovider"
         ],
         "summary": "Get oauth provider list | 获取第三方列表",
-        "operationId": "GetOauthProviderList",
+        "operationId": "oauthproviderGetOauthProviderList",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/OauthProviderListReq"
+              "required": [
+                "page",
+                "pageSize"
+              ],
+              "properties": {
+                "name": {
+                  "description": "Name | 第三方提供商名称",
+                  "type": "string",
+                  "maxLength": 30
+                },
+                "page": {
+                  "description": "Page number | 第几页 Required: true",
+                  "type": "integer"
+                },
+                "pageSize": {
+                  "description": "Page size | 单页数据行数 Required: true Maximum: 100000",
+                  "type": "integer",
+                  "maximum": 100000
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "OauthProviderListResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/OauthProviderListResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "data": {
+                  "description": "OauthProvider list data | 第三方列表数据",
+                  "type": "object",
+                  "required": [
+                    "total",
+                    "data",
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "description": "The API list data | 第三方列表数据",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "authStyle": {
+                            "description": "The type of auth | 鉴权方式",
+                            "type": "integer"
+                          },
+                          "authUrl": {
+                            "description": "Authority URL | 授权地址",
+                            "type": "string",
+                            "maxLength": 300
+                          },
+                          "clientId": {
+                            "description": "ClientId | 客户端ID",
+                            "type": "string",
+                            "maxLength": 80
+                          },
+                          "clientSecret": {
+                            "description": "ClientSecret | 客户端密钥",
+                            "type": "string",
+                            "maxLength": 100
+                          },
+                          "createdAt": {
+                            "description": "Create date | 创建日期",
+                            "type": "integer"
+                          },
+                          "id": {
+                            "description": "ID",
+                            "type": "integer"
+                          },
+                          "infoUrl": {
+                            "description": "The URL to get user information | 获取信息地址",
+                            "type": "string",
+                            "maxLength": 300
+                          },
+                          "name": {
+                            "description": "Provider name | 第三方提供商名称",
+                            "type": "string",
+                            "maxLength": 30
+                          },
+                          "redirectUrl": {
+                            "description": "Redirect URL| 跳转地址",
+                            "type": "string",
+                            "maxLength": 300
+                          },
+                          "scopes": {
+                            "description": "Scopes | 授权范围",
+                            "type": "string",
+                            "maxLength": 50
+                          },
+                          "tokenUrl": {
+                            "description": "The URL to get token | 获取Token的地址",
+                            "type": "string",
+                            "maxLength": 300
+                          },
+                          "updatedAt": {
+                            "description": "Update date | 更新日期",
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    },
+                    "total": {
+                      "description": "The total number of data | 数据总数",
+                      "type": "integer"
+                    }
+                  }
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -895,26 +2646,100 @@
     "/oauth_provider/update": {
       "post": {
         "description": "Update oauth provider information | 更新第三方",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "oauthprovider"
         ],
         "summary": "Update oauth provider information | 更新第三方",
-        "operationId": "UpdateOauthProvider",
+        "operationId": "oauthproviderUpdateOauthProvider",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/OauthProviderInfo"
+              "properties": {
+                "authStyle": {
+                  "description": "The type of auth | 鉴权方式",
+                  "type": "integer"
+                },
+                "authUrl": {
+                  "description": "Authority URL | 授权地址",
+                  "type": "string",
+                  "maxLength": 300
+                },
+                "clientId": {
+                  "description": "ClientId | 客户端ID",
+                  "type": "string",
+                  "maxLength": 80
+                },
+                "clientSecret": {
+                  "description": "ClientSecret | 客户端密钥",
+                  "type": "string",
+                  "maxLength": 100
+                },
+                "createdAt": {
+                  "description": "Create date | 创建日期",
+                  "type": "integer"
+                },
+                "id": {
+                  "description": "ID",
+                  "type": "integer"
+                },
+                "infoUrl": {
+                  "description": "The URL to get user information | 获取信息地址",
+                  "type": "string",
+                  "maxLength": 300
+                },
+                "name": {
+                  "description": "Provider name | 第三方提供商名称",
+                  "type": "string",
+                  "maxLength": 30
+                },
+                "redirectUrl": {
+                  "description": "Redirect URL| 跳转地址",
+                  "type": "string",
+                  "maxLength": 300
+                },
+                "scopes": {
+                  "description": "Scopes | 授权范围",
+                  "type": "string",
+                  "maxLength": 50
+                },
+                "tokenUrl": {
+                  "description": "The URL to get token | 获取Token的地址",
+                  "type": "string",
+                  "maxLength": 300
+                },
+                "updatedAt": {
+                  "description": "Update date | 更新日期",
+                  "type": "integer"
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -923,26 +2748,95 @@
     "/token": {
       "post": {
         "description": "Get Token by ID | 通过ID获取Token",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "token"
         ],
         "summary": "Get Token by ID | 通过ID获取Token",
-        "operationId": "GetTokenById",
+        "operationId": "tokenGetTokenById",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/UUIDReq"
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "description": "ID Required: true Max length: 36",
+                  "type": "string",
+                  "maxLength": 36,
+                  "minLength": 36
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "TokenInfoResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/TokenInfoResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "data": {
+                  "description": "Token information | Token数据",
+                  "type": "object",
+                  "properties": {
+                    "createdAt": {
+                      "description": "Create date | 创建日期",
+                      "type": "integer"
+                    },
+                    "expiredAt": {
+                      "description": "ExpiredAt | 过期时间",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "description": "ID",
+                      "type": "string"
+                    },
+                    "source": {
+                      "description": "Source | Token 来源",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "Status | 状态",
+                      "type": "integer"
+                    },
+                    "token": {
+                      "description": "Token | 用户的Token",
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "description": "Update date | 更新日期",
+                      "type": "integer"
+                    },
+                    "username": {
+                      "description": "Username | 用户名",
+                      "type": "string"
+                    },
+                    "uuid": {
+                      "description": "User's UUID | 用户的UUID",
+                      "type": "string"
+                    }
+                  }
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -951,26 +2845,80 @@
     "/token/create": {
       "post": {
         "description": "Create token information | 创建Token",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "token"
         ],
         "summary": "Create token information | 创建Token",
-        "operationId": "CreateToken",
+        "operationId": "tokenCreateToken",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/TokenInfo"
+              "properties": {
+                "createdAt": {
+                  "description": "Create date | 创建日期",
+                  "type": "integer"
+                },
+                "expiredAt": {
+                  "description": "ExpiredAt | 过期时间",
+                  "type": "integer"
+                },
+                "id": {
+                  "description": "ID",
+                  "type": "string"
+                },
+                "source": {
+                  "description": "Source | Token 来源",
+                  "type": "string"
+                },
+                "status": {
+                  "description": "Status | 状态",
+                  "type": "integer"
+                },
+                "token": {
+                  "description": "Token | 用户的Token",
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "description": "Update date | 更新日期",
+                  "type": "integer"
+                },
+                "username": {
+                  "description": "Username | 用户名",
+                  "type": "string"
+                },
+                "uuid": {
+                  "description": "User's UUID | 用户的UUID",
+                  "type": "string"
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -979,26 +2927,54 @@
     "/token/delete": {
       "post": {
         "description": "Delete token information | 删除Token信息",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "token"
         ],
         "summary": "Delete token information | 删除Token信息",
-        "operationId": "DeleteToken",
+        "operationId": "tokenDeleteToken",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/UUIDsReq"
+              "required": [
+                "ids"
+              ],
+              "properties": {
+                "ids": {
+                  "description": "Ids Required: true",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -1007,26 +2983,133 @@
     "/token/list": {
       "post": {
         "description": "Get token list | 获取Token列表",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "token"
         ],
         "summary": "Get token list | 获取Token列表",
-        "operationId": "GetTokenList",
+        "operationId": "tokenGetTokenList",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/TokenListReq"
+              "required": [
+                "page",
+                "pageSize"
+              ],
+              "properties": {
+                "email": {
+                  "description": "Email",
+                  "type": "string"
+                },
+                "nickname": {
+                  "description": "Nickname",
+                  "type": "string"
+                },
+                "page": {
+                  "description": "Page number | 第几页 Required: true",
+                  "type": "integer"
+                },
+                "pageSize": {
+                  "description": "Page size | 单页数据行数 Required: true Maximum: 100000",
+                  "type": "integer",
+                  "maximum": 100000
+                },
+                "username": {
+                  "description": "Username",
+                  "type": "string"
+                },
+                "uuid": {
+                  "description": "Uuid",
+                  "type": "string"
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "TokenListResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/TokenListResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "data": {
+                  "description": "Token list data | Token列表数据",
+                  "type": "object",
+                  "required": [
+                    "total",
+                    "data",
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "description": "The API list data | Token列表数据",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "createdAt": {
+                            "description": "Create date | 创建日期",
+                            "type": "integer"
+                          },
+                          "expiredAt": {
+                            "description": "ExpiredAt | 过期时间",
+                            "type": "integer"
+                          },
+                          "id": {
+                            "description": "ID",
+                            "type": "string"
+                          },
+                          "source": {
+                            "description": "Source | Token 来源",
+                            "type": "string"
+                          },
+                          "status": {
+                            "description": "Status | 状态",
+                            "type": "integer"
+                          },
+                          "token": {
+                            "description": "Token | 用户的Token",
+                            "type": "string"
+                          },
+                          "updatedAt": {
+                            "description": "Update date | 更新日期",
+                            "type": "integer"
+                          },
+                          "username": {
+                            "description": "Username | 用户名",
+                            "type": "string"
+                          },
+                          "uuid": {
+                            "description": "User's UUID | 用户的UUID",
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "total": {
+                      "description": "The total number of data | 数据总数",
+                      "type": "integer"
+                    }
+                  }
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -1035,26 +3118,53 @@
     "/token/logout": {
       "post": {
         "description": "Force logging out by user UUID | 根据UUID强制用户退出",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "token"
         ],
         "summary": "Force logging out by user UUID | 根据UUID强制用户退出",
-        "operationId": "Logout",
+        "operationId": "tokenLogout",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/UUIDReq"
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "description": "ID Required: true Max length: 36",
+                  "type": "string",
+                  "maxLength": 36,
+                  "minLength": 36
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -1063,1508 +3173,82 @@
     "/token/update": {
       "post": {
         "description": "Update token information | 更新 Token",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "tags": [
           "token"
         ],
         "summary": "Update token information | 更新 Token",
-        "operationId": "UpdateToken",
+        "operationId": "tokenUpdateToken",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "$ref": "#/definitions/TokenInfo"
+              "properties": {
+                "createdAt": {
+                  "description": "Create date | 创建日期",
+                  "type": "integer"
+                },
+                "expiredAt": {
+                  "description": "ExpiredAt | 过期时间",
+                  "type": "integer"
+                },
+                "id": {
+                  "description": "ID",
+                  "type": "string"
+                },
+                "source": {
+                  "description": "Source | Token 来源",
+                  "type": "string"
+                },
+                "status": {
+                  "description": "Status | 状态",
+                  "type": "integer"
+                },
+                "token": {
+                  "description": "Token | 用户的Token",
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "description": "Update date | 更新日期",
+                  "type": "integer"
+                },
+                "username": {
+                  "description": "Username | 用户名",
+                  "type": "string"
+                },
+                "uuid": {
+                  "description": "User's UUID | 用户的UUID",
+                  "type": "string"
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "BaseMsgResp",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/BaseMsgResp"
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "Error code | 错误代码",
+                  "type": "integer"
+                },
+                "msg": {
+                  "description": "Message | 提示信息",
+                  "type": "string"
+                }
+              }
             }
           }
-        }
-      }
-    }
-  },
-  "definitions": {
-    "BaseDataInfo": {
-      "description": "The basic response with data | 基础带数据信息",
-      "type": "object",
-      "properties": {
-        "code": {
-          "description": "Error code | 错误代码",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "Code"
-        },
-        "data": {
-          "description": "Data | 数据",
-          "type": "string",
-          "x-go-name": "Data"
-        },
-        "msg": {
-          "description": "Message | 提示信息",
-          "type": "string",
-          "x-go-name": "Msg"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "BaseIDInfo": {
-      "description": "The base response data | 基础信息",
-      "type": "object",
-      "properties": {
-        "createdAt": {
-          "description": "Create date | 创建日期",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "CreatedAt"
-        },
-        "id": {
-          "description": "ID",
-          "type": "integer",
-          "format": "uint64",
-          "x-go-name": "Id"
-        },
-        "updatedAt": {
-          "description": "Update date | 更新日期",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "UpdatedAt"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "BaseListInfo": {
-      "description": "The basic response with data | 基础带数据信息",
-      "type": "object",
-      "properties": {
-        "data": {
-          "description": "Data | 数据",
-          "type": "string",
-          "x-go-name": "Data"
-        },
-        "total": {
-          "description": "The total number of data | 数据总数",
-          "type": "integer",
-          "format": "uint64",
-          "x-go-name": "Total"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "BaseMsgResp": {
-      "description": "The basic response without data | 基础不带数据信息",
-      "type": "object",
-      "properties": {
-        "code": {
-          "description": "Error code | 错误代码",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "Code"
-        },
-        "msg": {
-          "description": "Message | 提示信息",
-          "type": "string",
-          "x-go-name": "Msg"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "BaseUUIDInfo": {
-      "description": "The base UUID response data | 基础信息",
-      "type": "object",
-      "properties": {
-        "createdAt": {
-          "description": "Create date | 创建日期",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "CreatedAt"
-        },
-        "id": {
-          "description": "ID",
-          "type": "string",
-          "x-go-name": "Id"
-        },
-        "updatedAt": {
-          "description": "Update date | 更新日期",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "UpdatedAt"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "BindWechatReq": {
-      "description": "Bind wechat request | 绑定微信请求",
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "string",
-          "x-go-name": "Code"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "CallbackInfo": {
-      "description": "The oauth callback info response data | Oauth回调数据",
-      "type": "object",
-      "properties": {
-        "avatar": {
-          "description": "Avatar | 用户头像",
-          "type": "string",
-          "x-go-name": "Avatar"
-        },
-        "expire": {
-          "description": "Expire timestamp | 过期时间戳",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "Expire"
-        },
-        "nickname": {
-          "description": "Nickname | 用户昵称",
-          "type": "string",
-          "x-go-name": "Nickname"
-        },
-        "rankId": {
-          "description": "Rank ID | 等级 ID",
-          "type": "string",
-          "x-go-name": "RankId"
-        },
-        "rankName": {
-          "description": "RankName | 等级名称",
-          "type": "string",
-          "x-go-name": "RankName"
-        },
-        "token": {
-          "description": "Token for authorization | 验证身份的token",
-          "type": "string",
-          "x-go-name": "Token"
-        },
-        "userId": {
-          "description": "User's UUID | 用户的UUID",
-          "type": "string",
-          "x-go-name": "UserId"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "CallbackResp": {
-      "description": "The oauth log in response data | 第三方登录返回数据",
-      "type": "object",
-      "properties": {
-        "code": {
-          "description": "Error code | 错误代码",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "Code"
-        },
-        "data": {
-          "description": "Data | 数据",
-          "type": "string",
-          "x-go-name": "Data",
-          "$ref": "#/definitions/CallbackInfo"
-        },
-        "msg": {
-          "description": "Message | 提示信息",
-          "type": "string",
-          "x-go-name": "Msg"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "CaptchaInfo": {
-      "description": "The information of captcha | 验证码数据",
-      "type": "object",
-      "properties": {
-        "captchaId": {
-          "type": "string",
-          "x-go-name": "CaptchaId"
-        },
-        "imgPath": {
-          "type": "string",
-          "x-go-name": "ImgPath"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "CaptchaResp": {
-      "description": "The response data of captcha | 验证码返回数据",
-      "type": "object",
-      "properties": {
-        "code": {
-          "description": "Error code | 错误代码",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "Code"
-        },
-        "data": {
-          "description": "Data | 数据",
-          "type": "string",
-          "x-go-name": "Data",
-          "$ref": "#/definitions/CaptchaInfo"
-        },
-        "msg": {
-          "description": "Message | 提示信息",
-          "type": "string",
-          "x-go-name": "Msg"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "EmailCaptchaReq": {
-      "description": "The email captcha request | 邮箱验证码请求参数",
-      "type": "object",
-      "properties": {
-        "email": {
-          "description": "The email address | 邮箱地址",
-          "type": "string",
-          "x-go-name": "Email"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "IDPathReq": {
-      "description": "Basic ID request | 基础ID地址参数请求",
-      "type": "object",
-      "required": [
-        "Id"
-      ],
-      "properties": {
-        "Id": {
-          "description": "ID",
-          "type": "integer",
-          "format": "uint64"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "IDReq": {
-      "description": "Basic ID request | 基础ID参数请求",
-      "type": "object",
-      "required": [
-        "id"
-      ],
-      "properties": {
-        "id": {
-          "description": "ID",
-          "type": "integer",
-          "format": "uint64",
-          "x-go-name": "Id"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "IDsReq": {
-      "description": "Basic IDs request | 基础ID数组参数请求",
-      "type": "object",
-      "required": [
-        "ids"
-      ],
-      "properties": {
-        "ids": {
-          "description": "IDs",
-          "type": "array",
-          "items": {
-            "type": "integer",
-            "format": "uint64"
-          },
-          "x-go-name": "Ids"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "LoginByEmailReq": {
-      "description": "Log in by email request | 邮箱登录参数",
-      "type": "object",
-      "required": [
-        "email"
-      ],
-      "properties": {
-        "captcha": {
-          "description": "The Captcha which users input | 用户输入的验证码",
-          "type": "string",
-          "maxLength": 5,
-          "minLength": 5,
-          "x-go-name": "Captcha"
-        },
-        "email": {
-          "description": "The user's email address | 用户的邮箱",
-          "type": "string",
-          "maxLength": 100,
-          "x-go-name": "Email"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "LoginBySmsReq": {
-      "description": "Log in by SMS request | 短信登录参数",
-      "type": "object",
-      "required": [
-        "phoneNumber"
-      ],
-      "properties": {
-        "captcha": {
-          "description": "The Captcha which users input | 用户输入的验证码",
-          "type": "string",
-          "maxLength": 5,
-          "minLength": 5,
-          "x-go-name": "Captcha"
-        },
-        "phoneNumber": {
-          "description": "The user's mobile phone number | 用户的手机号码",
-          "type": "string",
-          "maxLength": 20,
-          "x-go-name": "PhoneNumber"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "LoginInfo": {
-      "description": "The log in information | 登陆返回的数据信息",
-      "type": "object",
-      "properties": {
-        "avatar": {
-          "description": "Avatar | 用户头像",
-          "type": "string",
-          "x-go-name": "Avatar"
-        },
-        "expire": {
-          "description": "Expire timestamp | 过期时间戳",
-          "type": "integer",
-          "format": "uint64",
-          "x-go-name": "Expire"
-        },
-        "nickname": {
-          "description": "Nickname | 用户昵称",
-          "type": "string",
-          "x-go-name": "Nickname"
-        },
-        "rankId": {
-          "description": "Rank Code | 等级码",
-          "type": "string",
-          "x-go-name": "RankId"
-        },
-        "rankName": {
-          "description": "RankName | 等级名称",
-          "type": "string",
-          "x-go-name": "RankName"
-        },
-        "token": {
-          "description": "Token for authorization | 验证身份的token",
-          "type": "string",
-          "x-go-name": "Token"
-        },
-        "userId": {
-          "description": "User's UUID | 用户的UUID",
-          "type": "string",
-          "x-go-name": "UserId"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "LoginReq": {
-      "description": "Log in request | 登录参数",
-      "type": "object",
-      "required": [
-        "username",
-        "password"
-      ],
-      "properties": {
-        "captcha": {
-          "description": "The Captcha which users input | 用户输入的验证码",
-          "type": "string",
-          "maxLength": 5,
-          "minLength": 5,
-          "x-go-name": "Captcha"
-        },
-        "captchaId": {
-          "description": "Captcha ID which store in redis | 验证码编号, 存在redis中",
-          "type": "string",
-          "maxLength": 20,
-          "minLength": 20,
-          "x-go-name": "CaptchaId"
-        },
-        "password": {
-          "description": "Password | 密码",
-          "type": "string",
-          "maxLength": 30,
-          "minLength": 6,
-          "x-go-name": "Password"
-        },
-        "username": {
-          "description": "User Name | 用户名",
-          "type": "string",
-          "maxLength": 20,
-          "x-go-name": "Username"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "LoginResp": {
-      "description": "The log in response data | 登录返回数据",
-      "type": "object",
-      "properties": {
-        "code": {
-          "description": "Error code | 错误代码",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "Code"
-        },
-        "data": {
-          "description": "Data | 数据",
-          "type": "string",
-          "x-go-name": "Data",
-          "$ref": "#/definitions/LoginInfo"
-        },
-        "msg": {
-          "description": "Message | 提示信息",
-          "type": "string",
-          "x-go-name": "Msg"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "MemberInfo": {
-      "description": "The response data of member information | 会员信息",
-      "type": "object",
-      "properties": {
-        "avatar": {
-          "description": "Avatar | 头像地址",
-          "type": "string",
-          "x-go-name": "Avatar"
-        },
-        "createdAt": {
-          "description": "Create date | 创建日期",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "CreatedAt"
-        },
-        "email": {
-          "description": "Email | 邮箱",
-          "type": "string",
-          "x-go-name": "Email"
-        },
-        "expiredAt": {
-          "description": "Expired At | 到期时间",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "ExpiredAt"
-        },
-        "id": {
-          "description": "ID",
-          "type": "string",
-          "x-go-name": "Id"
-        },
-        "mobile": {
-          "description": "Mobile | 手机",
-          "type": "string",
-          "x-go-name": "Mobile"
-        },
-        "nickname": {
-          "description": "Nickname | 昵称",
-          "type": "string",
-          "x-go-name": "Nickname"
-        },
-        "password": {
-          "description": "Password | 密码",
-          "type": "string",
-          "x-go-name": "Password"
-        },
-        "rankId": {
-          "description": "RankId | 等级ID",
-          "type": "integer",
-          "format": "uint64",
-          "x-go-name": "RankId"
-        },
-        "status": {
-          "description": "Status | 状态",
-          "type": "integer",
-          "format": "uint32",
-          "x-go-name": "Status"
-        },
-        "updatedAt": {
-          "description": "Update date | 更新日期",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "UpdatedAt"
-        },
-        "username": {
-          "description": "Username | 用户名",
-          "type": "string",
-          "x-go-name": "Username"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "MemberInfoResp": {
-      "description": "Member information response | 会员信息返回体",
-      "type": "object",
-      "properties": {
-        "code": {
-          "description": "Error code | 错误代码",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "Code"
-        },
-        "data": {
-          "description": "Data | 数据",
-          "type": "string",
-          "x-go-name": "Data",
-          "$ref": "#/definitions/MemberInfo"
-        },
-        "msg": {
-          "description": "Message | 提示信息",
-          "type": "string",
-          "x-go-name": "Msg"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "MemberListInfo": {
-      "description": "Member list data | 会员列表数据",
-      "type": "object",
-      "properties": {
-        "data": {
-          "description": "The API list data | 会员列表数据",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/MemberInfo"
-          },
-          "x-go-name": "Data"
-        },
-        "total": {
-          "description": "The total number of data | 数据总数",
-          "type": "integer",
-          "format": "uint64",
-          "x-go-name": "Total"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "MemberListReq": {
-      "description": "Get member list request params | 会员列表请求参数",
-      "type": "object",
-      "required": [
-        "page",
-        "pageSize"
-      ],
-      "properties": {
-        "email": {
-          "description": "Email | 邮箱",
-          "type": "string",
-          "x-go-name": "Email"
-        },
-        "mobile": {
-          "description": "Mobile | 手机",
-          "type": "string",
-          "x-go-name": "Mobile"
-        },
-        "nickname": {
-          "description": "Nickname | 昵称",
-          "type": "string",
-          "x-go-name": "Nickname"
-        },
-        "page": {
-          "description": "Page number | 第几页",
-          "type": "integer",
-          "format": "uint64",
-          "x-go-name": "Page"
-        },
-        "pageSize": {
-          "description": "Page size | 单页数据行数",
-          "type": "integer",
-          "format": "uint64",
-          "maximum": 100000,
-          "x-go-name": "PageSize"
-        },
-        "rankId": {
-          "description": "Rank ID | 等级ID",
-          "type": "integer",
-          "format": "uint64",
-          "x-go-name": "RankId"
-        },
-        "username": {
-          "description": "Username | 用户名",
-          "type": "string",
-          "x-go-name": "Username"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "MemberListResp": {
-      "description": "The response data of member list | 会员列表数据",
-      "type": "object",
-      "properties": {
-        "code": {
-          "description": "Error code | 错误代码",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "Code"
-        },
-        "data": {
-          "description": "Data | 数据",
-          "type": "string",
-          "x-go-name": "Data",
-          "$ref": "#/definitions/MemberListInfo"
-        },
-        "msg": {
-          "description": "Message | 提示信息",
-          "type": "string",
-          "x-go-name": "Msg"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "MemberRankInfo": {
-      "description": "The response data of member rank information | 会员等级信息",
-      "type": "object",
-      "properties": {
-        "code": {
-          "description": "Rank Code | 等级代码",
-          "type": "string",
-          "x-go-name": "Code"
-        },
-        "createdAt": {
-          "description": "Create date | 创建日期",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "CreatedAt"
-        },
-        "description": {
-          "description": "Description | 等级描述",
-          "type": "string",
-          "x-go-name": "Description"
-        },
-        "id": {
-          "description": "ID",
-          "type": "integer",
-          "format": "uint64",
-          "x-go-name": "Id"
-        },
-        "name": {
-          "description": "Rank name | 等级名称",
-          "type": "string",
-          "x-go-name": "Name"
-        },
-        "remark": {
-          "description": "Remark | 备注",
-          "type": "string",
-          "x-go-name": "Remark"
-        },
-        "trans": {
-          "description": "Translated Name | 国际化翻译",
-          "type": "string",
-          "x-go-name": "Trans"
-        },
-        "updatedAt": {
-          "description": "Update date | 更新日期",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "UpdatedAt"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "MemberRankInfoResp": {
-      "description": "MemberRank information response | 会员等级信息返回体",
-      "type": "object",
-      "properties": {
-        "code": {
-          "description": "Error code | 错误代码",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "Code"
-        },
-        "data": {
-          "description": "Data | 数据",
-          "type": "string",
-          "x-go-name": "Data",
-          "$ref": "#/definitions/MemberRankInfo"
-        },
-        "msg": {
-          "description": "Message | 提示信息",
-          "type": "string",
-          "x-go-name": "Msg"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "MemberRankListInfo": {
-      "description": "MemberRank list data | 会员等级列表数据",
-      "type": "object",
-      "properties": {
-        "data": {
-          "description": "The API list data | 会员等级列表数据",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/MemberRankInfo"
-          },
-          "x-go-name": "Data"
-        },
-        "total": {
-          "description": "The total number of data | 数据总数",
-          "type": "integer",
-          "format": "uint64",
-          "x-go-name": "Total"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "MemberRankListReq": {
-      "description": "Get member rank list request params | 会员等级列表请求参数",
-      "type": "object",
-      "required": [
-        "page",
-        "pageSize"
-      ],
-      "properties": {
-        "description": {
-          "description": "Description | 描述",
-          "type": "string",
-          "x-go-name": "Description"
-        },
-        "name": {
-          "description": "Name | 等级名称",
-          "type": "string",
-          "x-go-name": "Name"
-        },
-        "page": {
-          "description": "Page number | 第几页",
-          "type": "integer",
-          "format": "uint64",
-          "x-go-name": "Page"
-        },
-        "pageSize": {
-          "description": "Page size | 单页数据行数",
-          "type": "integer",
-          "format": "uint64",
-          "maximum": 100000,
-          "x-go-name": "PageSize"
-        },
-        "remark": {
-          "description": "Remark | 备注",
-          "type": "string",
-          "x-go-name": "Remark"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "MemberRankListResp": {
-      "description": "The response data of member rank list | 会员等级列表数据",
-      "type": "object",
-      "properties": {
-        "code": {
-          "description": "Error code | 错误代码",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "Code"
-        },
-        "data": {
-          "description": "Data | 数据",
-          "type": "string",
-          "x-go-name": "Data",
-          "$ref": "#/definitions/MemberRankListInfo"
-        },
-        "msg": {
-          "description": "Message | 提示信息",
-          "type": "string",
-          "x-go-name": "Msg"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "ModifyProfileReq": {
-      "description": "The modify info | 个人信息修改请求",
-      "type": "object",
-      "properties": {
-        "avatar": {
-          "description": "Avatar | 头像地址",
-          "type": "string",
-          "x-go-name": "Avatar"
-        },
-        "email": {
-          "description": "Email | 邮箱",
-          "type": "string",
-          "x-go-name": "Email"
-        },
-        "mobile": {
-          "description": "Mobile | 手机",
-          "type": "string",
-          "x-go-name": "Mobile"
-        },
-        "nickname": {
-          "description": "Nickname | 昵称",
-          "type": "string",
-          "x-go-name": "Nickname"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "OauthLoginReq": {
-      "description": "Oauth log in request | Oauth 登录请求",
-      "type": "object",
-      "required": [
-        "state",
-        "provider"
-      ],
-      "properties": {
-        "provider": {
-          "description": "Provider name | 提供商名字",
-          "type": "string",
-          "maxLength": 40,
-          "x-go-name": "Provider",
-          "example": "google"
-        },
-        "state": {
-          "description": "State code to avoid hack | 状态码，请求前后相同避免安全问题",
-          "type": "string",
-          "maxLength": 30,
-          "x-go-name": "State"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "OauthProviderInfo": {
-      "description": "The response data of oauth provider information | 第三方信息",
-      "type": "object",
-      "properties": {
-        "authStyle": {
-          "description": "The type of auth | 鉴权方式",
-          "type": "integer",
-          "format": "uint64",
-          "maximum": 20,
-          "x-go-name": "AuthStyle"
-        },
-        "authUrl": {
-          "description": "Authority URL | 授权地址",
-          "type": "string",
-          "maxLength": 300,
-          "x-go-name": "AuthUrl"
-        },
-        "clientId": {
-          "description": "ClientId | 客户端ID",
-          "type": "string",
-          "maxLength": 80,
-          "x-go-name": "ClientId"
-        },
-        "clientSecret": {
-          "description": "ClientSecret | 客户端密钥",
-          "type": "string",
-          "maxLength": 100,
-          "x-go-name": "ClientSecret"
-        },
-        "createdAt": {
-          "description": "Create date | 创建日期",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "CreatedAt"
-        },
-        "id": {
-          "description": "ID",
-          "type": "integer",
-          "format": "uint64",
-          "x-go-name": "Id"
-        },
-        "infoUrl": {
-          "description": "The URL to get user information | 获取信息地址",
-          "type": "string",
-          "maxLength": 300,
-          "x-go-name": "InfoUrl"
-        },
-        "name": {
-          "description": "Provider name | 第三方提供商名称",
-          "type": "string",
-          "maxLength": 30,
-          "x-go-name": "Name"
-        },
-        "redirectUrl": {
-          "description": "Redirect URL| 跳转地址",
-          "type": "string",
-          "maxLength": 300,
-          "x-go-name": "RedirectUrl"
-        },
-        "scopes": {
-          "description": "Scopes | 授权范围",
-          "type": "string",
-          "maxLength": 50,
-          "x-go-name": "Scopes"
-        },
-        "tokenUrl": {
-          "description": "The URL to get token | 获取Token的地址",
-          "type": "string",
-          "maxLength": 300,
-          "x-go-name": "TokenUrl"
-        },
-        "updatedAt": {
-          "description": "Update date | 更新日期",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "UpdatedAt"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "OauthProviderInfoResp": {
-      "description": "Oauth provider information response | 第三方信息返回体",
-      "type": "object",
-      "properties": {
-        "code": {
-          "description": "Error code | 错误代码",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "Code"
-        },
-        "data": {
-          "description": "Data | 数据",
-          "type": "string",
-          "x-go-name": "Data",
-          "$ref": "#/definitions/OauthProviderInfo"
-        },
-        "msg": {
-          "description": "Message | 提示信息",
-          "type": "string",
-          "x-go-name": "Msg"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "OauthProviderListInfo": {
-      "description": "OauthProvider list data | 第三方列表数据",
-      "type": "object",
-      "properties": {
-        "data": {
-          "description": "The API list data | 第三方列表数据",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/OauthProviderInfo"
-          },
-          "x-go-name": "Data"
-        },
-        "total": {
-          "description": "The total number of data | 数据总数",
-          "type": "integer",
-          "format": "uint64",
-          "x-go-name": "Total"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "OauthProviderListReq": {
-      "description": "Get oauth provider list request params | 第三方列表请求参数",
-      "type": "object",
-      "required": [
-        "page",
-        "pageSize"
-      ],
-      "properties": {
-        "name": {
-          "description": "Name | 第三方提供商名称",
-          "type": "string",
-          "maxLength": 30,
-          "x-go-name": "Name"
-        },
-        "page": {
-          "description": "Page number | 第几页",
-          "type": "integer",
-          "format": "uint64",
-          "x-go-name": "Page"
-        },
-        "pageSize": {
-          "description": "Page size | 单页数据行数",
-          "type": "integer",
-          "format": "uint64",
-          "maximum": 100000,
-          "x-go-name": "PageSize"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "OauthProviderListResp": {
-      "description": "The response data of oauth provider list | 第三方列表数据",
-      "type": "object",
-      "properties": {
-        "code": {
-          "description": "Error code | 错误代码",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "Code"
-        },
-        "data": {
-          "description": "Data | 数据",
-          "type": "string",
-          "x-go-name": "Data",
-          "$ref": "#/definitions/OauthProviderListInfo"
-        },
-        "msg": {
-          "description": "Message | 提示信息",
-          "type": "string",
-          "x-go-name": "Msg"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "PageInfo": {
-      "description": "The page request parameters | 列表请求参数",
-      "type": "object",
-      "required": [
-        "page",
-        "pageSize"
-      ],
-      "properties": {
-        "page": {
-          "description": "Page number | 第几页",
-          "type": "integer",
-          "format": "uint64",
-          "x-go-name": "Page"
-        },
-        "pageSize": {
-          "description": "Page size | 单页数据行数",
-          "type": "integer",
-          "format": "uint64",
-          "maximum": 100000,
-          "x-go-name": "PageSize"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "RedirectInfo": {
-      "description": "Redirect information | 跳转网址",
-      "type": "object",
-      "properties": {
-        "URL": {
-          "description": "Redirect URL | 跳转网址",
-          "type": "string"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "RedirectResp": {
-      "description": "Redirect response | 跳转网址返回信息",
-      "type": "object",
-      "properties": {
-        "code": {
-          "description": "Error code | 错误代码",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "Code"
-        },
-        "data": {
-          "description": "Data | 数据",
-          "type": "string",
-          "x-go-name": "Data",
-          "$ref": "#/definitions/RedirectInfo"
-        },
-        "msg": {
-          "description": "Message | 提示信息",
-          "type": "string",
-          "x-go-name": "Msg"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "RegisterByEmailReq": {
-      "description": "Register by email request | 邮箱注册参数",
-      "type": "object",
-      "required": [
-        "username",
-        "password",
-        "captcha",
-        "email"
-      ],
-      "properties": {
-        "captcha": {
-          "description": "The Captcha which users input | 用户输入的验证码",
-          "type": "string",
-          "maxLength": 5,
-          "minLength": 5,
-          "x-go-name": "Captcha"
-        },
-        "email": {
-          "description": "The user's email address | 用户的邮箱",
-          "type": "string",
-          "maxLength": 100,
-          "x-go-name": "Email"
-        },
-        "password": {
-          "description": "Password | 密码",
-          "type": "string",
-          "maxLength": 30,
-          "minLength": 6,
-          "x-go-name": "Password"
-        },
-        "username": {
-          "description": "User Name | 用户名",
-          "type": "string",
-          "maxLength": 20,
-          "x-go-name": "Username"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "RegisterBySmsReq": {
-      "description": "Register by SMS request | 短信注册参数",
-      "type": "object",
-      "required": [
-        "username",
-        "password",
-        "captcha",
-        "phoneNumber"
-      ],
-      "properties": {
-        "captcha": {
-          "description": "The Captcha which users input | 用户输入的验证码",
-          "type": "string",
-          "maxLength": 5,
-          "minLength": 5,
-          "x-go-name": "Captcha"
-        },
-        "password": {
-          "description": "Password | 密码",
-          "type": "string",
-          "maxLength": 30,
-          "minLength": 6,
-          "x-go-name": "Password"
-        },
-        "phoneNumber": {
-          "description": "The user's mobile phone number | 用户的手机号码",
-          "type": "string",
-          "maxLength": 20,
-          "x-go-name": "PhoneNumber"
-        },
-        "username": {
-          "description": "User Name | 用户名",
-          "type": "string",
-          "maxLength": 20,
-          "x-go-name": "Username"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "RegisterReq": {
-      "description": "Register request | 注册参数",
-      "type": "object",
-      "required": [
-        "username",
-        "password",
-        "captchaId",
-        "captcha",
-        "email"
-      ],
-      "properties": {
-        "captcha": {
-          "description": "The Captcha which users input | 用户输入的验证码",
-          "type": "string",
-          "maxLength": 5,
-          "minLength": 5,
-          "x-go-name": "Captcha"
-        },
-        "captchaId": {
-          "description": "Captcha ID which store in redis | 验证码编号, 存在redis中",
-          "type": "string",
-          "maxLength": 20,
-          "minLength": 20,
-          "x-go-name": "CaptchaId"
-        },
-        "email": {
-          "description": "The user's email address | 用户的邮箱",
-          "type": "string",
-          "maxLength": 100,
-          "x-go-name": "Email"
-        },
-        "password": {
-          "description": "Password | 密码",
-          "type": "string",
-          "maxLength": 30,
-          "minLength": 6,
-          "x-go-name": "Password"
-        },
-        "username": {
-          "description": "User Name | 用户名",
-          "type": "string",
-          "maxLength": 20,
-          "x-go-name": "Username"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "ResetPasswordByEmailReq": {
-      "description": "Reset password by email request | 通过邮箱重置密码请求",
-      "type": "object",
-      "properties": {
-        "captcha": {
-          "type": "string",
-          "x-go-name": "Captcha"
-        },
-        "email": {
-          "type": "string",
-          "x-go-name": "Email"
-        },
-        "password": {
-          "type": "string",
-          "x-go-name": "Password"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "ResetPasswordBySmsReq": {
-      "description": "Reset password by SMS request | 通过短信重置密码请求",
-      "type": "object",
-      "properties": {
-        "captcha": {
-          "type": "string",
-          "x-go-name": "Captcha"
-        },
-        "password": {
-          "type": "string",
-          "x-go-name": "Password"
-        },
-        "phoneNumber": {
-          "type": "string",
-          "maxLength": 20,
-          "x-go-name": "PhoneNumber"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "SmsCaptchaReq": {
-      "description": "The sms captcha request | 短信验证码请求参数",
-      "type": "object",
-      "properties": {
-        "phoneNumber": {
-          "description": "The phone number | 电话号码",
-          "type": "string",
-          "x-go-name": "PhoneNumber"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "TokenInfo": {
-      "description": "The response data of token information | Token信息",
-      "type": "object",
-      "properties": {
-        "createdAt": {
-          "description": "Create date | 创建日期",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "CreatedAt"
-        },
-        "expiredAt": {
-          "description": "ExpiredAt | 过期时间",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "ExpiredAt"
-        },
-        "id": {
-          "description": "ID",
-          "type": "string",
-          "x-go-name": "Id"
-        },
-        "source": {
-          "description": "Source | Token 来源",
-          "type": "string",
-          "x-go-name": "Source"
-        },
-        "status": {
-          "description": "Status | 状态",
-          "type": "integer",
-          "format": "uint32",
-          "x-go-name": "Status"
-        },
-        "token": {
-          "description": "Token | 用户的Token",
-          "type": "string",
-          "x-go-name": "Token"
-        },
-        "updatedAt": {
-          "description": "Update date | 更新日期",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "UpdatedAt"
-        },
-        "username": {
-          "description": "Username | 用户名",
-          "type": "string",
-          "x-go-name": "Username"
-        },
-        "uuid": {
-          "description": "User's UUID | 用户的UUID",
-          "type": "string",
-          "x-go-name": "Uuid"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "TokenInfoResp": {
-      "description": "Token information response | Token信息返回体",
-      "type": "object",
-      "properties": {
-        "code": {
-          "description": "Error code | 错误代码",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "Code"
-        },
-        "data": {
-          "description": "Data | 数据",
-          "type": "string",
-          "x-go-name": "Data",
-          "$ref": "#/definitions/TokenInfo"
-        },
-        "msg": {
-          "description": "Message | 提示信息",
-          "type": "string",
-          "x-go-name": "Msg"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "TokenListInfo": {
-      "description": "Token list data | Token列表数据",
-      "type": "object",
-      "properties": {
-        "data": {
-          "description": "The API list data | Token列表数据",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TokenInfo"
-          },
-          "x-go-name": "Data"
-        },
-        "total": {
-          "description": "The total number of data | 数据总数",
-          "type": "integer",
-          "format": "uint64",
-          "x-go-name": "Total"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "TokenListReq": {
-      "description": "Get token list request params | Token列表请求参数",
-      "type": "object",
-      "required": [
-        "page",
-        "pageSize"
-      ],
-      "properties": {
-        "email": {
-          "description": "Email",
-          "type": "string",
-          "x-go-name": "Email"
-        },
-        "nickname": {
-          "description": "Nickname",
-          "type": "string",
-          "x-go-name": "Nickname"
-        },
-        "page": {
-          "description": "Page number | 第几页",
-          "type": "integer",
-          "format": "uint64",
-          "x-go-name": "Page"
-        },
-        "pageSize": {
-          "description": "Page size | 单页数据行数",
-          "type": "integer",
-          "format": "uint64",
-          "maximum": 100000,
-          "x-go-name": "PageSize"
-        },
-        "username": {
-          "description": "Username",
-          "type": "string",
-          "x-go-name": "Username"
-        },
-        "uuid": {
-          "description": "Uuid",
-          "type": "string",
-          "x-go-name": "Uuid"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "TokenListResp": {
-      "description": "The response data of token list | Token列表数据",
-      "type": "object",
-      "properties": {
-        "code": {
-          "description": "Error code | 错误代码",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "Code"
-        },
-        "data": {
-          "description": "Data | 数据",
-          "type": "string",
-          "x-go-name": "Data",
-          "$ref": "#/definitions/TokenListInfo"
-        },
-        "msg": {
-          "description": "Message | 提示信息",
-          "type": "string",
-          "x-go-name": "Msg"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "UUIDReq": {
-      "description": "Basic UUID request | 基础UUID参数请求",
-      "type": "object",
-      "required": [
-        "id"
-      ],
-      "properties": {
-        "id": {
-          "description": "ID",
-          "type": "string",
-          "maxLength": 36,
-          "x-go-name": "Id"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "UUIDsReq": {
-      "description": "Basic UUID array request | 基础UUID数组参数请求",
-      "type": "object",
-      "required": [
-        "ids"
-      ],
-      "properties": {
-        "ids": {
-          "description": "Ids",
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "x-go-name": "Ids"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    },
-    "WechatMiniProgramLoginReq": {
-      "description": "Wechat mini program login request | 微信小程序登录请求",
-      "type": "object",
-      "properties": {
-        "code": {
-          "description": "Code",
-          "type": "string",
-          "x-go-name": "Code"
-        }
-      },
-      "x-go-package": "github.com/suyuan32/simple-admin-member-api/internal/types"
-    }
-  },
-  "responses": {
-    "SimpleMsg": {
-      "description": "The simplest message | 最简单的信息",
-      "headers": {
-        "msg": {
-          "type": "string",
-          "description": "Message | 信息"
         }
       }
     }
@@ -2580,5 +3264,10 @@
     {
       "Token": []
     }
-  ]
+  ],
+  "x-date": "2026-04-12 08:04:30",
+  "x-description": "This is a goctls generated swagger file.",
+  "x-github": "https://github.com/suyuan32/simple-admin-core",
+  "x-goctl-version": "v1.14.3",
+  "x-simple-admin-doc": "https://doc.ryansu.tech/zh/"
 }

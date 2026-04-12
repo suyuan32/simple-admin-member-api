@@ -10,21 +10,6 @@ import (
 	"github.com/suyuan32/simple-admin-member-api/internal/types"
 )
 
-// swagger:route post /member/login_by_email publicmember LoginByEmail
-//
-// Log in by email | 邮箱登录
-//
-// Log in by email | 邮箱登录
-//
-// Parameters:
-//  + name: body
-//    require: true
-//    in: body
-//    type: LoginByEmailReq
-//
-// Responses:
-//  200: LoginResp
-
 func LoginByEmailHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.LoginByEmailReq

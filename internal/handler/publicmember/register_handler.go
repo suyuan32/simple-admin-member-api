@@ -10,21 +10,6 @@ import (
 	"github.com/suyuan32/simple-admin-member-api/internal/types"
 )
 
-// swagger:route post /member/register publicmember Register
-//
-// Register | 注册
-//
-// Register | 注册
-//
-// Parameters:
-//  + name: body
-//    require: true
-//    in: body
-//    type: RegisterReq
-//
-// Responses:
-//  200: BaseMsgResp
-
 func RegisterHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.RegisterReq

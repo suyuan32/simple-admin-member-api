@@ -10,21 +10,6 @@ import (
 	"github.com/suyuan32/simple-admin-member-api/internal/types"
 )
 
-// swagger:route post /member member GetMemberById
-//
-// Get member by ID | 通过ID获取会员
-//
-// Get member by ID | 通过ID获取会员
-//
-// Parameters:
-//  + name: body
-//    require: true
-//    in: body
-//    type: UUIDReq
-//
-// Responses:
-//  200: MemberInfoResp
-
 func GetMemberByIdHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.UUIDReq

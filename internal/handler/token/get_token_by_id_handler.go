@@ -10,21 +10,6 @@ import (
 	"github.com/suyuan32/simple-admin-member-api/internal/types"
 )
 
-// swagger:route post /token token GetTokenById
-//
-// Get Token by ID | 通过ID获取Token
-//
-// Get Token by ID | 通过ID获取Token
-//
-// Parameters:
-//  + name: body
-//    require: true
-//    in: body
-//    type: UUIDReq
-//
-// Responses:
-//  200: TokenInfoResp
-
 func GetTokenByIdHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.UUIDReq

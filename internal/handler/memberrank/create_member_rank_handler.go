@@ -10,21 +10,6 @@ import (
 	"github.com/suyuan32/simple-admin-member-api/internal/types"
 )
 
-// swagger:route post /member_rank/create memberrank CreateMemberRank
-//
-// Create member rank information | 创建会员等级
-//
-// Create member rank information | 创建会员等级
-//
-// Parameters:
-//  + name: body
-//    require: true
-//    in: body
-//    type: MemberRankInfo
-//
-// Responses:
-//  200: BaseMsgResp
-
 func CreateMemberRankHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.MemberRankInfo

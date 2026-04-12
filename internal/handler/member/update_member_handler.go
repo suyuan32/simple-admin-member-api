@@ -10,21 +10,6 @@ import (
 	"github.com/suyuan32/simple-admin-member-api/internal/types"
 )
 
-// swagger:route post /member/update member UpdateMember
-//
-// Update member information | 更新会员
-//
-// Update member information | 更新会员
-//
-// Parameters:
-//  + name: body
-//    require: true
-//    in: body
-//    type: MemberInfo
-//
-// Responses:
-//  200: BaseMsgResp
-
 func UpdateMemberHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.MemberInfo

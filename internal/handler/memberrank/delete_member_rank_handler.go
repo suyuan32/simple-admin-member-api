@@ -10,21 +10,6 @@ import (
 	"github.com/suyuan32/simple-admin-member-api/internal/types"
 )
 
-// swagger:route post /member_rank/delete memberrank DeleteMemberRank
-//
-// Delete member rank information | 删除会员等级信息
-//
-// Delete member rank information | 删除会员等级信息
-//
-// Parameters:
-//  + name: body
-//    require: true
-//    in: body
-//    type: IDsReq
-//
-// Responses:
-//  200: BaseMsgResp
-
 func DeleteMemberRankHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.IDsReq

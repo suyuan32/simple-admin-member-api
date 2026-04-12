@@ -9,15 +9,6 @@ import (
 	"github.com/suyuan32/simple-admin-member-api/internal/svc"
 )
 
-// swagger:route get /member/logout member Logout
-//
-// Log out the service | 用户登出
-//
-// Log out the service | 用户登出
-//
-// Responses:
-//  200: BaseMsgResp
-
 func LogoutHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		l := member.NewLogoutLogic(r.Context(), svcCtx)

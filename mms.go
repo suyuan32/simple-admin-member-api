@@ -1,25 +1,3 @@
-//	Simple Admin Member Management Service
-//
-//	MMS: Member Management Service
-//
-//	Schemes: http, https
-//	Host: localhost:9104
-//	BasePath: /
-//	Version: 1.3.4
-//		SecurityDefinitions:
-//		  Token:
-//		    type: apiKey
-//		    name: Authorization
-//		    in: header
-//		Security:
-//	  	  Token:
-//	Consumes:
-//	  - application/json
-//
-//	Produces:
-//	  - application/json
-//
-// swagger:meta
 package main
 
 import (

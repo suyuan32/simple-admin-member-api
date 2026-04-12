@@ -10,21 +10,6 @@ import (
 	"github.com/suyuan32/simple-admin-member-api/internal/types"
 )
 
-// swagger:route post /member/create member CreateMember
-//
-// Create member information | 创建会员
-//
-// Create member information | 创建会员
-//
-// Parameters:
-//  + name: body
-//    require: true
-//    in: body
-//    type: MemberInfo
-//
-// Responses:
-//  200: BaseMsgResp
-
 func CreateMemberHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.MemberInfo

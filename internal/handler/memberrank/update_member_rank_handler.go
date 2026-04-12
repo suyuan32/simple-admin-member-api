@@ -10,21 +10,6 @@ import (
 	"github.com/suyuan32/simple-admin-member-api/internal/types"
 )
 
-// swagger:route post /member_rank/update memberrank UpdateMemberRank
-//
-// Update member rank information | 更新会员等级
-//
-// Update member rank information | 更新会员等级
-//
-// Parameters:
-//  + name: body
-//    require: true
-//    in: body
-//    type: MemberRankInfo
-//
-// Responses:
-//  200: BaseMsgResp
-
 func UpdateMemberRankHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.MemberRankInfo

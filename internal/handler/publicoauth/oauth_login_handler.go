@@ -10,21 +10,6 @@ import (
 	"github.com/suyuan32/simple-admin-member-api/internal/types"
 )
 
-// swagger:route post /oauth/login publicoauth OauthLogin
-//
-// Oauth log in | Oauth 登录
-//
-// Oauth log in | Oauth 登录
-//
-// Parameters:
-//  + name: body
-//    require: true
-//    in: body
-//    type: OauthLoginReq
-//
-// Responses:
-//  200: RedirectResp
-
 func OauthLoginHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.OauthLoginReq

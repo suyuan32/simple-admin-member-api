@@ -10,21 +10,6 @@ import (
 	"github.com/suyuan32/simple-admin-member-api/internal/types"
 )
 
-// swagger:route post /member_rank memberrank GetMemberRankById
-//
-// Get member rank by ID | 通过ID获取会员等级
-//
-// Get member rank by ID | 通过ID获取会员等级
-//
-// Parameters:
-//  + name: body
-//    require: true
-//    in: body
-//    type: IDReq
-//
-// Responses:
-//  200: MemberRankInfoResp
-
 func GetMemberRankByIdHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.IDReq

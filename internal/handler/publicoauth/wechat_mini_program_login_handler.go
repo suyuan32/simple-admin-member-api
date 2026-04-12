@@ -10,21 +10,6 @@ import (
 	"github.com/suyuan32/simple-admin-member-api/internal/types"
 )
 
-// swagger:route post /oauth/login/wechat/mini_program publicoauth WechatMiniProgramLogin
-//
-// Wechat Mini program login | 微信小程序登录
-//
-// Wechat Mini program login | 微信小程序登录
-//
-// Parameters:
-//  + name: body
-//    require: true
-//    in: body
-//    type: WechatMiniProgramLoginReq
-//
-// Responses:
-//  200: CallbackResp
-
 func WechatMiniProgramLoginHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.WechatMiniProgramLoginReq

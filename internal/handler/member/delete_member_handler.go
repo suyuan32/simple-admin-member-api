@@ -10,21 +10,6 @@ import (
 	"github.com/suyuan32/simple-admin-member-api/internal/types"
 )
 
-// swagger:route post /member/delete member DeleteMember
-//
-// Delete member information | 删除会员信息
-//
-// Delete member information | 删除会员信息
-//
-// Parameters:
-//  + name: body
-//    require: true
-//    in: body
-//    type: UUIDsReq
-//
-// Responses:
-//  200: BaseMsgResp
-
 func DeleteMemberHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.UUIDsReq
